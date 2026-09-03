@@ -1,6 +1,6 @@
 # Evaluation Guide
 
-Revision: **v0.7-worker-scale-calibration**
+Revision: **v0.8-lettering-spatial-rhythm**
 
 Use after every generated poster and after every major Skill revision.
 
@@ -41,17 +41,12 @@ Default negative-space target: about 70%–80%. In `dominant_element` Fidelity p
 - [ ] Workers do not look fat/chibi.
 - [ ] Workers do not look like tall adult stick figures.
 
-Fail when workers have giant heads, barrel-shaped bodies, thick stubby limbs, long fashion-like limbs, or adult stick-figure anatomy.
-
 ## E. Worker relative scale
 
 - [ ] Normal worker visual height is about **12%–18% of hero height**.
 - [ ] Preferred average is about **14%–16%**.
 - [ ] No worker exceeds **20% of hero height** without explicit user request.
 - [ ] Product visually dominates before any worker is noticed.
-- [ ] Workers on/behind the product may be smaller or partially occluded.
-
-If workers feel like co-equal characters, they are too large.
 
 ## F. Worker action
 
@@ -73,20 +68,39 @@ If workers feel like co-equal characters, they are too large.
 
 A grounded single ladder is acceptable; repeated or unnecessary ladders are not.
 
-## H. Lettering
+## H. Lettering glyph style
 
 When text is used:
 
-- [ ] Exact requested wording is attempted without extra copy.
+- [ ] Exact requested wording is present without extra copy.
 - [ ] Thin black line handwriting.
-- [ ] Character sizes, tilt, spacing, and baselines are irregular.
-- [ ] Does not look like standard computer typography.
-- [ ] Not brush calligraphy, rounded cute handwriting, or polished commercial lettering.
-- [ ] Text participates in composition rather than forming a formal ad block.
+- [ ] Character sizes and tilt are visibly irregular.
+- [ ] Glyph skeletons do not look like a standard font.
+- [ ] No brush calligraphy, rounded cute handwriting, or polished commercial lettering.
 
-When typography is the only failure, use `fidelity_focus: lettering` and keep the poster base unchanged.
+## I. Lettering spatial rhythm
 
-## I. Palette
+This is a separate check from glyph style.
+
+- [ ] Characters are treated as individually placed handwritten objects, not one typeset phrase.
+- [ ] No single clean shared baseline dominates the title.
+- [ ] Adjacent gaps are visibly unequal.
+- [ ] At least one gap is roughly 1.5–2.5× another nearby gap.
+- [ ] At least one character sits noticeably higher or lower than another.
+- [ ] Character x/y positions drift naturally while reading order remains clear.
+- [ ] The title does not form a neat rectangle, aligned columns, or a repeated grid.
+
+Length-specific checks:
+
+- [ ] 2 chars: unequal spacing + baseline mismatch.
+- [ ] 3 chars: not one straight row; diagonal / triangular / stair-step is acceptable.
+- [ ] 4 chars: not a perfect 2×2 grid.
+- [ ] 5–6 chars: split into 2–3 loose clusters; **not one continuous line**.
+- [ ] 7+ chars: semantic groups are staggered instead of forming a clean paragraph block.
+
+When glyphs are correct but spacing still feels typeset, use `fidelity_focus: lettering` and repair only spatial rhythm.
+
+## J. Palette
 
 - [ ] Colors come from source subject plus white and black.
 - [ ] No unrelated accent color is added without user request.
@@ -105,13 +119,14 @@ When typography is the only failure, use `fidelity_focus: lettering` and keep th
 - [ ] Selected focus is the first photographic signal at thumbnail size.
 - [ ] It is the largest meaningful subject element, not background architecture.
 - [ ] Secondary cues remain clearly weaker.
-- [ ] Workers interact with the focus before secondary elements.
+- [ ] Workers interact with focus before secondary elements.
 
 ### lettering
 
 - [ ] Accepted poster base remains unchanged.
 - [ ] Only lettering layer changes.
-- [ ] Glyph skeleton, spacing, tilt, scale, or baseline issues are repaired.
+- [ ] Exact wording remains intact.
+- [ ] Glyph skeleton or spatial rhythm defects are repaired without regenerating product/workers.
 
 ## Known failure modes
 
@@ -129,17 +144,13 @@ Repair: reassert fixed faceless worker identity.
 
 ### 3. Chibi overcorrection
 
-Example: workers become giant-headed, fat, barrel-bodied, or thick-limbed after trying to avoid stick figures.
-
-Cause: silhouette lock overemphasized “squat / oversized head / stubby limbs”.
+Workers become giant-headed, fat, barrel-bodied, or thick-limbed.
 
 Repair: recalibrate to 2.8–3.5 heads tall, head 28%–35%, torso width 55%–75% of head diameter, slim short-to-medium limbs.
 
 ### 4. Worker scale inflation
 
-Example: workers are stylistically correct but too large compared with the product.
-
-Cause: anatomy was constrained but relative product-to-worker scale was not.
+Workers are stylistically correct but too large relative to the product.
 
 Repair: enforce 12%–18% hero-height target, preferred 14%–16%, max 20%.
 
@@ -153,11 +164,11 @@ Repair: use compact 2.8–3.5-head geometry with narrow rounded torso and slim s
 
 Ladders repeatedly appear even when unnecessary.
 
-Repair: structural-prop budget defaults to 0 and is capped at 1. Use ladder only for meaningful vertical access.
+Repair: structural-prop budget defaults to 0 and is capped at 1.
 
 ### 7. Floating ladder / prop
 
-Repair: require visible base support, matching perspective, stable top contact, and worker contact. Otherwise remove it.
+Repair: require visible base support, matching perspective, stable contact, and worker contact. Otherwise remove it.
 
 ### 8. Weak worker story
 
@@ -165,19 +176,35 @@ A worker merely waves or decorates.
 
 Repair: delete or replace with a product-feature action.
 
-### 9. Font-like handwriting
+### 9. Font-like glyph skeleton
 
-Repair lettering layer only; vary glyph boxes, tilt, spacing, radical proportions, and horizontal stroke lengths.
+Letters look like a standard font with rough texture.
 
-### 10. Too much decoration
+Repair: regenerate lettering only; vary glyph boxes, tilt, internal spacing, radical proportions, and stroke lengths.
+
+### 10. Typeset spacing drift
+
+Example: `焦糖脑袋冲啊` has acceptable handwritten glyphs but appears as one evenly spaced horizontal sentence.
+
+Cause: the model treated the title as a phrase-level text object instead of individually placed characters.
+
+Repair: keep glyph style and poster base. Re-place every character independently. Break shared baseline, vary x/y position, make gaps unequal, and split 5–6 characters into 2–3 loose clusters.
+
+### 11. Perfect-grid handwriting
+
+Example: four characters are placed in a neat 2×2 square.
+
+Repair: offset character positions, change local scale, break row/column alignment, and create a loose staggered two-level rhythm.
+
+### 12. Too much decoration
 
 Remove half of supporting doodles and restore blank space.
 
-### 11. Dominant-focus dilution
+### 13. Dominant-focus dilution
 
 Demote secondary scene cues in scale, contrast, saturation, and placement.
 
-### 12. Multi-case blending
+### 14. Multi-case blending
 
 Process each source as an independent generation unless a comparison board is explicitly requested.
 
@@ -191,8 +218,10 @@ Process each source as an independent generation unless a comparison board is ex
 6. Is any ladder/stool genuinely useful and physically grounded?
 7. Is structural-prop count at most one?
 8. Is white space doing compositional work?
-9. If text exists, does it feel written rather than typeset?
-10. What single defect should be repaired next?
+9. Are the handwritten glyphs correct?
+10. Does the title feel placed character-by-character rather than typeset as a phrase?
+11. For 5–6 characters, is the caption broken into loose clusters rather than one line?
+12. What single defect should be repaired next?
 
 ## Regression policy
 

@@ -1,11 +1,11 @@
 ---
 name: minimal-doodle-product-poster-skill
-description: Turn a clear uploaded product or food photo into a minimalist white-space poster with one preserved photographic hero subject, small faceless doodle workers, product-related micro-storytelling, and loose individually placed thin-line Chinese handwriting.
+description: Turn a clear uploaded product or food photo into a minimalist white-space poster with one preserved photographic hero subject, small faceless doodle workers, product-related micro-storytelling, and loose semantic-cluster thin-line Chinese handwriting.
 ---
 
 # Minimal Doodle Product Poster Skill
 
-Skill revision: **v0.8-lettering-spatial-rhythm**
+Skill revision: **v0.9-semantic-cluster-lettering**
 
 ## Purpose
 
@@ -17,14 +17,14 @@ Turn one real product, food, drink, dessert, fruit, or everyday object into a ca
 - short loose handwritten Chinese caption when provided;
 - sparse action-serving doodles.
 
-The target is **real product photography + a tiny primitive doodle micro-world**. Workers remain secondary marks. Lettering must feel written into the space, not typeset.
+The target is **real product photography + a tiny primitive doodle micro-world**. Workers remain secondary marks. Lettering must feel like a handwritten note block, not typeset text and not isolated floating stickers.
 
 ## Execution priority
 
 1. Subject identity
 2. One clear hero subject
 3. Exact caption when provided
-4. Caption spatial rhythm
+4. Caption semantic grouping and spatial rhythm
 5. Worker visual system
 6. Worker scale relative to hero
 7. Product-related worker actions
@@ -56,7 +56,8 @@ input photo
 → extract 2–4 real product features
 → convert features into 3–5 worker actions
 → choose Quick or Fidelity
-→ if caption exists, plan character-by-character spatial rhythm
+→ if caption exists, split it into natural semantic clusters
+→ place clusters as one compact handwritten title block
 → assemble final prompt with hard worker/scale/lettering rules inlined
 → generate
 → self-check
@@ -82,36 +83,57 @@ If the user provides a caption, it is mandatory.
 - place in upper-left or left negative space;
 - thin black naive Chinese handwriting;
 - no extra copy, pinyin, English, labels, badges, or formal typography;
-- one loose curved hand-drawn arrow may connect caption to subject.
+- one loose curved hand-drawn arrow may connect the title block to the subject.
 
 Missing, replaced, or mistranslated caption is a failure.
 
-## Lettering Spatial Rhythm Lock
+## Semantic Cluster Lettering Lock
 
-**Do not typeset the caption as one phrase. Place every Chinese character individually.**
+The caption must remain a **coherent handwritten phrase**, not a typeset line and not a set of isolated single-character stickers.
 
-Before rendering, assign every character its own x/y position and local scale.
+### Core rule
 
-Hard rules:
+**Group by meaning first, then loosen the placement inside and between groups.**
 
-- no single clean shared baseline;
-- no equal character tracking;
-- adjacent gaps must be visibly different;
-- at least one gap should be about **1.5–2.5×** another nearby gap;
-- at least one character must sit clearly higher or lower than another;
-- character sizes and tilt may vary independently;
-- preserve readable natural order;
-- avoid rectangular title blocks, aligned columns, repeated character boxes, and perfect grids.
+Examples:
 
-Caption-length routing:
+- `心态放苹` → `心态` / `放苹`
+- `焦糖脑袋冲啊` → `焦糖` / `脑袋` / `冲啊`
+- `清甜下午茶` → `清甜` / `下午茶` or another natural semantic grouping
 
-- **2 chars**: loose horizontal allowed, but unequal spacing + baseline mismatch;
-- **3 chars**: diagonal / triangular / stair-step preferred, not one straight row;
-- **4 chars**: loose staggered two-level structure; never a perfect 2×2 grid;
-- **5–6 chars**: split into **2–3 loose character clusters**; never render the entire caption as one continuous line;
-- **7+ chars**: split into semantic groups of roughly 2–3 characters and place groups on staggered levels.
+Do not mechanically split every character.
 
-The title should feel like someone wrote characters one by one into the white space.
+### Cluster spacing rules
+
+- characters inside the same semantic cluster stay relatively close;
+- within-cluster spacing may vary, but the characters must still read as one small phrase unit;
+- gaps between clusters should usually be about **1.4–2.2×** the typical within-cluster gap;
+- clusters may shift up/down and left/right independently;
+- clusters do not share one perfect baseline;
+- the whole title remains compact in one upper-left / left-side zone;
+- avoid long diagonal staircase arrangements that drag across the canvas;
+- avoid one-character-per-row layouts unless the user explicitly asks for that style.
+
+### Compact title-block rule
+
+For 4–6 Chinese characters, the title should normally occupy a compact handwritten zone rather than a long path:
+
+- roughly **20%–35% of canvas width**;
+- roughly **15%–28% of canvas height**;
+- keep clear breathing space around the title block;
+- the arrow should originate from the title block as a whole, usually from its lower or side edge.
+
+These are guidance ranges, not rigid geometry, but the title must not span half the poster as a diagonal chain of isolated characters.
+
+### Caption-length routing
+
+- **2 chars**: one loose cluster; slight size, tilt, and baseline mismatch.
+- **3 chars**: one cluster or 2+1 grouping; compact, not a long straight line.
+- **4 chars**: default to **2 semantic clusters** when natural; loose two-level arrangement; never a perfect 2×2 grid.
+- **5–6 chars**: default to **2–3 semantic clusters**; group members stay close; do not scatter all characters independently; do not render as one continuous typeset line.
+- **7+ chars**: split into natural semantic groups of roughly 2–3 characters, keeping the overall title block compact and readable.
+
+The goal is: **handwritten phrase structure with imperfect spacing**, not phrase-level typography and not character-level fragmentation.
 
 ## Micro-worker identity lock
 
@@ -184,7 +206,7 @@ Ropes, scaffolds, suspended lines, and floating platforms remain disallowed unle
 - pure white or very lightly warm-white background;
 - normally 70%–80% negative space;
 - one photographic hero subject center-lower or slightly off-center;
-- caption lives in left whitespace;
+- caption lives in left whitespace as one compact handwritten block;
 - doodles remain sparse;
 - workers do not evenly surround the object like a decorative border.
 
@@ -200,7 +222,7 @@ Must still obey:
 
 - Subject Lock;
 - mandatory caption;
-- Lettering Spatial Rhythm Lock;
+- Semantic Cluster Lettering Lock;
 - worker identity/proportion/scale locks;
 - structural-prop budget;
 - white-space layout;
@@ -221,7 +243,7 @@ Only one focus per pass.
 
 For `subject_identity` and `dominant_element`, use `prompts/poster-base.md`, then `prompts/lettering-layer.md` if lettering is required.
 
-If glyphs are correct but spacing still feels typeset, use `fidelity_focus: lettering` and repair spatial rhythm only.
+If glyphs are correct but the layout feels either too typeset or too fragmented, use `fidelity_focus: lettering` and repair semantic clustering + spacing only.
 
 ## Final prompt assembly requirement
 
@@ -229,15 +251,16 @@ The final generation prompt must explicitly include:
 
 1. hero subject description;
 2. exact caption if provided;
-3. character-by-character lettering placement rule;
-4. caption-length routing rule;
-5. worker identity lock;
-6. worker geometry: 2.8–3.5 heads tall, narrower torso, slim short-to-medium limbs;
-7. worker scale: 12%–18% of hero height, max 20%;
-8. 3–5 product-related actions;
-9. structural-prop budget 0 by default, max 1 grounded ladder/stool if truly useful;
-10. large white-space composition;
-11. photography-first rule.
+3. natural semantic cluster plan for the caption;
+4. compact title-block rule;
+5. within-cluster vs between-cluster spacing rule;
+6. worker identity lock;
+7. worker geometry: 2.8–3.5 heads tall, narrower torso, slim short-to-medium limbs;
+8. worker scale: 12%–18% of hero height, max 20%;
+9. 3–5 product-related actions;
+10. structural-prop budget 0 by default, max 1 grounded ladder/stool if truly useful;
+11. large white-space composition;
+12. photography-first rule.
 
 Do not rely on vague phrases such as “handwritten text” or “tiny cute workers”.
 
@@ -248,9 +271,11 @@ Reject or repair if:
 - subject identity drifted;
 - multiple photographic objects compete as heroes;
 - provided caption is missing/wrong;
-- 5+ character caption is rendered as one neat continuous line;
-- characters share an overly clean baseline or equal spacing;
+- 5+ character caption is rendered as one neat continuous typeset line;
+- every character is isolated with no visible phrase grouping;
+- a 5–6 character title forms a long diagonal staircase across the canvas;
 - 4-character caption forms a perfect 2×2 grid;
+- title block spreads too far and competes with the product;
 - workers have faces, clothes, or mascot styling;
 - workers are chubby/chibi or long-limbed stick figures;
 - any worker exceeds 20% of hero height without explicit reason;
@@ -263,12 +288,13 @@ Reject or repair if:
 ## Repair priority
 
 1. caption correctness
-2. caption spatial rhythm
-3. subject identity
-4. worker scale relative to hero
-5. worker silhouette/proportion
-6. structural-prop grounding/frequency
-7. clutter and hierarchy
+2. caption semantic clustering
+3. caption compactness and spacing rhythm
+4. subject identity
+5. worker scale relative to hero
+6. worker silhouette/proportion
+7. structural-prop grounding/frequency
+8. clutter and hierarchy
 
 Use one targeted repair pass.
 
@@ -282,7 +308,10 @@ Hero:
 
 Caption:
 Render exactly “[caption]”. Caption is mandatory when provided.
-Do not typeset it as one phrase. Place each Chinese character independently with its own x/y position. Use thin naive black handwriting, broken baseline, unequal gaps, different local scale/tilt, and readable order. For 5–6 characters, split into 2–3 loose clusters and never use one continuous line. For 4 characters, never use a perfect 2×2 grid.
+First split the caption into natural semantic clusters, for example [cluster 1] / [cluster 2] / [cluster 3].
+Keep characters inside each cluster relatively close so they read as a phrase unit. Make gaps between clusters clearly larger than within-cluster gaps. Let clusters drift slightly in x/y position and baseline, but keep the whole title compact in the upper-left/left whitespace.
+Do not typeset the whole sentence as one clean line. Do not scatter every character as an isolated sticker. Do not create a long diagonal staircase.
+Use thin naive black handwriting with subtle variation in size, tilt, and glyph skeleton.
 
 Workers:
 Add 3–5 very small primitive faceless black-line workers.
@@ -309,7 +338,10 @@ A correct result has:
 
 - one unmistakable photographic hero;
 - mandatory caption when supplied;
-- handwritten glyphs with loose character-by-character spatial rhythm rather than typeset phrase spacing;
+- handwritten glyphs grouped into natural semantic clusters;
+- group members close enough to read as phrases;
+- cluster spacing loose enough to feel handwritten;
+- compact title block rather than one neat line or isolated-character staircase;
 - small faceless workers that feel light and primitive;
 - workers clearly smaller than hero;
 - meaningful actions;

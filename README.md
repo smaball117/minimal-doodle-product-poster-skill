@@ -47,6 +47,15 @@
 
 这样修改字体时，不会重新洗掉主体、小人和构图。
 
+## 实测对比｜苹果冰茶「心态放苹」
+
+| 原图 | Version 1 · Quick Mode | Version 2 · Fidelity Mode |
+|---|---|---|
+| ![原图：苹果冰茶实拍](assets/examples/apple-tea/source.svg) | ![Quick Mode：心态放苹](assets/examples/apple-tea/quick-mode-mini.svg) | ![Fidelity Mode：心态放苹](assets/examples/apple-tea/fidelity-mode-mini.svg) |
+| 实拍照片作为 Subject Lock 基准。 | 一次完成海报，验证整体风格能否快速成立。 | 强化红苹果与苹果切片，让标题中的“苹”与主体关系更直接。 |
+
+完整测试记录见 [`examples/apple-tea-test.md`](examples/apple-tea-test.md)。
+
 ## 最重要的 5 条规则
 
 1. **Subject Lock**：先确认“它是什么”，再做创意。布丁不能因为“蓝色 + 清凉”被改成刨冰。
@@ -87,9 +96,14 @@ minimal-doodle-product-poster-skill/
 │   └── lettering-layer.md
 ├── evals/
 │   └── evals.json
+├── assets/examples/apple-tea/
+│   ├── source.svg
+│   ├── quick-mode-mini.svg
+│   └── fidelity-mode-mini.svg
 └── examples/
     ├── watermelon.md
-    └── blue-pudding.md
+    ├── blue-pudding.md
+    └── apple-tea-test.md
 ```
 
 ## 当前测试结论
@@ -98,6 +112,7 @@ minimal-doodle-product-poster-skill/
 - 蓝色布丁案例暴露并修复了“主体漂移”：布丁曾被错误转成刨冰。
 - 蓝色布丁第二轮验证了固定小人系统：圆头、无脸、无服饰。
 - “清甜下午茶”测试暴露了字体需要独立控制字形骨架，而不能只堆“手写感”形容词。
+- 苹果冰茶测试验证了 Quick / Fidelity 两条路径，并发现 Fidelity Mode 应强化标题中的核心产品语义。
 
 ## 发布边界
 

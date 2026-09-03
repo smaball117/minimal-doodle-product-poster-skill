@@ -4,26 +4,52 @@
 
 > 这套视觉常被口语化称为“喜茶风”，但本项目使用中性的可迁移语言描述它：**Minimal Product Photography + Doodle Micro-Storytelling**。目标不是复刻某个品牌，而是提炼一种可复用的视觉方法。
 
-## v0.3 核心升级
+## v0.4 核心升级：Fidelity Focus System
 
-从“一个很长的 Prompt”升级为“工作流 + 专项规则 + 评估测试”。
+Fidelity Mode 不再等于“整体更精细”，而是一次只解决一个高保真问题。
+
+```yaml
+mode: fidelity
+fidelity_focus: subject_identity | dominant_element | lettering
+```
+
+三种 Focus：
+
+| Focus | 什么时候用 | 核心目标 |
+|---|---|---|
+| `subject_identity` | “主体不要变”“保持原物” | 锁死产品类别、轮廓、材质和关键细节 |
+| `dominant_element` | “强调最大的元素”“突出番茄/饼干” | 让最强的有意义元素成为第一视觉信号 |
+| `lettering` | “字体不像”“只改标题” | 冻结海报底图，只重做手写文字 |
+
+同时引入三层锁定逻辑：
+
+```text
+Subject Lock = 它是什么？
+Scene Lock   = 原场景靠什么被认出来？
+Focus Lock   = 这一轮最需要强调什么？
+```
+
+这样复杂原图也不用在“完全还原”和“只留一个主体”之间二选一。
+
+## 工作流
 
 ```text
 上传照片
-→ 锁定真实主体
+→ Subject Lock
+→ 必要时 Scene Lock
 → 提炼产品特征
 → 生成微缩工作动作
-→ 选择 Quick / Fidelity 模式
+→ Quick / Fidelity
+→ Fidelity 时选择单一 Focus
 → 生成海报
-→ 按 Evaluation 规则验收
+→ Evaluation 验收
 ```
 
 ## 风格公式
 
 ```text
-70%–80% 白色留白
-+ 单一真实摄影主体
-+ 居中偏下构图
+大面积白色留白
++ 单一真实摄影主角
 + 黑色稚拙线稿
 + 4–5 个无脸圆头微缩小人
 + 产品相关动作叙事
@@ -35,17 +61,17 @@
 
 ### Quick Mode
 
-适合快速测试。主体、小人和文字一次生成。
+适合第一次探索和快速测试。主体、小人和文字一次完成。
 
 ### Fidelity Mode
 
-当用户强调主体还原或字体像参考时使用：
+适合已经知道“哪里必须更准”的情况。
 
-1. 先生成无文字 Poster Base；
-2. 单独生成 Lettering Layer；
-3. 最后合成。
+- `subject_identity`：先保主体准确
+- `dominant_element`：先保视觉焦点准确
+- `lettering`：先保字体准确，其他全部冻结
 
-这样修改字体时，不会重新洗掉主体、小人和构图。
+如果几个问题同时存在，分轮解决，不要一张图里同时大改主体、焦点、字体和小人。
 
 ## 实测对比｜苹果冰茶「心态放苹」
 
@@ -58,37 +84,47 @@
 
 ## 实测对比｜3 组本人实拍照片
 
-本轮继续测试不同复杂度的真实照片，并为 Fidelity Mode 指定统一目标：**强调画面中最大的核心元素**。
+本轮继续测试不同复杂度的真实照片，并为 Fidelity Mode 指定统一目标：**`dominant_element`，强调画面中最大的有意义元素**。
 
 ![三组 Original / Quick / Fidelity 对比](assets/examples/three-case-comparison.svg)
 
-| Case | Quick Mode | Fidelity Mode |
+| Case | Quick Mode | Fidelity · dominant_element |
 |---|---|---|
 | 蔬菜农场 | 保留多个角色与蔬菜关系，故事更丰富。 | 锁定巨型红番茄为第一视觉中心。 |
-| 米奇海鲜汤 | 保留整碗食材丰富度。 | 强化中央黄色米奇造型食材。 |
+| 米奇海鲜汤 | 保留整碗食材丰富度。 | 强化中央黄色造型食材。 |
 | 焦糖饼干冰淇淋 | 饼干、冰淇淋、焦糖共同叙事。 | 放大焦糖饼干作为最强形状锚点。 |
 
 完整测试记录见 [`examples/three-case-comparison.md`](examples/three-case-comparison.md)。
 
-## 最重要的 5 条规则
+## 最重要的 6 条规则
 
-1. **Subject Lock**：先确认“它是什么”，再做创意。布丁不能因为“蓝色 + 清凉”被改成刨冰。
-2. **Photography First**：真实产品摄影永远是第一视觉锚点，不做全图卡通化。
-3. **Worker ≠ Decoration**：每个小人必须有产品相关工作，不能为了热闹随机加人。
-4. **Fixed Figure System**：圆头、无五官、无表情、无发型、无服饰、无标签，只靠动作表达。
-5. **Lettering Is a System**：目标不是“手写字体贴图”，而是稚拙字形骨架 + 细黑线笔画 + 松散构图。
+1. **Subject Lock**：先确认“它是什么”，再做创意。
+2. **Scene Lock**：复杂照片只留 1–3 个有识别价值的场景线索，不把全部元素搬进白底海报。
+3. **Focus Lock**：Fidelity 每轮只有一个主目标。
+4. **Photography First**：真实产品摄影永远是第一视觉锚点，不做全图卡通化。
+5. **Worker ≠ Decoration**：每个小人必须有产品相关工作。
+6. **Fixed Figure System**：圆头、无五官、无表情、无发型、无服饰、无标签，只靠动作表达。
 
 ## 推荐输入
 
-只给一张照片也可以。更稳定时可补充：
+最简单只给照片也可以。更稳定时建议：
 
 ```yaml
-subject: 蓝色布丁
-feature: 清凉、Q弹、奶油、樱桃
-caption: 清甜下午茶
+subject: 巨型红番茄
+feature: 饱满、巨大、红色、农场感
+caption: 大番茄 大满足
 worker_count: 4
-color_palette: 浅蓝、奶油白、樱桃红、黑、白
-mode: quick | fidelity
+color_palette: 红、绿、白、黑
+mode: fidelity
+fidelity_focus: dominant_element
+```
+
+如果是字体修复：
+
+```yaml
+mode: fidelity
+fidelity_focus: lettering
+caption: 清甜下午茶
 ```
 
 ## 文件结构
@@ -101,6 +137,7 @@ minimal-doodle-product-poster-skill/
 ├── references/
 │   ├── style-guide.md
 │   ├── subject-fidelity.md
+│   ├── fidelity-focus.md
 │   ├── micro-worker-guide.md
 │   ├── lettering-guide.md
 │   └── evaluation.md
@@ -123,11 +160,12 @@ minimal-doodle-product-poster-skill/
 ## 当前测试结论
 
 - 西瓜案例验证了“产品特征 → 微缩工作”的叙事逻辑。
-- 蓝色布丁案例暴露并修复了“主体漂移”：布丁曾被错误转成刨冰。
-- 蓝色布丁第二轮验证了固定小人系统：圆头、无脸、无服饰。
-- “清甜下午茶”测试暴露了字体需要独立控制字形骨架，而不能只堆“手写感”形容词。
-- 苹果冰茶测试验证了 Quick / Fidelity 两条路径，并发现 Fidelity Mode 应强化标题中的核心产品语义。
-- 三组本人实拍测试进一步验证：Quick Mode 更擅长保留完整故事，Fidelity Mode 在指定 `dominant element` 后更容易形成明确视觉中心。
+- 蓝色布丁案例修复了主体漂移：布丁不能因为“蓝色 + 清凉”变成刨冰。
+- 蓝色布丁第二轮锁定了无脸、无服饰的小人系统。
+- “清甜下午茶”证明字体需要独立控制字形骨架，而不是继续堆“手写感”形容词。
+- 苹果冰茶证明 Fidelity 可以服务于产品语义强化。
+- 三组本人实拍证明 `dominant_element` 能显著拉开 Quick 与 Fidelity 的视觉层级。
+- 新增回归规则：多张照片要求分别生成时，不能自动混成一张拼图或对比板。
 
 ## 发布边界
 
@@ -135,6 +173,6 @@ minimal-doodle-product-poster-skill/
 
 ## 当前版本
 
-**v0.3 — Modular Workflow**
+**v0.4 — Fidelity Focus System**
 
-下一阶段目标：继续用不同品类实拍图做回归测试，并把失败案例沉淀进 `evals/evals.json`。
+下一阶段目标：验证 `subject_identity / dominant_element / lettering` 三条 Fidelity 分支在不同品类照片上的稳定性。

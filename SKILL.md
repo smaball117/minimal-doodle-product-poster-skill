@@ -185,7 +185,7 @@ Micro-workers are strictly locked.
 
 ### Required figure design
 
-- round blank head
+- oversized round blank head
 - no eyes
 - no nose
 - no mouth
@@ -196,9 +196,34 @@ Micro-workers are strictly locked.
 - no clothing details
 - no accessories
 - no labels
-- thin black single-line outline only
-- simple minimal body
-- slightly clumsy childlike proportions
+- white empty interior
+- thin black uneven single-line outline only
+- short compact rounded torso
+- short stubby arms
+- short stubby legs
+- almost no visible neck
+- tiny rounded hand and foot ends
+
+### Worker Silhouette Lock
+
+The body shape is non-negotiable.
+
+Required proportions:
+
+- total figure height: approximately **2.2–2.8 head diameters**
+- head occupies about **35%–45% of total figure height**
+- body feels squat, soft, primitive, and slightly clumsy
+- arms and legs stay short and compact
+
+Do **not** generate:
+
+- stick figures
+- long thin arms
+- long thin legs
+- realistic adult anatomy
+- fashion-illustration proportions
+- 4–6 head-tall characters
+- polished cartoon mascots
 
 ### Prohibited figure drift
 
@@ -211,7 +236,7 @@ Do **not** let workers become:
 - dressed-up figures
 - expressive emoji-like characters
 
-The workers must remain **quiet, minimal, faceless, and secondary**.
+The workers must remain **quiet, squat, minimal, faceless, and secondary**.
 
 ---
 
@@ -225,7 +250,43 @@ Workers are not random decoration.
 - each worker must perform a **different** action
 - each action must explain one real product feature
 - workers must physically or narratively interact with the subject
+- choose the **action first**, then add the smallest necessary prop
 - if an action does not help explain the product, remove it
+
+### Preferred action pool
+
+Prefer direct-contact actions:
+
+- hold
+- carry
+- push
+- pull
+- wipe
+- scoop
+- arrange
+- collect
+- inspect
+- taste
+- clean
+- cool
+- fan
+- rest
+- shade
+
+Use selectively:
+
+- pour
+- water
+- measure
+- repair
+
+Disabled by default:
+
+- climb
+- ladder
+- rope
+- scaffold
+- platform
 
 ### Action Logic
 
@@ -241,19 +302,40 @@ product feature
 
 **Apple tea**
 - apple slices → carry or place apple slice
-- garnish → inspect or adjust garnish
+- garnish → inspect or adjust garnish by direct touch
 - chilled drink → move ice / cool drink
 - fresh serving feel → clean spill / tidy serving area
 
 **Pudding**
 - smooth surface → polish surface
 - whipped cream → adjust topping
-- cherry → inspect cherry from ladder
+- cherry → inspect or steady the topping from the product edge; do not default to a ladder
 
 **Watermelon**
-- watery / juicy → water the fruit
-- seeds → move seeds
+- watery / juicy → water or tend the fruit
+- seeds → collect or move seeds
 - cool summer feel → sit in shade / scoop watermelon
+
+### Structural Prop Rule
+
+Ladders, stairs, scaffolds, ropes, platforms, and similar structural props are **forbidden by default**.
+
+Do not use a ladder unless:
+
+1. the user explicitly asks for one; or
+2. the concept cannot be communicated clearly without vertical access.
+
+Every physical prop must obey real spatial grounding:
+
+- it must have visible support
+- its base must rest on the same ground plane as the product
+- it must obey scene perspective
+- it cannot float
+- it cannot terminate in empty space
+- if leaning, it must visibly contact a real surface
+- the worker's hands or feet must visibly connect to it
+
+If spatial grounding is unclear, **remove the prop**.
 
 ---
 
@@ -371,10 +453,12 @@ The final prompt must include:
 2. subject lock summary
 3. caption text and mandatory placement if caption exists
 4. locked micro-worker figure description
-5. 3–5 product-related worker actions
-6. white-space composition rule
-7. photography-first rule
-8. selected mode and fidelity focus if applicable
+5. locked worker silhouette proportions: squat 2.2–2.8-head-tall body, oversized blank head, short stubby limbs
+6. 3–5 product-related worker actions
+7. no-default-ladder / grounded-prop rule
+8. white-space composition rule
+9. photography-first rule
+10. selected mode and fidelity focus if applicable
 
 ### Important
 
@@ -394,6 +478,9 @@ After generation, inspect the result against this checklist:
 - Is the caption placed in left whitespace?
 - Are the workers faceless and expressionless?
 - Are the workers thin black line doodles only?
+- Are the workers squat rather than long-limbed stick figures?
+- Are worker bodies approximately 2.2–2.8 head diameters tall?
+- Are all structural props grounded, and is there no unnecessary ladder?
 - Are the worker actions product-related?
 - Is the background still mostly white?
 - Is the poster still calm and minimal?
@@ -410,8 +497,9 @@ If one repair pass is needed, repair in this order:
 1. missing or incorrect caption
 2. wrong subject identity
 3. too many hero subjects / cluttered composition
-4. wrong micro-worker style
-5. weak visual hierarchy
+4. wrong micro-worker silhouette / long-limbed stick-figure drift
+5. unnecessary or floating structural props
+6. weak visual hierarchy
 
 Do not attempt unlimited retries. Use **one targeted repair pass**.
 
@@ -476,9 +564,10 @@ Add a simple hand-drawn arrow pointing toward the subject.
 
 Micro-workers:
 Add 3 to 5 tiny workers around the product.
-They must be round-headed, faceless, expressionless, hairless, clothing-free, and drawn with thin black single lines only.
-They are minimal and slightly clumsy.
-Each worker performs a different action related to the product.
+They must have oversized blank round heads, no facial features, no expression, no hair, no clothing, a short compact rounded torso, short stubby arms and legs, white empty interiors, and thin uneven black single-line outlines only.
+Each figure should be approximately 2.2–2.8 head diameters tall.
+Do not generate long-limbed stick figures.
+Each worker performs a different product-related action. Choose the action first, then add only the smallest necessary prop. Ladders, scaffolds, ropes, and floating structural props are forbidden by default.
 
 Composition:
 Pure white background.
@@ -492,6 +581,7 @@ Photoreal product, soft studio lighting, calm, healing, restrained.
 Do not cartoonize the product.
 Do not omit the caption.
 Do not turn the workers into mascots.
+Do not use ladders or floating structural props unless explicitly required and physically grounded.
 ```
 
 ---
@@ -505,6 +595,8 @@ A successful result must simultaneously satisfy all of these:
 - the title exists when provided
 - the title looks handwritten, not typed
 - the workers match the locked figure system
+- the workers have squat 2.2–2.8-head proportions rather than stick-figure anatomy
+- no unnecessary or floating ladder / structural prop appears
 - the workers explain the product rather than decorate it randomly
 - the poster keeps strong whitespace and a calm visual tone
 

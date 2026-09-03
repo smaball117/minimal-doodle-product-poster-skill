@@ -1,41 +1,51 @@
 # Quick Prompt
 
+Prompt revision: **v0.7-worker-scale-calibration**
+
 Use for fast exploration when one-pass generation is acceptable.
 
 ```text
 Create a minimalist healing product poster from the provided reference image.
 
 SUBJECT LOCK
-First preserve the exact photographed subject: [exact category], [silhouette/proportions], [main color], [material], [defining toppings/details], and [plate/container/support relation]. Do not reinterpret it into another food or object. Simplify or remove unrelated environmental clutter while keeping the hero object recognizable and photographic.
+Preserve the exact photographed hero subject: [exact category], [silhouette/proportions], [main color], [material], [defining toppings/details], and [plate/container/support relation]. Do not reinterpret it into another object. Simplify unrelated environmental clutter while keeping the hero recognizable and photographic.
 
 HERO SUBJECT COUNT
-Use one clear photographic hero subject only. Supporting objects are limited to 0–2 and must remain smaller, weaker, and secondary. Do not turn the image into a multi-product collage.
+Use one clear photographic hero subject only. Supporting photographic objects are limited to 0–2 and must remain smaller, weaker, and secondary. Do not create a multi-product collage.
 
 COMPOSITION
-Use a pure white or very lightly warm-white background with approximately 70%–80% negative space. Keep one hero object only, placed center-lower or slightly lower off-center, around 30%–45% of canvas height. Use clean premium still-life photography, high-key soft studio light, low contrast, realistic surface detail, and a soft natural contact shadow.
+Use a pure white or very lightly warm-white field with about 70%–80% negative space. Place the hero center-lower or slightly lower off-center. Use high-key soft studio light, low contrast, realistic surface detail, and a soft natural contact shadow.
 
 MICRO WORKERS
-Add [3–5] tiny primitive black-line workers around the product.
+Add 3–5 very small primitive black-line workers.
 
-Figure system is strictly locked:
-- oversized blank round or slightly lumpy head
-- no facial features
-- no expression
-- no hair
-- no hats
-- no clothing details
-- no labels or logos
-- short compact rounded torso
-- short stubby arms
-- short stubby legs
-- almost no visible neck
+IDENTITY LOCK
+Every worker must have:
+- blank round or slightly irregular head
+- no facial features or expression
+- no hair or hats
+- no clothing details, labels, logos, or body symbols
 - white empty interior
-- uneven thin black single-line outline only
-- total figure height approximately 2.2–2.8 head diameters
-- head approximately 35%–45% of total figure height
+- thin uneven black single-line outline
 
-They must feel squat, soft, naive, and slightly clumsy.
-Do not make them into stick figures, long-limbed doodle people, adult-proportioned humans, mascots, or polished cartoon characters.
+PROPORTION LOCK
+Use this geometry:
+- total figure height about 2.8–3.5 head diameters
+- head about 28%–35% of total figure height
+- torso width about 55%–75% of head diameter
+- torso short and lightly rounded, not broad or barrel-shaped
+- arms and legs slim and short-to-medium
+- almost no visible neck
+
+The workers should feel light, naive, compact, and slightly clumsy.
+Do not make them fat/chibi, giant-headed, thick-stubby, long-limbed stick figures, adult doodle humans, mascots, or polished cartoon characters.
+
+RELATIVE SCALE LOCK
+Workers must remain visually tiny next to the hero:
+- normal worker height = about 12%–18% of hero subject height
+- preferred average = about 14%–16%
+- no worker over 20% of hero height unless explicitly requested
+- product must be noticed before any worker
 
 Each worker must visualize a real product feature:
 1. [feature → worker action]
@@ -45,41 +55,37 @@ Each worker must visualize a real product feature:
 5. [optional]
 
 ACTION SELECTION
-Choose the action first, then add the smallest possible prop only if the action cannot be understood without it.
+Choose action first, then add the smallest useful prop.
+Prefer: hold, carry, push, pull, wipe, scoop, arrange, collect, inspect, taste, clean, cool, fan, rest, shade.
+Use selectively: pour, water, measure, repair.
 
-Prefer direct-contact actions such as:
-hold, carry, push, pull, wipe, scoop, arrange, collect, inspect, taste, clean, cool, fan, rest, shade.
+STRUCTURAL PROP BUDGET
+Default = 0 structural props.
+Maximum = 1 per poster.
+A ladder/stool/step may appear only when vertical access genuinely improves the story. Do not add one simply because the product is tall.
+If used, it must visibly rest on the ground plane, match perspective, contact a stable surface, and physically connect to the worker.
+No floating ladder. No rope, scaffold, suspended line, or floating platform unless explicitly requested.
 
-Use selectively:
-pour, water, measure, repair.
-
-Do not use climb, ladders, scaffolds, ropes, platforms, or other structural access props by default.
-Ladders and similar structural props are forbidden unless explicitly required by the user or absolutely necessary to communicate the action.
-
-PROP GROUNDING
-Every physical prop must have visible support and believable perspective. Its base must rest on the same ground plane as the product. It cannot float, terminate in empty space, or lean without visible contact. The worker's hands or feet must visibly connect to the prop. If physical grounding is unclear, remove the prop.
-
-Workers must have visible contact or causal relation with the subject and must not float randomly in the whitespace.
+Workers must have visible contact or causal relation with the subject and must not form an evenly spaced decorative ring.
 
 LETTERING
-If a caption is provided, write exactly: “[caption]”. Caption rendering is mandatory. Use thin black naive Chinese handwriting: loose, slightly awkward, uneven character sizes, mild independent tilt, irregular spacing, off-grid placement, occasional elongated horizontal strokes, readable but clearly not typeset. Do not use calligraphy, rounded cute handwriting, standard fonts, neat commercial typography, extra text, pinyin, English, numbers, or labels. Place the phrase in the upper-left or left negative space and connect it to the subject with one loose curved hand-drawn arrow when appropriate.
+If a caption is provided, write exactly: “[caption]”. Caption rendering is mandatory. Use thin black naive Chinese handwriting: loose, slightly awkward, uneven character sizes, mild independent tilt, irregular spacing, off-grid placement, occasional elongated horizontal strokes, readable but clearly not typeset. No calligraphy, rounded cute handwriting, standard fonts, extra copy, pinyin, English, numbers, labels, or logo. Place the phrase in upper-left or left negative space and connect it to the subject with one loose curved arrow when useful.
 
 COLOR
-Use only colors already present in the subject plus white background and black doodles. Do not introduce unrelated accent colors.
+Use only colors already present in the subject plus white and black doodles.
 
 OVERALL
-Quiet, clean, healing, lightly humorous, premium photographic object + primitive doodle micro-world. No logo, no border, no dense layout, no 3D cartoon, no anime, no full illustration conversion, no sticker collage, no random decorative characters.
+Quiet, clean, healing, lightly humorous. Premium real product photography + a tiny primitive doodle micro-world. The workers are discovered after the product, not before it.
 
 FINAL SELF-CHECK
-Before accepting the result, verify:
-- one clear hero subject only
-- exact caption is present when provided
-- workers are faceless and expressionless
-- workers are squat 2.2–2.8-head-tall figures, not stick figures
-- arms and legs are short and stubby
-- no unnecessary ladder or structural prop appears
-- every prop is physically grounded
-- every worker action relates to a real product feature
-- white negative space still dominates
-- the hero object remains photorealistic
+- one hero subject only
+- exact caption present when provided
+- workers faceless and unstyled
+- workers are 2.8–3.5 heads tall, not fat/chibi and not long-limbed
+- each worker is normally 12%–18% of hero height, max 20%
+- structural prop count is 0 by default and max 1
+- any ladder/stool is fully grounded
+- every action relates to a product feature
+- white negative space dominates
+- hero remains photorealistic
 ```

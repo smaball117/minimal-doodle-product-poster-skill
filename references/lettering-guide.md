@@ -1,23 +1,100 @@
 # Lettering Guide
 
+Revision: **v0.8-lettering-spatial-rhythm**
+
 ## Goal
 
-The target Chinese lettering is not a normal font with a rough texture added. It should feel handwritten, naive, loose, thin, awkward, and slightly untrained while remaining readable.
+The target Chinese lettering is not a normal font with a rough texture added. It should feel handwritten, naive, loose, thin, awkward, slightly untrained, and **spatially placed by hand** while remaining readable.
+
+The key distinction is:
+
+> Do not typeset a phrase. Place every Chinese character individually.
+
+## Five-layer model
+
+Think about lettering in five layers:
+
+1. **Semantic text**: exact characters and reading order.
+2. **Glyph skeleton**: character proportions, radical structure, tilt, deformation.
+3. **Stroke surface**: thin black pen line, mild wobble, blunt endings.
+4. **Character placement**: each character gets its own x/y position and local scale.
+5. **Phrase rhythm**: uneven gaps, broken baselines, loose clusters, visual breathing.
+
+A title can have correct handwriting strokes and still fail if layers 4–5 look typeset.
 
 ## Visual anatomy
 
 Use these traits:
 
 - thin black single-line strokes;
-- slightly shaky hand pressure;
-- characters may tilt independently;
-- character sizes are intentionally inconsistent;
-- baselines do not align perfectly;
-- spacing is loose and irregular;
+- slight natural hand wobble;
+- independent character tilt;
+- intentionally inconsistent character sizes;
+- no shared perfect baseline;
+- clearly uneven horizontal and vertical gaps;
 - some horizontal strokes may extend unusually long;
-- radicals and inner spaces can be slightly stretched, compressed, or off-center;
-- stroke endings are plain and blunt rather than calligraphic;
-- the whole phrase feels placed by hand, not typeset.
+- radicals and inner spaces may stretch, compress, or shift off-center;
+- blunt simple stroke endings;
+- the whole title feels written directly into the blank space, not laid out by software.
+
+## Spatial Rhythm Lock
+
+Before rendering the lettering, plan each Chinese character as an independent object.
+
+Required:
+
+- each character has its own x/y position;
+- adjacent character gaps must be visibly different;
+- at least one gap should be roughly **1.5–2.5×** another nearby gap;
+- at least one character must sit noticeably higher or lower than another;
+- characters must not share a single clean baseline;
+- avoid equal tracking, equal line spacing, aligned columns, or repeated character boxes;
+- reading order must remain understandable even when the layout is staggered.
+
+The result should feel like a person wrote several characters one by one and let the composition drift naturally.
+
+## Layout rules by caption length
+
+### 2 characters
+
+- horizontal placement is allowed;
+- do not use equal spacing;
+- use slight size and baseline mismatch.
+
+### 3 characters
+
+- prefer triangular, diagonal, or stair-step placement;
+- avoid one straight row.
+
+### 4 characters
+
+- prefer a loose two-level or staggered structure;
+- **never use a perfect 2×2 grid**;
+- do not align both rows to the same left/right edges.
+
+### 5–6 characters
+
+- split into **2–3 loose semantic/spatial clusters**;
+- do not render the full caption as one continuous line;
+- cluster gaps should be larger than within-cluster gaps;
+- keep irregular x/y offsets between groups.
+
+Example concept for `焦糖脑袋冲啊`:
+
+```text
+焦      糖
+    脑
+袋         冲
+     啊
+```
+
+This is a rhythm example, not a fixed template.
+
+### 7+ characters
+
+- divide into readable semantic groups of roughly 2–3 characters;
+- place groups on staggered levels;
+- preserve natural reading order without forming a neat text block.
 
 ## Avoid
 
@@ -28,27 +105,18 @@ Use these traits:
 - elegant handwriting;
 - rounded cute fonts;
 - neat commercial typography;
+- one clean text row for 5+ characters;
 - perfect grids;
 - identical character boxes;
-- consistent stroke width with vector-clean edges;
+- equal character tracking;
+- uniform line spacing;
+- shared baselines;
+- aligned columns;
 - decorative English, pinyin, numbers, or extra glyphs.
-
-## Important distinction: skeleton vs surface
-
-When lettering looks too much like a computer font, adding more words such as “handwritten”, “rough”, or “childlike” often does not solve the real problem.
-
-Think in four layers:
-
-1. **Semantic text**: exact characters that must be written.
-2. **Glyph skeleton**: each character’s proportions, tilt, spacing, malformed-but-readable structure.
-3. **Stroke surface**: thin black pen line, slight wobble, blunt ends, small pressure changes.
-4. **Poster placement**: loose off-grid positioning inside negative space.
-
-The most common failure is layer 2: the model keeps a standard font skeleton underneath.
 
 ## Caption writing
 
-Preferred length: 2–6 Chinese characters, but slightly longer short phrases are acceptable when the user provides them.
+Preferred length: 2–6 Chinese characters, but slightly longer short phrases are acceptable when supplied by the user.
 
 Good tone:
 
@@ -66,9 +134,7 @@ Examples:
 - 清甜下午茶
 - 清爽营业中
 
-Shorter text reduces generation errors.
-
-## Layout
+## Poster placement
 
 Text participates in composition instead of behaving like a formal title block.
 
@@ -76,62 +142,55 @@ Typical placement:
 
 - upper-left;
 - left side;
-- occasionally split into loose lines or staggered columns;
-- paired with one simple curved arrow.
+- loose staggered clusters;
+- paired with one simple curved arrow when useful.
 
-For four-character text, avoid a perfect 2×2 grid. Prefer loose staggered placement with different character sizes and vertical gaps.
+Leave breathing space around the title. Do not pack the characters tightly into a rectangle.
 
 ## Quick Mode
 
-For draft generation, text may be generated together with the poster.
-
-Prompt emphasis:
+For one-pass generation, inline both handwriting style and spatial rhythm:
 
 ```text
-thin black naive handwriting, loose and awkward, uneven character sizes, mild tilt, irregular spacing, occasional elongated horizontal strokes, readable Chinese but clearly not typeset
+Treat every Chinese character as an individually placed handwritten object, not a typeset phrase. Use thin black naive handwriting, uneven character sizes, independent tilt, different x/y positions, broken baselines, visibly unequal gaps, and loose staggered clusters. For 5–6 characters, split into 2–3 loose groups and never render the whole caption as one continuous line.
 ```
 
 ## Fidelity Mode
 
-Use when the user says the font is wrong or wants high resemblance.
+Use when lettering is the defect or when high resemblance is important.
 
 ### Pass 1
-
-Generate the poster base with a clean empty title area. No text at all.
+Generate poster base with a clean empty title area.
 
 ### Pass 2
-
-Generate only the exact Chinese phrase on white or transparent background.
+Generate only the exact Chinese characters as a lettering layer using both glyph-skeleton and spatial-rhythm rules.
 
 ### Pass 3
-
 Composite the accepted title layer onto the unchanged poster base.
 
-Do not keep regenerating the entire poster just to fix typography.
-
-## Title-layer prompt principle
-
-```text
-Create only the exact Chinese phrase as thin black naive handwriting. Keep every character readable, but make the glyph skeleton visibly hand-built: uneven size, slight independent tilt, irregular spacing, off-grid placement, stretched or compressed internal structure, occasional elongated horizontal strokes, blunt simple line endings, no calligraphy rhythm, no rounded cute font, no clean standard font skeleton.
-```
+Do not regenerate the photographic poster just to fix typography.
 
 ## Repair instruction
 
-If the title still looks like a normal font:
+If the glyphs look handwritten but the phrase still feels typeset:
 
 ```text
-Keep the poster base unchanged. Regenerate only the lettering layer. Focus on glyph skeleton deformation rather than adding rough texture: vary character box size, tilt, x/y position, internal spacing, radical proportions, and horizontal stroke length. Keep thin black pen strokes. Reject standard typeface skeletons, neat grids, calligraphy, rounded cute handwriting, and polished commercial typography.
+Keep the poster base unchanged. Repair only the lettering layer. Do not rewrite the characters as one phrase. Re-place each Chinese character independently. Break the shared baseline, vary x/y position and local scale, make adjacent gaps visibly unequal, and split 5–6 characters into 2–3 loose clusters. Preserve the exact text and reading order.
 ```
+
+If the lettering still looks like a computer font, also vary glyph box size, tilt, internal spacing, radical proportions, and horizontal-stroke length.
 
 ## Reference-image learning
 
-When handwriting references are supplied, extract only reusable traits such as:
+When handwriting references are supplied, extract reusable traits such as:
 
 - stroke thinness;
 - character tilt;
 - spacing rhythm;
 - relative scale variation;
+- x/y drift;
+- baseline breaks;
 - elongated horizontal strokes;
 - loose radical construction.
 
-Do not treat third-party reference images as public assets to be redistributed by the repository.
+Do not redistribute third-party reference images as repository assets without permission.

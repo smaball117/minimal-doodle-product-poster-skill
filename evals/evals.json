@@ -1,178 +1,139 @@
 {
   "skill_name": "minimal-doodle-product-poster-skill",
-  "version": "0.5",
+  "version": "0.7",
   "evals": [
     {
       "id": "subject-lock-blue-pudding",
       "prompt": "上传一张浅蓝色模具布丁照片，顶部有白色奶油和红色樱桃，做成这个极简小人海报。",
-      "expected_output": "The result preserves a molded blue pudding and does not reinterpret it as shaved ice, cake, jelly mountain, or another dessert.",
+      "expected_output": "Preserve the molded blue pudding rather than reinterpreting it as another dessert.",
       "expectations": [
         "Subject category remains pudding.",
-        "Molded fluted silhouette remains recognizable.",
-        "Blue smooth/glossy pudding material is preserved.",
-        "White cream and red cherry are preserved when visible in the source.",
-        "Background clutter is simplified without changing the hero object."
+        "Fluted molded silhouette remains recognizable.",
+        "Blue smooth/glossy material is preserved.",
+        "Defining cream and cherry remain when visible."
       ]
     },
     {
-      "id": "fixed-worker-system",
-      "prompt": "小人要极简一点，不要设计成角色。",
-      "expected_output": "All micro workers follow one fixed primitive faceless figure system.",
+      "id": "fixed-worker-identity",
+      "prompt": "小人要极简、圆头、无表情、无服饰。",
+      "expected_output": "All workers use one primitive faceless figure identity.",
       "expectations": [
-        "Workers have blank round or slightly lumpy heads.",
-        "No eyes, mouth, facial expression, hair, or hats appear.",
-        "No clothing details, uniforms, labels, logos, badges, or body symbols appear.",
-        "Black uneven single-line drawing is used.",
-        "Action is communicated through pose, tool, and contact rather than expression."
+        "Blank round or slightly irregular heads.",
+        "No facial features, hair, hats, or clothing details.",
+        "White empty interior and uneven thin black outline.",
+        "No mascot, badge, logo, or polished character styling."
       ]
     },
     {
-      "id": "worker-silhouette-lock",
-      "prompt": "小人不要火柴人，要像参考图里那种圆头、矮胖、短手短脚的极简小人。",
-      "expected_output": "Workers use the locked squat silhouette instead of long-limbed stick-figure anatomy.",
+      "id": "worker-proportion-calibration",
+      "prompt": "小人不要火柴人，也不要大头矮胖Q版，要像参考图里那种轻巧的圆头极简小人。",
+      "expected_output": "Workers sit between chibi and stick-figure extremes.",
       "expectations": [
-        "Workers have oversized round blank heads.",
-        "Total figure height stays around 2.2–2.8 head diameters.",
-        "Head occupies roughly 35%–45% of total figure height.",
-        "Torso is short, compact, and rounded.",
-        "Arms and legs are short and stubby.",
-        "Workers do not look like tall, thin, adult-proportioned doodle humans.",
-        "White empty interior and uneven thin black outline are preserved."
+        "Total figure height is about 2.8–3.5 head diameters.",
+        "Head is about 28%–35% of total figure height.",
+        "Torso width is about 55%–75% of head diameter.",
+        "Torso is lightly rounded but not barrel-shaped.",
+        "Arms and legs are slim and short-to-medium.",
+        "Workers are neither fat/chibi nor long-limbed adult stick figures."
       ]
     },
     {
-      "id": "no-default-ladder",
-      "prompt": "给产品周围安排四个小人在工作，不需要梯子。",
-      "expected_output": "The workflow avoids ladders and other structural access props by default while keeping all worker actions readable.",
+      "id": "worker-relative-scale",
+      "prompt": "小人不要抢产品主体，保持微缩比例。",
+      "expected_output": "Workers remain clearly miniature relative to the hero product.",
       "expectations": [
-        "No ladder appears unless the user explicitly requests one or vertical access is absolutely necessary.",
-        "Direct-contact actions are preferred before structural props.",
-        "Props are selected only after the action is chosen.",
-        "No scaffold, rope, or floating platform appears as decorative filler.",
-        "Worker actions remain understandable without a ladder."
+        "Normal worker height is about 12%–18% of hero subject height.",
+        "Preferred average is around 14%–16%.",
+        "No worker exceeds 20% of hero height without explicit request.",
+        "Hero product is noticed before any worker.",
+        "Workers do not become co-equal focal points."
       ]
     },
     {
-      "id": "structural-prop-grounding",
-      "prompt": "如果真的需要一个结构道具，必须让它和地面、主体的空间关系成立。",
-      "expected_output": "Any required structural prop has believable physical support, perspective, and contact instead of floating in space.",
+      "id": "structural-prop-budget",
+      "prompt": "安排四个小人在产品周围工作，道具不要重复。",
+      "expected_output": "Structural access props remain rare rather than becoming a default motif.",
       "expectations": [
-        "The prop has a visible base or support.",
-        "The prop rests on the same ground plane as the product.",
-        "Perspective is consistent with the scene.",
-        "The prop does not terminate in empty space.",
-        "If leaning, the prop visibly contacts a real surface.",
-        "Worker hands or feet visibly connect to the prop.",
-        "If grounding cannot be made clear, the prop is removed."
+        "Default structural-prop count is zero.",
+        "Maximum structural-prop count is one per poster.",
+        "A ladder/stool appears only when vertical access materially improves the story.",
+        "A ladder is not added just because the product is tall.",
+        "Ropes, scaffolds, suspended lines, and floating platforms do not appear unless explicitly requested."
+      ]
+    },
+    {
+      "id": "grounded-single-ladder",
+      "prompt": "如果画面确实需要一个梯子，可以有一个，但空间关系一定要成立。",
+      "expected_output": "At most one ladder is used and it is physically grounded.",
+      "expectations": [
+        "Ladder base visibly rests on the ground plane.",
+        "Perspective matches the product scene.",
+        "Top contacts a stable surface or product edge when appropriate.",
+        "Worker hands/feet visibly connect to the ladder.",
+        "Ladder does not float or terminate in empty space."
       ]
     },
     {
       "id": "lettering-thin-naive",
-      "prompt": "标题写‘清甜下午茶’，字体要像参考里那种稚拙、松散、细黑线手写。",
-      "expected_output": "The title uses thin black naive handwriting with irregular glyph skeletons rather than a standard font.",
+      "prompt": "标题写‘清甜下午茶’，字体要稚拙、松散、细黑线手写。",
+      "expected_output": "Title uses thin black naive handwriting instead of standard typography.",
       "expectations": [
-        "The exact requested phrase is used without extra copy.",
-        "Stroke appearance is thin black hand-line rather than heavy brush calligraphy.",
-        "Character sizes, tilt, spacing, and baselines are irregular.",
-        "Some horizontal strokes may be elongated.",
-        "The result avoids standard fonts, rounded cute handwriting, neat calligraphy, and polished commercial typography."
+        "Exact requested phrase is used.",
+        "Character size, tilt, spacing, and baseline are irregular.",
+        "No standard font, rounded cute font, or polished commercial typography."
       ]
     },
     {
-      "id": "lettering-repair-without-poster-regeneration",
+      "id": "lettering-repair-only",
       "prompt": "字体还是太像电脑字了，产品和构图已经满意，不要动其他地方。",
-      "expected_output": "The workflow selects Fidelity Mode with fidelity_focus=lettering and repairs only the lettering layer while preserving the accepted poster base.",
+      "expected_output": "Use fidelity_focus=lettering and keep the accepted poster base unchanged.",
       "expectations": [
-        "The poster base remains unchanged.",
-        "fidelity_focus is lettering.",
-        "The failure is treated as a glyph-skeleton problem, not merely a texture problem.",
-        "Only the lettering layer is regenerated.",
-        "Glyph size, tilt, x/y position, spacing, radical proportions, and horizontal stroke length are varied.",
-        "The workflow does not recommend rerunning the whole poster as the primary fix."
+        "Poster base stays unchanged.",
+        "Only lettering layer is regenerated.",
+        "Glyph skeleton, size, tilt, spacing, and baseline are varied."
       ]
     },
     {
       "id": "worker-action-watermelon",
-      "prompt": "主体是冰镇西瓜，做 4 到 5 个小人在上面工作。",
-      "expected_output": "Every worker action maps to a watermelon feature and no worker exists merely as decoration.",
+      "prompt": "主体是冰镇西瓜，做4到5个小人在上面工作。",
+      "expected_output": "Each worker action maps to a watermelon feature rather than filling space.",
       "expectations": [
-        "Hydration may map to watering or surface-tending behavior.",
-        "Seeds may map to carrying or collecting behavior.",
-        "Sweetness or ripeness may map to inspection behavior.",
-        "Eating may map to spoon or scooping behavior.",
-        "Cooling/rest may map to shade or cooling behavior when compositionally useful.",
-        "Random waving, balloons, or unrelated decorative activity is rejected.",
-        "A ladder is not used as the default solution for inspection."
+        "Hydration maps to tending/watering.",
+        "Seeds map to collecting/carrying.",
+        "Ripeness maps to inspection.",
+        "Eating maps to scooping.",
+        "Random waving or unrelated decoration is rejected."
       ]
     },
     {
       "id": "busy-photo-cleanup",
-      "prompt": "这张照片背景里还有书、餐具和其他甜品，只要把前面的主甜品做成海报。",
-      "expected_output": "The chosen photographic hero is isolated and preserved while unrelated environmental clutter is removed or simplified.",
+      "prompt": "照片背景里还有书、餐具和其他甜品，只要把主甜品做成海报。",
+      "expected_output": "Preserve the selected hero and remove unrelated clutter.",
       "expectations": [
-        "Only the identified hero object is treated as the main subject.",
-        "Unrelated books, dishes, background desserts, and room details are removed or heavily simplified.",
-        "The product's defining plate/container may be kept if it aids recognition.",
-        "The final poster restores strong white negative space."
+        "Only identified hero is the main subject.",
+        "Unrelated environment is removed or heavily simplified.",
+        "Strong white negative space returns."
       ]
     },
     {
-      "id": "palette-restraint",
-      "prompt": "按照主体本身颜色做，不要乱加颜色。",
-      "expected_output": "The final palette uses source-derived product colors plus white background and black doodles only.",
+      "id": "fidelity-dominant-element",
+      "prompt": "用Fidelity Mode做这张复杂照片，强调画面中最大的有意义元素。",
+      "expected_output": "Use fidelity_focus=dominant_element and emphasize the largest meaningful subject element.",
       "expectations": [
-        "No unrelated decorative accent colors are introduced.",
-        "Doodles remain black.",
-        "Background remains white or very lightly warm white.",
-        "Source product colors remain faithful."
-      ]
-    },
-    {
-      "id": "fidelity-dominant-element-tomato",
-      "prompt": "用 Fidelity Mode 做这张蔬菜农场照片，强调画面中最大的元素。",
-      "expected_output": "The workflow selects fidelity_focus=dominant_element and makes the giant red tomato the first photographic signal while retaining only minimal scene cues.",
-      "expectations": [
-        "fidelity_focus is dominant_element.",
-        "The giant red tomato is explicitly identified as the focus element.",
-        "The tomato becomes the first visual signal at thumbnail size.",
-        "The tomato remains photographic with realistic red surface and green stem.",
-        "At most two secondary photographic scene cues remain prominent.",
-        "Workers interact with the tomato before secondary elements.",
-        "White space remains generous rather than recreating the whole installation."
-      ]
-    },
-    {
-      "id": "fidelity-largest-meaningful-element",
-      "prompt": "Fidelity Mode 强调最大的元素，但照片里墙面和桌子占的面积也很大。",
-      "expected_output": "The workflow chooses the largest meaningful subject element rather than literal background architecture or surface area.",
-      "expectations": [
-        "The skill does not select a wall, ceiling, table, floor, curtain, or other irrelevant background as the focus merely because it occupies more pixels.",
-        "The focus is chosen from semantically meaningful subject elements.",
-        "The focus reason is stated as size, shape, color, or semantic importance.",
-        "Secondary background architecture is simplified or removed."
-      ]
-    },
-    {
-      "id": "fidelity-scene-lock-with-focus",
-      "prompt": "这张复杂展陈照片里我还是希望保留一点原场景感觉，但 Fidelity 要突出最大的红番茄。",
-      "expected_output": "The workflow uses Subject Lock + Scene Lock + Focus Lock without giving equal visual priority to every source object.",
-      "expectations": [
-        "Subject Lock preserves the chosen real object identity.",
-        "Scene Lock keeps only one to three recognition cues from the original scene.",
-        "Focus Lock makes the giant tomato visually dominant.",
-        "Scene cues remain clearly secondary in scale and contrast.",
-        "The final poster does not become a white-background copy of every source object."
+        "Background architecture is not selected merely because it occupies more pixels.",
+        "Focus becomes first photographic signal.",
+        "Secondary cues stay visually weaker.",
+        "Workers remain small relative to the focus element."
       ]
     },
     {
       "id": "separate-cases-not-collage",
-      "prompt": "我给你三张照片，分别用 Fidelity Mode 做三张独立海报。",
-      "expected_output": "The workflow treats the three inputs as three independent generation cases and does not intentionally combine them into one collage or comparison image.",
+      "prompt": "我给你三张照片，分别用Fidelity Mode做三张独立海报。",
+      "expected_output": "Treat each source as an independent generation case.",
       "expectations": [
-        "Each source image is processed as its own case.",
-        "The result target is three separate posters.",
-        "A combined comparison board is produced only if the user explicitly requests one.",
-        "Cross-image objects do not leak into another case's poster concept."
+        "Three sources produce three independent posters.",
+        "No cross-image object leakage.",
+        "Comparison board appears only when explicitly requested."
       ]
     }
   ]

@@ -56,6 +56,20 @@
 
 完整测试记录见 [`examples/apple-tea-test.md`](examples/apple-tea-test.md)。
 
+## 实测对比｜3 组本人实拍照片
+
+本轮继续测试不同复杂度的真实照片，并为 Fidelity Mode 指定统一目标：**强调画面中最大的核心元素**。
+
+![三组 Original / Quick / Fidelity 对比](assets/examples/three-case-comparison.svg)
+
+| Case | Quick Mode | Fidelity Mode |
+|---|---|---|
+| 蔬菜农场 | 保留多个角色与蔬菜关系，故事更丰富。 | 锁定巨型红番茄为第一视觉中心。 |
+| 米奇海鲜汤 | 保留整碗食材丰富度。 | 强化中央黄色米奇造型食材。 |
+| 焦糖饼干冰淇淋 | 饼干、冰淇淋、焦糖共同叙事。 | 放大焦糖饼干作为最强形状锚点。 |
+
+完整测试记录见 [`examples/three-case-comparison.md`](examples/three-case-comparison.md)。
+
 ## 最重要的 5 条规则
 
 1. **Subject Lock**：先确认“它是什么”，再做创意。布丁不能因为“蓝色 + 清凉”被改成刨冰。
@@ -96,14 +110,14 @@ minimal-doodle-product-poster-skill/
 │   └── lettering-layer.md
 ├── evals/
 │   └── evals.json
-├── assets/examples/apple-tea/
-│   ├── source.svg
-│   ├── quick-mode-mini.svg
-│   └── fidelity-mode-mini.svg
+├── assets/examples/
+│   ├── apple-tea/
+│   └── three-case-comparison.svg
 └── examples/
     ├── watermelon.md
     ├── blue-pudding.md
-    └── apple-tea-test.md
+    ├── apple-tea-test.md
+    └── three-case-comparison.md
 ```
 
 ## 当前测试结论
@@ -113,10 +127,11 @@ minimal-doodle-product-poster-skill/
 - 蓝色布丁第二轮验证了固定小人系统：圆头、无脸、无服饰。
 - “清甜下午茶”测试暴露了字体需要独立控制字形骨架，而不能只堆“手写感”形容词。
 - 苹果冰茶测试验证了 Quick / Fidelity 两条路径，并发现 Fidelity Mode 应强化标题中的核心产品语义。
+- 三组本人实拍测试进一步验证：Quick Mode 更擅长保留完整故事，Fidelity Mode 在指定 `dominant element` 后更容易形成明确视觉中心。
 
 ## 发布边界
 
-仓库不默认包含官方品牌 Logo、吉祥物、包装标识或第三方参考图。第三方素材仅用于视觉研究，具体见 `ASSET-NOTICE.md`。
+仓库不默认包含官方品牌 Logo、吉祥物、包装标识或未经授权的第三方参考图。本人拍摄并明确允许用于测试展示的素材可作为回归案例保留。具体见 `ASSET-NOTICE.md`。
 
 ## 当前版本
 

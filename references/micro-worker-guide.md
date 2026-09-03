@@ -8,44 +8,79 @@ Micro workers are not mascots and not decoration. They are functional marks that
 
 Every worker must follow this contract:
 
-- blank round or slightly lumpy head;
+- oversized blank round or slightly lumpy head;
 - no eyes, mouth, nose, eyebrows, or expression;
 - no hair;
 - no hat;
 - no clothing details or uniform;
 - no logo, badge, label, text, or symbol on the body;
-- simple neutral body outline;
-- simple limbs;
-- black line only;
-- intentionally naive, slightly uneven construction;
-- no polished closed vector silhouette.
+- short compact rounded torso;
+- short stubby arms;
+- short stubby legs;
+- almost no visible neck;
+- tiny rounded hand and foot ends;
+- white empty interior;
+- black uneven single-line outline only;
+- intentionally naive, clumsy, slightly uneven construction;
+- not a polished vector figure;
+- not a stick figure.
+
+Required body proportion:
+
+- total figure height should be about **2.2–2.8 head diameters**;
+- head should occupy about **35%–45% of total figure height**.
 
 The body posture and tool carry all meaning.
+
+## Silhouette failures
+
+Fail if workers become:
+
+- long-limbed stick figures;
+- thin adult doodle humans;
+- realistic human anatomy;
+- 4–6 head-tall figures;
+- fashion-illustration proportions;
+- polished mascot silhouettes.
+
+The intended silhouette is squat, soft, primitive, and slightly clumsy.
 
 ## Action grammar
 
 Always decide the action verb before describing the worker.
 
-Useful verbs:
+### Priority A — preferred actions
 
-- climb
-- inspect
+- hold
+- carry
 - push
 - pull
-- carry
-- transport
+- wipe
 - scoop
+- arrange
+- collect
+- inspect
 - taste
-- pour
-- water
+- clean
 - cool
 - fan
-- clean
-- measure
-- repair
-- collect
 - rest
 - shade
+
+### Priority B — use selectively
+
+- pour
+- water
+- measure
+- repair
+
+### Disabled by default
+
+- climb
+- ladder
+- rope
+- scaffold
+- platform
 
 Use this conversion:
 
@@ -56,13 +91,14 @@ product feature → physical metaphor → action verb → worker scene
 Examples:
 
 ```text
-watermelon / hydration → water supply → water → worker uses a hose
-watermelon / seeds → cargo → transport → worker pushes seeds in a cart
+watermelon / hydration → water supply → water → worker sprays or tends surface
+watermelon / seeds → cargo → collect → worker gathers seeds
 peach / sweetness → quality control → inspect → worker checks sweetness
-lemon soda / bubbles → pressure system → inspect → worker watches bubbles
-blue pudding / soft & jiggly → texture test → test → worker presses or checks edge
-blue pudding / cream → topping maintenance → arrange → worker works near cream
-cherry topping → high point → climb → worker uses ladder to inspect cherry
+lemon soda / bubbles → fizz control → inspect → worker watches bubbles
+blue pudding / soft & jiggly → texture test → inspect → worker presses edge
+blue pudding / cream → topping maintenance → arrange → worker adjusts cream
+apple tea / apple slices → fruit delivery → carry → worker carries slice
+apple tea / chilled drink → serving care → clean → worker wipes spill
 ```
 
 ## Worker count
@@ -85,9 +121,9 @@ At least 3 workers should have a readable physical or causal relationship with t
 
 - direct touch;
 - tool contact;
-- ladder / rope / cart connection;
+- material being carried from or toward the product;
 - visible action path;
-- material being carried from or toward the product.
+- surface interaction.
 
 Workers should not float randomly in the white space.
 
@@ -95,23 +131,45 @@ Workers should not float randomly in the white space.
 
 Props exist only to clarify an action.
 
+Choose the action first. Then add the smallest possible prop only if the action cannot be understood without it.
+
 Good:
 
-- ladder for climbing;
-- hose for hydration;
-- cart for seeds / toppings;
-- spoon for tasting / scooping;
+- spoon for tasting or scooping;
+- cart for seeds or toppings;
 - fan for cooling;
-- measuring tool for inspection;
-- umbrella for shade / rest.
+- hose for hydration;
+- cloth for wiping;
+- umbrella for shade;
+- tiny tray or crate for transport.
 
-Bad:
+Forbidden by default:
 
+- ladder;
+- scaffold;
+- rope;
+- floating platform;
 - random stars;
 - balloons;
 - decorative signs;
-- unrelated toys;
-- props added only to make the page richer.
+- unrelated toys.
+
+If a prop creates unclear spatial logic, remove it.
+
+## Structural prop grounding
+
+If a structural prop is explicitly required, every physical relationship must be believable:
+
+- the prop has visible physical support;
+- its base rests on the same ground plane as the product;
+- it obeys perspective;
+- it does not float;
+- it does not terminate in empty space;
+- if leaning, it visibly touches a real surface;
+- the worker's hands or feet visibly contact the prop;
+- scale stays consistent with the worker.
+
+If grounding is unclear, remove the prop instead of trying to decorate around the error.
 
 ## Scale
 
@@ -129,11 +187,11 @@ Fail if workers gain:
 - badges;
 - brand marks;
 - anime anatomy;
-- chibi proportions;
-- polished vector finish.
+- chibi mascot polish;
+- stick-figure long limbs.
 
 ## Repair instruction
 
 ```text
-Keep all micro workers as one fixed primitive character system: blank round heads, no facial features, no expression, no hair, no hats, no clothing details, no labels or body symbols. Use black uneven single-line drawing only. Preserve the action through pose, tool, and contact with the product.
+Keep all micro workers as one fixed primitive character system: oversized blank round heads, no facial features, no expression, no hair, no hats, no clothing details, no labels or body symbols, short compact torso, short stubby arms and legs, white empty interior, and black uneven single-line drawing only. Keep each worker about 2.2–2.8 head diameters tall. Never use ladders or floating structural props unless explicitly required. Preserve action through pose, small tools, and direct contact with the product.
 ```

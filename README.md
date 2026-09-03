@@ -77,16 +77,16 @@ Focus Lock   = 这一轮最需要强调什么？
 
 | 原图 | Version 1 · Quick Mode | Version 2 · Fidelity Mode |
 |---|---|---|
-| ![原图：苹果冰茶实拍](assets/examples/apple-tea/source.svg) | ![Quick Mode：心态放苹](assets/examples/apple-tea/quick-mode-mini.svg) | ![Fidelity Mode：心态放苹](assets/examples/apple-tea/fidelity-mode-mini.svg) |
+| <img src="assets/examples/apple-tea/source.jpg" width="180" alt="原图：苹果冰茶实拍" /> | <img src="assets/examples/apple-tea/quick-mode.jpg" width="180" alt="Quick Mode：心态放苹" /> | <img src="assets/examples/apple-tea/fidelity-mode.jpg" width="180" alt="Fidelity Mode：心态放苹" /> |
 | 实拍照片作为 Subject Lock 基准。 | 一次完成海报，验证整体风格能否快速成立。 | 强化红苹果与苹果切片，让标题中的“苹”与主体关系更直接。 |
 
 完整测试记录见 [`examples/apple-tea-test.md`](examples/apple-tea-test.md)。
 
-## 实测对比｜3 组本人实拍照片
+## 实测对比｜3组实验
 
-本轮继续测试不同复杂度的真实照片，并为 Fidelity Mode 指定统一目标：**`dominant_element`，强调画面中最大的有意义元素**。
+本轮测试覆盖不同复杂度的真实照片，并为 Fidelity Mode 指定统一目标：**`dominant_element`，强调画面中最大的有意义元素**。
 
-![三组 Original / Quick / Fidelity 对比](assets/examples/three-case-comparison.svg)
+<img src="assets/examples/three-case-comparison.jpg" width="720" alt="三组实验对比：Original、Quick、Fidelity" />
 
 | Case | Quick Mode | Fidelity · dominant_element |
 |---|---|---|
@@ -119,14 +119,6 @@ mode: fidelity
 fidelity_focus: dominant_element
 ```
 
-如果是字体修复：
-
-```yaml
-mode: fidelity
-fidelity_focus: lettering
-caption: 清甜下午茶
-```
-
 ## 文件结构
 
 ```text
@@ -137,10 +129,10 @@ minimal-doodle-product-poster-skill/
 ├── references/
 │   ├── style-guide.md
 │   ├── subject-fidelity.md
-│   ├── fidelity-focus.md
 │   ├── micro-worker-guide.md
 │   ├── lettering-guide.md
-│   └── evaluation.md
+│   ├── evaluation.md
+│   └── fidelity-focus.md
 ├── prompts/
 │   ├── quick-prompt.md
 │   ├── poster-base.md
@@ -149,7 +141,7 @@ minimal-doodle-product-poster-skill/
 │   └── evals.json
 ├── assets/examples/
 │   ├── apple-tea/
-│   └── three-case-comparison.svg
+│   └── three-case-comparison.jpg
 └── examples/
     ├── watermelon.md
     ├── blue-pudding.md
@@ -160,19 +152,18 @@ minimal-doodle-product-poster-skill/
 ## 当前测试结论
 
 - 西瓜案例验证了“产品特征 → 微缩工作”的叙事逻辑。
-- 蓝色布丁案例修复了主体漂移：布丁不能因为“蓝色 + 清凉”变成刨冰。
-- 蓝色布丁第二轮锁定了无脸、无服饰的小人系统。
-- “清甜下午茶”证明字体需要独立控制字形骨架，而不是继续堆“手写感”形容词。
-- 苹果冰茶证明 Fidelity 可以服务于产品语义强化。
-- 三组本人实拍证明 `dominant_element` 能显著拉开 Quick 与 Fidelity 的视觉层级。
-- 新增回归规则：多张照片要求分别生成时，不能自动混成一张拼图或对比板。
+- 蓝色布丁案例暴露并修复了“主体漂移”：布丁曾被错误转成刨冰。
+- 蓝色布丁第二轮验证了固定小人系统：圆头、无脸、无服饰。
+- “清甜下午茶”测试暴露了字体需要独立控制字形骨架，而不能只堆“手写感”形容词。
+- 苹果冰茶测试验证了 Quick / Fidelity 两条路径，并发现 Fidelity Mode 应强化标题中的核心产品语义。
+- 3组实验进一步验证：Quick Mode 更擅长保留完整故事，Fidelity Mode 在指定 `dominant_element` 后更容易形成明确视觉中心。
 
 ## 发布边界
 
-仓库不默认包含官方品牌 Logo、吉祥物、包装标识或未经授权的第三方参考图。本人拍摄并明确允许用于测试展示的素材可作为回归案例保留。具体见 `ASSET-NOTICE.md`。
+仓库不默认包含官方品牌 Logo、吉祥物、包装标识或未经授权的第三方参考图。经授权的实拍素材可作为回归案例保留。具体见 `ASSET-NOTICE.md`。
 
 ## 当前版本
 
 **v0.4 — Fidelity Focus System**
 
-下一阶段目标：验证 `subject_identity / dominant_element / lettering` 三条 Fidelity 分支在不同品类照片上的稳定性。
+下一阶段目标：继续用不同品类实拍图做回归测试，并把失败案例沉淀进 `evals/evals.json`。

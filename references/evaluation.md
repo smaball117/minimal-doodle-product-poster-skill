@@ -15,10 +15,12 @@ Use this after every generated poster and after every major Skill revision.
 ### B. Composition
 
 - [ ] One hero object dominates the photographic layer.
-- [ ] White / warm-white negative space remains generous, normally around 70%–80%.
+- [ ] White / warm-white negative space remains generous.
 - [ ] The object sits center-lower or another intentionally quiet lower position.
 - [ ] Doodles do not evenly fill the blank field.
 - [ ] No dense ad-layout clutter appears.
+
+Default negative-space target is around 70%–80%. In `dominant_element` Fidelity passes, 60%–70% is acceptable when the larger focus needs more presence.
 
 ### C. Micro workers
 
@@ -31,6 +33,8 @@ Use this after every generated poster and after every major Skill revision.
 - [ ] At least three workers have readable contact or cause-and-effect with the product.
 - [ ] Removing any worker would remove a layer of product meaning.
 
+Any visible face or designed costume is a fail, even when the overall poster looks good.
+
 ### D. Lettering
 
 When text is used:
@@ -42,12 +46,40 @@ When text is used:
 - [ ] It is not brush calligraphy, rounded cute handwriting, or polished commercial lettering.
 - [ ] Text participates in composition rather than forming a formal ad block.
 
-When typography is the only failure, switch to Fidelity Mode and keep the poster base unchanged.
+When typography is the only failure, use `fidelity_focus: lettering` and keep the poster base unchanged.
 
 ### E. Palette
 
 - [ ] Colors come from the source subject plus white and black.
 - [ ] No unrelated accent color was added without user request.
+
+## Fidelity Focus checks
+
+Read `references/fidelity-focus.md` and evaluate the selected focus separately.
+
+### subject_identity
+
+- [ ] The result is unmistakably the same photographed object without relying on text.
+- [ ] Category, silhouette, material, color, and defining details survive.
+- [ ] Creative exaggeration does not alter product identity.
+- [ ] Background cleanup does not remove essential support/container cues.
+
+### dominant_element
+
+- [ ] The focus element was explicitly identified before generation.
+- [ ] The selected element is the first photographic signal at thumbnail size.
+- [ ] It is the largest **meaningful subject element**, not irrelevant background architecture.
+- [ ] Secondary photographic cues are limited to 0–2 when possible.
+- [ ] Secondary elements do not compete through size, saturation, contrast, or central placement.
+- [ ] Workers interact with the focus element before secondary elements.
+- [ ] The focus remains realistic photography rather than becoming a cartoon prop.
+
+### lettering
+
+- [ ] The accepted poster base remains unchanged.
+- [ ] Product, workers, lighting, and composition were not regenerated.
+- [ ] Only the title layer changed.
+- [ ] The new lettering fixes glyph skeleton, spacing, tilt, scale, or baseline issues.
 
 ## Known failure modes
 
@@ -93,17 +125,43 @@ Repair: explicitly preserve real photographed material and studio-photography be
 
 Repair: remove logos, frames, badges, price labels, grids, secondary copy, and unrelated props.
 
+### 8. Dominant-focus dilution
+
+Example: the requested giant tomato is present, but a plush figure, sign, and broccoli cluster remain equally large and colorful.
+
+Cause: source preservation was confused with equal visual priority.
+
+Repair: keep only 0–2 supporting scene cues and demote them in scale, contrast, saturation, and placement.
+
+### 9. Wrong “largest element” selection
+
+Example: a wall or table becomes the Fidelity focus because it occupies more pixels than the product.
+
+Cause: literal image area was used instead of semantic relevance.
+
+Repair: choose the largest meaningful subject element.
+
+### 10. Multi-case blending
+
+Example: three source photos intended for three posters are combined into one generated collage.
+
+Cause: separate cases were not isolated.
+
+Repair: process one source image per generation unless a comparison board is explicitly requested.
+
 ## Review questions
 
 After each test, ask:
 
 1. Is the photographed product still unmistakably the same object?
 2. Is the product still the visual hero?
-3. Are the workers one fixed faceless system rather than characters?
-4. Can each worker action be traced back to a product feature?
-5. Is the empty space doing compositional work?
-6. If text exists, does it feel written rather than typeset?
-7. What is the single biggest defect to repair next?
+3. If Fidelity Mode is active, what is the single selected focus?
+4. Is that focus visible before secondary details at thumbnail size?
+5. Are the workers one fixed faceless system rather than characters?
+6. Can each worker action be traced back to a product feature?
+7. Is the empty space doing compositional work?
+8. If text exists, does it feel written rather than typeset?
+9. What is the single biggest defect to repair next?
 
 ## Regression policy
 

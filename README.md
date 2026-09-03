@@ -1,27 +1,45 @@
 # Minimal Doodle Product Poster Skill
 
-极简留白 × 真实产品摄影 × 无脸微缩小人 × 稚拙细线中文的可复用 AI 生图 Skill。
+**真实产品摄影 × 极简留白 × 无脸微缩小人 × 稚拙细线中文** 的可复用 AI 生图 Skill。
 
-> 这套视觉常被口语化称为“喜茶风”，但本项目使用中性的可迁移语言描述它：**Minimal Product Photography + Doodle Micro-Storytelling**。目标不是复刻某个品牌，而是提炼一种可复用的视觉方法。
+> 这套视觉常被口语化称为“喜茶风”。本项目使用更中性的描述：**Minimal Product Photography + Doodle Micro-Storytelling**。目标不是复刻某个品牌，而是提炼一套可迁移、可测试、可迭代的视觉方法。
 
-## v0.4 核心升级：Fidelity Focus System
+## What It Does
 
-Fidelity Mode 不再等于“整体更精细”，而是一次只解决一个高保真问题。
+给一张真实产品、食物、饮品或日常物件照片，Skill 会把它转译成：
+
+```text
+大面积白色留白
++ 真实摄影主体
++ 黑色极简微缩小人
++ 与产品特征相关的动作故事
++ 稚拙、松散、细黑线中文
+```
+
+核心原则只有一句：**摄影主体负责“是什么”，小人负责“它有什么特点”。**
+
+## Generation Modes
+
+### Quick Mode
+
+适合第一次探索。主体、小人和文字一次生成，用最快速度建立完整海报。
+
+### Fidelity Mode
+
+适合已经知道“哪里必须更准”的情况。一次只解决一个高保真问题：
 
 ```yaml
 mode: fidelity
 fidelity_focus: subject_identity | dominant_element | lettering
 ```
 
-三种 Focus：
-
-| Focus | 什么时候用 | 核心目标 |
+| Focus | 适用场景 | 目标 |
 |---|---|---|
-| `subject_identity` | “主体不要变”“保持原物” | 锁死产品类别、轮廓、材质和关键细节 |
-| `dominant_element` | “强调最大的元素”“突出番茄/饼干” | 让最强的有意义元素成为第一视觉信号 |
-| `lettering` | “字体不像”“只改标题” | 冻结海报底图，只重做手写文字 |
+| `subject_identity` | 主体不能变、必须保持原物 | 锁定类别、轮廓、材质和关键细节 |
+| `dominant_element` | 强调最大或最强元素 | 建立明确第一视觉中心 |
+| `lettering` | 只修标题、字体不像 | 冻结海报底图，只重做手写文字 |
 
-同时引入三层锁定逻辑：
+Fidelity Mode 使用三层锁定：
 
 ```text
 Subject Lock = 它是什么？
@@ -29,85 +47,56 @@ Scene Lock   = 原场景靠什么被认出来？
 Focus Lock   = 这一轮最需要强调什么？
 ```
 
-这样复杂原图也不用在“完全还原”和“只留一个主体”之间二选一。
+## Example · Apple Tea「心态放苹」
 
-## 工作流
+| Original | Quick Mode | Fidelity Mode |
+|---|---|---|
+| <img src="assets/examples/apple-tea/source.jpg" width="220" alt="Original apple tea photo" /> | <img src="assets/examples/apple-tea/quick-mode.jpg" width="220" alt="Apple tea Quick Mode" /> | <img src="assets/examples/apple-tea/fidelity-mode.jpg" width="220" alt="Apple tea Fidelity Mode" /> |
+| 输入基准：苹果冰茶、苹果切片、冰块与饮品渐变。 | 一次建立摄影主体、小人故事与标题。 | 在已成立的海报基础上，对指定 Focus 做单项强化。 |
+
+[查看完整测试记录 →](examples/apple-tea-test.md)
+
+## 3-Case Experiment · Original × Quick × Fidelity
+
+3 组实验覆盖复杂展陈、复合餐品与单一甜品，用来观察 **Quick Mode** 与 **Fidelity Mode · `dominant_element`** 的视觉差异。
+
+<img src="assets/examples/three-case-comparison.jpg" width="900" alt="Three-case Original Quick Fidelity comparison" />
+
+| Case | Quick Mode | Fidelity · `dominant_element` |
+|---|---|---|
+| 蔬菜农场 | 保留更多场景关系，故事更丰富。 | 锁定巨型红番茄为第一视觉中心。 |
+| 海鲜汤 | 保留整碗食材丰富度。 | 强化中央黄色造型食材。 |
+| 焦糖饼干冰淇淋 | 饼干、冰淇淋与焦糖共同叙事。 | 强化焦糖饼干这一最强形状锚点。 |
+
+[查看完整 3 组实验记录 →](examples/three-case-comparison.md)
+
+## Workflow
 
 ```text
 上传照片
 → Subject Lock
 → 必要时 Scene Lock
-→ 提炼产品特征
-→ 生成微缩工作动作
+→ 提炼 2–4 个真实产品特征
+→ 转译为 3–5 个微缩工作动作
 → Quick / Fidelity
-→ Fidelity 时选择单一 Focus
-→ 生成海报
+→ Fidelity 选择单一 Focus
+→ 生成
 → Evaluation 验收
 ```
 
-## 风格公式
+## Non-Negotiable Rules
 
-```text
-大面积白色留白
-+ 单一真实摄影主角
-+ 黑色稚拙线稿
-+ 4–5 个无脸圆头微缩小人
-+ 产品相关动作叙事
-+ 稚拙、松散、细黑线中文
-= 安静、清爽、治愈、有故事感的产品海报
-```
+1. **Subject Lock**：先确认“它是什么”，再做创意。感官概念不能覆盖产品身份。
+2. **Photography First**：产品始终保持真实摄影材质，不做全图卡通化。
+3. **Scene Lock**：复杂照片只保留 1–3 个有识别价值的场景线索。
+4. **Worker ≠ Decoration**：每个小人必须对应一个产品特征和一个清晰动作。
+5. **Fixed Figure System**：圆头、无五官、无表情、无发型、无服饰、无标签，只靠姿态和工具表达。
+6. **Lettering Is a System**：稚拙、松散、细黑线、结构略歪，不使用标准字体、工整书法或圆润可爱字体。
+7. **One Fidelity Focus per Pass**：主体、焦点、字体分别修，不在一轮里同时推翻所有已接受结果。
 
-## 两种生成模式
+## Recommended Input
 
-### Quick Mode
-
-适合第一次探索和快速测试。主体、小人和文字一次完成。
-
-### Fidelity Mode
-
-适合已经知道“哪里必须更准”的情况。
-
-- `subject_identity`：先保主体准确
-- `dominant_element`：先保视觉焦点准确
-- `lettering`：先保字体准确，其他全部冻结
-
-如果几个问题同时存在，分轮解决，不要一张图里同时大改主体、焦点、字体和小人。
-
-## 实测对比｜苹果冰茶「心态放苹」
-
-| 原图 | Version 1 · Quick Mode | Version 2 · Fidelity Mode |
-|---|---|---|
-| <img src="assets/examples/apple-tea/source.jpg" width="180" alt="原图：苹果冰茶实拍" /> | <img src="assets/examples/apple-tea/quick-mode.jpg" width="180" alt="Quick Mode：心态放苹" /> | <img src="assets/examples/apple-tea/fidelity-mode.jpg" width="180" alt="Fidelity Mode：心态放苹" /> |
-| 实拍照片作为 Subject Lock 基准。 | 一次完成海报，验证整体风格能否快速成立。 | 强化红苹果与苹果切片，让标题中的“苹”与主体关系更直接。 |
-
-完整测试记录见 [`examples/apple-tea-test.md`](examples/apple-tea-test.md)。
-
-## 实测对比｜3组实验
-
-本轮测试覆盖不同复杂度的真实照片，并为 Fidelity Mode 指定统一目标：**`dominant_element`，强调画面中最大的有意义元素**。
-
-<img src="assets/examples/three-case-comparison.jpg" width="720" alt="三组实验对比：Original、Quick、Fidelity" />
-
-| Case | Quick Mode | Fidelity · dominant_element |
-|---|---|---|
-| 蔬菜农场 | 保留多个角色与蔬菜关系，故事更丰富。 | 锁定巨型红番茄为第一视觉中心。 |
-| 米奇海鲜汤 | 保留整碗食材丰富度。 | 强化中央黄色造型食材。 |
-| 焦糖饼干冰淇淋 | 饼干、冰淇淋、焦糖共同叙事。 | 放大焦糖饼干作为最强形状锚点。 |
-
-完整测试记录见 [`examples/three-case-comparison.md`](examples/three-case-comparison.md)。
-
-## 最重要的 6 条规则
-
-1. **Subject Lock**：先确认“它是什么”，再做创意。
-2. **Scene Lock**：复杂照片只留 1–3 个有识别价值的场景线索，不把全部元素搬进白底海报。
-3. **Focus Lock**：Fidelity 每轮只有一个主目标。
-4. **Photography First**：真实产品摄影永远是第一视觉锚点，不做全图卡通化。
-5. **Worker ≠ Decoration**：每个小人必须有产品相关工作。
-6. **Fixed Figure System**：圆头、无五官、无表情、无发型、无服饰、无标签，只靠动作表达。
-
-## 推荐输入
-
-最简单只给照片也可以。更稳定时建议：
+只给一张照片也可以。需要更明确控制时，可补充：
 
 ```yaml
 subject: 巨型红番茄
@@ -119,7 +108,7 @@ mode: fidelity
 fidelity_focus: dominant_element
 ```
 
-## 文件结构
+## Repository Structure
 
 ```text
 minimal-doodle-product-poster-skill/
@@ -131,8 +120,8 @@ minimal-doodle-product-poster-skill/
 │   ├── subject-fidelity.md
 │   ├── micro-worker-guide.md
 │   ├── lettering-guide.md
-│   ├── evaluation.md
-│   └── fidelity-focus.md
+│   ├── fidelity-focus.md
+│   └── evaluation.md
 ├── prompts/
 │   ├── quick-prompt.md
 │   ├── poster-base.md
@@ -149,21 +138,18 @@ minimal-doodle-product-poster-skill/
     └── three-case-comparison.md
 ```
 
-## 当前测试结论
+## Current Learnings
 
 - 西瓜案例验证了“产品特征 → 微缩工作”的叙事逻辑。
-- 蓝色布丁案例暴露并修复了“主体漂移”：布丁曾被错误转成刨冰。
-- 蓝色布丁第二轮验证了固定小人系统：圆头、无脸、无服饰。
-- “清甜下午茶”测试暴露了字体需要独立控制字形骨架，而不能只堆“手写感”形容词。
-- 苹果冰茶测试验证了 Quick / Fidelity 两条路径，并发现 Fidelity Mode 应强化标题中的核心产品语义。
-- 3组实验进一步验证：Quick Mode 更擅长保留完整故事，Fidelity Mode 在指定 `dominant_element` 后更容易形成明确视觉中心。
+- 蓝色布丁案例修复了“感官概念覆盖主体身份”的 Subject Drift。
+- 固定小人系统已经明确：圆头、无脸、无表情、无服饰。
+- 中文标题不能只靠“手写感”形容词，需要独立控制字形骨架、间距、倾斜与笔画长度。
+- 3 组实验验证：Quick Mode 更擅长快速建立完整故事；Fidelity Mode 在指定 `dominant_element` 后更容易建立明确视觉中心。
 
-## 发布边界
+## Asset & Brand Notice
 
-仓库不默认包含官方品牌 Logo、吉祥物、包装标识或未经授权的第三方参考图。经授权的实拍素材可作为回归案例保留。具体见 `ASSET-NOTICE.md`。
+项目不默认包含官方品牌 Logo、吉祥物、包装标识或未经授权的第三方素材。测试展示素材应确保具有相应使用权限。详细说明见 [`ASSET-NOTICE.md`](ASSET-NOTICE.md)。
 
-## 当前版本
+## Version
 
 **v0.4 — Fidelity Focus System**
-
-下一阶段目标：继续用不同品类实拍图做回归测试，并把失败案例沉淀进 `evals/evals.json`。

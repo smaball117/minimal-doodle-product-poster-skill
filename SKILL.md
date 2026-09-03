@@ -1,199 +1,511 @@
 ---
 name: minimal-doodle-product-poster-skill
-description: Turn a clear uploaded product or food photo into a minimalist white-space poster with a preserved photographic subject, primitive faceless doodle workers, product-related micro-storytelling, and optional loose thin-line Chinese handwriting.
+description: Turn a clear uploaded product or food photo into a minimalist white-space poster with one preserved photographic hero subject, mandatory caption rendering when provided, primitive faceless doodle workers, product-related micro-storytelling, and loose thin-line Chinese handwriting.
 ---
 
-# Minimal Doodle Product Poster Skill
+# SKILL.md
 
 ## Purpose
 
-Use this skill for a single real product, food, drink, dessert, fruit, or simple daily object that should become a quiet minimalist poster built from real photography + primitive black doodles.
+This skill turns a real photo of a product, food, drink, or everyday object into a **minimal white-background poster** with:
 
-Do not imitate official brand assets. Do not add logos, mascots, packaging marks, or claims of affiliation unless the user supplies authorized material and explicitly requests it.
+- **one locked photoreal hero subject**
+- **large breathing whitespace**
+- **3–5 tiny black line micro-workers**
+- **short handwritten Chinese caption**
+- **light doodle elements such as arrow / cloud / wave line**
 
-## Core routing
+The visual goal is calm, clean, healing, minimal, and story-driven.
 
-### 1. Inspect the input first
+This skill must prioritize **execution stability** over expressive freedom.
 
-If a reference photo exists, resolve the subject before any creative work.
+---
 
-- If there is no clear usable subject, ask for a clearer image.
-- If there are several independent possible subjects and the user has not identified one, ask which one to use.
-- Treat a container and its contents as one subject unless the user says otherwise.
-- Once the subject is identified, lock its category, silhouette, material, main color, topping/garnish, and important support/container relation.
+## Execution Priority
 
-Read `references/subject-fidelity.md`.
+Always follow this priority order:
 
-For complex scenes, also identify 1–3 **Scene Lock** cues that make the source recognizable. Do not preserve every background object.
+1. **Subject identity**
+2. **Single hero subject composition**
+3. **Caption rendering**
+4. **Micro-worker figure system**
+5. **Product-related worker actions**
+6. **Whitespace layout**
+7. **Sparse doodle decoration**
 
-### 2. Read the visual system
+If anything conflicts, **higher priority wins**.
 
-Read `references/style-guide.md` before writing or generating the poster.
+---
 
-The non-negotiable visual formula is:
+## Required Reference Loading
+
+Before generating, the assistant must actively apply the rules from these files:
+
+- `references/style-guide.md`
+- `references/subject-fidelity.md`
+- `references/micro-worker-guide.md`
+- `references/lettering-guide.md`
+- `references/fidelity-focus.md`
+- `references/evaluation.md`
+
+However, the final generation prompt must **not rely on these files being read indirectly**. The most important rules must be **inlined into the final prompt**.
+
+---
+
+## Core Execution Workflow
 
 ```text
-large white negative space
-+ one preserved photographic hero object
-+ primitive black doodle intervention
-+ faceless round-headed micro workers
-+ product-related actions
-+ restrained subject-derived color
+Input photo
+→ identify hero subject
+→ build Subject Lock
+→ if scene is complex, build Scene Lock
+→ extract 2–4 real product features
+→ convert features into 3–5 worker actions
+→ choose Quick Mode or Fidelity Mode
+→ if Fidelity, choose exactly one fidelity_focus
+→ assemble final prompt with hard constraints inlined
+→ generate
+→ self-check
+→ if failed, repair once according to repair priority
 ```
 
-### 3. Build the micro story
+---
 
-Read `references/micro-worker-guide.md`.
+## 1. Subject Lock
 
-Convert 2–4 real product features into 3–5 physical jobs. Every worker must have one clear action verb and one visible relationship with the product.
+Before any generation, identify the real product or object the poster is about.
 
-Do not add workers merely to fill space.
+### Rules
 
-### 4. Choose generation mode
+- There must be **one clear hero subject**.
+- Supporting props may exist, but must remain **visually secondary**.
+- Do **not** change the product category.
+- Do **not** replace the original object with a conceptually similar but different object.
+- Do **not** expand one product into a multi-product collage unless the user explicitly asks for it.
+- If the input image is complex, simplify it while preserving the most important product identity clues.
 
-Use **Quick Mode** by default for exploration.
+### Subject Lock Output
 
-Use **Fidelity Mode** when the user wants one accepted visual property to be protected or emphasized.
+Summarize internally like this before prompt assembly:
 
-#### Quick Mode
+```yaml
+subject_identity:
+  category: [what it is]
+  silhouette: [main shape]
+  material: [surface / realism cues]
+  key_parts:
+    - [...]
+    - [...]
+```
 
-Read `prompts/quick-prompt.md` and generate subject + workers + text in one pass.
+### Failure Examples
 
-Quick Mode is best for:
+- blue pudding becomes shaved ice
+- apple tea becomes generic orange drink
+- one hero drink becomes lip gloss + dessert multi-hero display
 
-- first exploration;
-- fast concept testing;
-- simpler source photos;
-- testing whether the visual language works at all.
+---
 
-#### Fidelity Mode
+## 2. Hero Subject Count
 
-Read `references/fidelity-focus.md` first.
+Default rule:
 
-Choose exactly one primary focus:
+- **1 hero subject only**
+
+Supporting items:
+
+- maximum **2** supporting objects
+- they must be **smaller**, **weaker**, and **compositionally secondary**
+- they must not compete with the hero subject
+
+If the image starts to feel like a commercial product collage, simplify it.
+
+---
+
+## 3. Scene Lock
+
+Use Scene Lock only when the original photo contains meaningful context that helps recognition.
+
+### Rules
+
+- Preserve only **1–3** scene clues.
+- Keep them reduced and secondary.
+- Scene clues must not overwhelm the white-background poster structure.
+
+### Examples
+
+- apple tea: one or two real apples may remain as scene support
+- vegetable farm installation: a small amount of broccoli or signage may remain as support
+- soup bowl: bowl shape and one key side ingredient may remain as support
+
+---
+
+## 4. Caption Contract (Mandatory)
+
+If the user provides a caption, **caption rendering is mandatory**.
+
+### Rules
+
+- Render the **exact caption text**.
+- Place it in the **upper-left** or **left-side whitespace area**.
+- Use **thin black handwritten Chinese**.
+- Pair it with a **simple hand-drawn arrow** pointing to the hero subject.
+- Keep the caption short.
+- The caption must feel like part of the image, not formal typesetting.
+
+### Caption Style
+
+- naive
+- loose
+- thin black line
+- uneven sizing
+- slightly crooked
+- relaxed spacing
+- not a standard digital font
+
+### Failure Conditions
+
+The result is a failure if any of these happen:
+
+- caption missing
+- caption replaced with different text
+- caption rendered as standard computer font
+- caption becomes formal typography
+- caption placed far away from the left whitespace structure
+
+### Important Rule
+
+If the user supplies a Chinese caption, **never omit the title**.
+
+---
+
+## 5. Locked Micro-Worker Figure System
+
+Micro-workers are strictly locked.
+
+### Required figure design
+
+- round blank head
+- no eyes
+- no nose
+- no mouth
+- no eyebrows
+- no facial expression
+- no hair
+- no hat
+- no clothing details
+- no accessories
+- no labels
+- thin black single-line outline only
+- simple minimal body
+- slightly clumsy childlike proportions
+
+### Prohibited figure drift
+
+Do **not** let workers become:
+
+- mascots
+- cute characters
+- polished cartoon figures
+- decorative illustration people
+- dressed-up figures
+- expressive emoji-like characters
+
+The workers must remain **quiet, minimal, faceless, and secondary**.
+
+---
+
+## 6. Worker Action Contract
+
+Workers are not random decoration.
+
+### Rules
+
+- use **3 to 5** workers
+- each worker must perform a **different** action
+- each action must explain one real product feature
+- workers must physically or narratively interact with the subject
+- if an action does not help explain the product, remove it
+
+### Action Logic
+
+Use this conversion:
+
+```text
+product feature
+→ action metaphor
+→ worker task
+```
+
+### Examples
+
+**Apple tea**
+- apple slices → carry or place apple slice
+- garnish → inspect or adjust garnish
+- chilled drink → move ice / cool drink
+- fresh serving feel → clean spill / tidy serving area
+
+**Pudding**
+- smooth surface → polish surface
+- whipped cream → adjust topping
+- cherry → inspect cherry from ladder
+
+**Watermelon**
+- watery / juicy → water the fruit
+- seeds → move seeds
+- cool summer feel → sit in shade / scoop watermelon
+
+---
+
+## 7. Composition Contract
+
+The layout must follow this formula:
+
+- pure white or near-white background
+- **70%–80% whitespace**
+- one hero subject
+- hero subject centered or slightly lower-centered
+- caption in left whitespace
+- sparse doodles only
+
+### Do not
+
+- fill the whole page
+- build a complex scene background
+- create many equal focal points
+- turn it into a crowded product collage
+- use dense graphic layout
+
+---
+
+## 8. Photography-First Rule
+
+The hero subject must remain photorealistic.
+
+### Rules
+
+- preserve realistic texture and material
+- preserve object identity
+- use soft studio-clean lighting
+- keep the subject as photography, not illustration
+- doodles must sit around the product, not replace it
+
+If the main object becomes too cartoon-like, simplify and restore realism.
+
+---
+
+## 9. Quick Mode
+
+Use Quick Mode when the user wants a fast complete result.
+
+### Quick Mode must still include
+
+- Subject Lock
+- mandatory caption if provided
+- locked micro-worker system
+- product-related worker actions
+- clean white-background layout
+- photography-first rule
+
+### Quick Mode definition
+
+- one-pass complete poster
+- best for first exploration
+- acceptable if not perfect, but must still pass all hard rules
+
+---
+
+## 10. Fidelity Mode
+
+Use Fidelity Mode when the user wants one aspect to become more accurate.
 
 ```yaml
 mode: fidelity
 fidelity_focus: subject_identity | dominant_element | lettering
 ```
 
-Routing:
+### Hard rule
 
-- exact subject preservation → `subject_identity`
-- emphasize the largest / strongest / named element → `dominant_element`
-- repair only Chinese handwriting → `lettering`
+**Only one fidelity focus per pass.**
 
-For `subject_identity` or `dominant_element`:
+### `subject_identity`
+Use when:
+- the product changed category
+- the object no longer looks like the original
+- the key parts or material are wrong
 
-1. read `prompts/poster-base.md`;
-2. create a no-title poster base using the chosen fidelity focus;
-3. if text is required, read `references/lettering-guide.md` and `prompts/lettering-layer.md`;
-4. composite the accepted title onto the accepted poster base when tooling allows.
+Goal:
+- restore object identity and realism
 
-For `lettering`:
+### `dominant_element`
+Use when:
+- the user says “强调最大的元素”
+- the first visual focus is unclear
+- the biggest meaningful feature needs stronger hierarchy
 
-1. freeze the accepted poster base;
-2. do not regenerate the product, workers, lighting, or composition;
-3. read `references/lettering-guide.md`;
-4. regenerate only the title layer;
-5. composite it back onto the unchanged base.
+Goal:
+- make the most meaningful large element become the first visual signal
 
-One Fidelity pass should solve one main fidelity problem. If several problems remain, solve them sequentially rather than redesigning everything at once.
+### `lettering`
+Use when:
+- the title is missing
+- the title is wrong
+- the title looks too digital or too neat
 
-### 5. Dominant-element behavior
+Goal:
+- freeze poster base and repair only the caption system
 
-When `fidelity_focus: dominant_element`:
+### Lettering Safety Rule
 
-- identify the largest **meaningful** source element, not irrelevant background architecture;
-- make that focus the first photographic signal;
-- normally scale it to roughly 45%–60% of canvas height depending on shape;
-- allow roughly 60%–70% negative space if needed for stronger emphasis;
-- keep only 0–2 photographic supporting cues;
-- make workers interact with the focus element first;
-- keep all secondary elements clearly weaker in size, contrast, saturation, and placement.
+If a caption is important and the first pass misses or weakens it, the next repair should prefer **`fidelity_focus: lettering`**.
 
-Examples already validated in tests:
+---
+
+## 11. Final Prompt Assembly Requirement
+
+Before generation, the final prompt must explicitly inline all critical rules.
+
+The final prompt must include:
+
+1. exact hero subject description
+2. subject lock summary
+3. caption text and mandatory placement if caption exists
+4. locked micro-worker figure description
+5. 3–5 product-related worker actions
+6. white-space composition rule
+7. photography-first rule
+8. selected mode and fidelity focus if applicable
+
+### Important
+
+Do **not** assume that “the model already knows” the caption or worker system.
+Always restate them in the final generation prompt.
+
+---
+
+## 12. Post-Generation Self-Check
+
+After generation, inspect the result against this checklist:
+
+- Is the hero subject clear and correct?
+- Is there only one main subject?
+- Is the caption present if the user provided one?
+- Is the caption rendered in thin, loose handwritten Chinese?
+- Is the caption placed in left whitespace?
+- Are the workers faceless and expressionless?
+- Are the workers thin black line doodles only?
+- Are the worker actions product-related?
+- Is the background still mostly white?
+- Is the poster still calm and minimal?
+- Is the product still photorealistic?
+
+If any critical answer is **no**, the result must be treated as failed.
+
+---
+
+## 13. Repair Priority
+
+If one repair pass is needed, repair in this order:
+
+1. missing or incorrect caption
+2. wrong subject identity
+3. too many hero subjects / cluttered composition
+4. wrong micro-worker style
+5. weak visual hierarchy
+
+Do not attempt unlimited retries. Use **one targeted repair pass**.
+
+---
+
+## 14. When to Use Two-Pass Generation
+
+Default Quick Mode can be one-pass.
+
+However, if any of the following is true, prefer a two-pass strategy:
+
+- user gives a specific Chinese title
+- user explicitly cares about handwriting style
+- title is central to the joke or message
+- the first pass tends to omit text
+
+### Two-pass strategy
+
+**Pass 1**
+- build subject + workers + whitespace poster base
+- keep composition stable
+
+**Pass 2**
+- repair / add caption and arrow
+- preserve the poster base
+- focus only on lettering quality and placement
+
+This is strongly recommended for Codex execution stability.
+
+---
+
+## 15. Codex Execution Notes
+
+This skill is designed to work in Codex-like environments where implicit conversational memory is weak.
+
+Therefore:
+
+- never rely on earlier chat preference memory
+- never rely on “style intent” alone
+- always inline hard constraints into the final generation prompt
+- always perform self-check after generation
+- always treat missing title and wrong worker style as hard failures
+
+---
+
+## 16. Minimal Prompt Skeleton
+
+Use this as the minimum structure when assembling the final generation prompt:
 
 ```text
-vegetable farm → giant red tomato
-seafood soup → central yellow character-shaped ingredient
-caramel ice cream → large caramel biscuit
-apple tea → red apple / apple slices when “苹” is the semantic hook
+Generate a minimalist white-background poster.
+
+Hero subject:
+[exact real product description]
+
+Caption:
+Render the exact handwritten Chinese text: "[caption]".
+This caption is mandatory.
+Place it in the upper-left or left-side whitespace area.
+Use thin black loose naive handwriting.
+Add a simple hand-drawn arrow pointing toward the subject.
+
+Micro-workers:
+Add 3 to 5 tiny workers around the product.
+They must be round-headed, faceless, expressionless, hairless, clothing-free, and drawn with thin black single lines only.
+They are minimal and slightly clumsy.
+Each worker performs a different action related to the product.
+
+Composition:
+Pure white background.
+Large whitespace.
+One hero subject only.
+Supporting props must stay secondary.
+Hero subject centered or slightly lower-centered.
+
+Style:
+Photoreal product, soft studio lighting, calm, healing, restrained.
+Do not cartoonize the product.
+Do not omit the caption.
+Do not turn the workers into mascots.
 ```
 
-### 6. Lettering rules
+---
 
-If the poster contains Chinese text, read `references/lettering-guide.md`.
+## 17. Success Definition
 
-The target lettering is thin black, naive, loose, slightly awkward, irregular, and readable. It is not standard typography, calligraphy, rounded cute handwriting, or polished commercial lettering.
+A successful result must simultaneously satisfy all of these:
 
-### 7. Evaluate before finalizing
+- the subject is still the right subject
+- there is one clear hero subject
+- the title exists when provided
+- the title looks handwritten, not typed
+- the workers match the locked figure system
+- the workers explain the product rather than decorate it randomly
+- the poster keeps strong whitespace and a calm visual tone
 
-Read `references/evaluation.md` and check the result against both the global criteria and the selected fidelity focus.
-
-A successful poster must preserve:
-
-- exact subject category and recognizable form;
-- photographic material realism;
-- strong white negative space;
-- primitive black-line workers;
-- blank round heads with no facial features;
-- no clothing, hair, hats, labels, or character branding;
-- product-related action storytelling;
-- restrained colors;
-- loose handwritten text when text is used.
-
-## Fixed figure contract
-
-Every micro worker follows the same fixed system:
-
-- blank round or slightly lumpy head;
-- no eyes, mouth, nose, eyebrows, or expression;
-- no hairstyle;
-- no hats;
-- no clothes or uniforms;
-- no logo, label, badge, text, or decorative body symbol;
-- simple neutral body outline;
-- black line only;
-- uneven hand-drawn contour;
-- action communicated by pose + tool + contact with the product.
-
-This contract has higher priority than decorative creativity.
-
-## Lock hierarchy
-
-Use three separate locks:
-
-```text
-Subject Lock = what is it?
-Scene Lock = what source cues make the scene recognizable?
-Focus Lock = what must become the first visual signal in this pass?
-```
-
-Creative metaphors may change what workers do, but may not change what the photographed object is.
-
-Bad:
-
-```text
-blue pudding → “cool” → shaved ice
-```
-
-Good:
-
-```text
-blue pudding → “cool / smooth / jiggly” → workers inspect, taste, climb, cool, or maintain the pudding while the pudding remains unchanged
-```
-
-## Output behavior
-
-When the user asks for a prompt, provide the generation-ready prompt only unless analysis is requested.
-
-When the user asks to generate an image and image generation is available, use the workflow above rather than merely describing it.
-
-When multiple source images are provided for separate posters, process them as independent cases. Do not intentionally combine them into one collage unless the user asks for a comparison board.
-
-When a test reveals a repeatable failure, add it to `evals/evals.json` in a future repository revision.
-
-## Scope boundary
-
-This skill intentionally stays narrow. It does not include flavor monsters, mascots, desktop pets, character packs, animation runtimes, or general brand systems. Its specialty is one thing done well: **real photographic object + minimal faceless doodle workers + restrained handwritten storytelling**.
+If any of these fail, the result is not considered a correct execution of this skill.

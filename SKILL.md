@@ -1,370 +1,140 @@
 ---
 name: minimal-doodle-product-poster-skill
-description: Generate minimalist healing product-poster prompts using large white space, realistic product photography, black hand-drawn doodles, miniature worker storytelling, and short handwritten captions.
+description: Turn a clear uploaded product or food photo into a minimalist white-space poster with a preserved photographic subject, primitive faceless doodle workers, product-related micro-storytelling, and optional loose thin-line Chinese handwriting.
 ---
 
 # Minimal Doodle Product Poster Skill
 
 ## Purpose
 
-Use this skill when the user wants a minimalist product poster built from:
+Use this skill for a single real product, food, drink, dessert, fruit, or simple daily object that should become a quiet minimalist poster built from real photography + primitive black doodles.
 
-- large white negative space;
-- one realistic photographic product or food subject;
-- a small number of black hand-drawn doodles;
-- miniature people whose actions explain product features;
-- a short handwritten Chinese caption and arrow;
-- restrained colors derived from the subject itself.
+Do not imitate official brand assets. Do not add logos, mascots, packaging marks, or claims of affiliation unless the user supplies authorized material and explicitly requests it.
 
-This style may be casually referred to by users as “喜茶风”. Do not rely on brand imitation language. Reconstruct the visual logic from first principles.
+## Core routing
 
-## Core visual formula
+### 1. Inspect the input first
 
-```text
-Minimal premium product photography
-+ 70%–80% white negative space
-+ one hero subject placed center-lower
-+ loose black marker-like line doodles
-+ 4–5 expressionless round-headed miniature workers
-+ one short loose handwritten caption
-= quiet, healing, playful micro-world product poster
-```
+If a reference photo exists, resolve the subject before any creative work.
 
-## When to use
+- If there is no clear usable subject, ask for a clearer image.
+- If there are several independent possible subjects and the user has not identified one, ask which one to use.
+- Treat a container and its contents as one subject unless the user says otherwise.
+- Once the subject is identified, lock its category, silhouette, material, main color, topping/garnish, and important support/container relation.
 
-Use for:
+Read `references/subject-fidelity.md`.
 
-- fruit;
-- drinks;
-- desserts;
-- ice and cooling objects;
-- simple summer products;
-- single objects with clear physical or emotional features.
+### 2. Read the visual system
 
-Do not default to this skill for:
+Read `references/style-guide.md` before writing or generating the poster.
 
-- dense commercial key visuals;
-- multi-product collages;
-- complex brand-layout systems;
-- 3D cartoon scenes;
-- full illustration posters;
-- anime or comic art;
-- cyberpunk or highly decorative visual systems.
-
-## Input model
-
-The user may provide only a subject. Infer the rest when reasonable.
-
-Preferred variables:
-
-```yaml
-subject: required
-feature: optional
-caption: optional
-worker_count: optional, default 4-5
-color_palette: optional
-aspect_ratio: optional, default vertical poster
-reference_image: optional
-```
-
-If a reference image is provided, source fidelity has priority over invention. First identify the exact object category, form, color, toppings, surface material, and silhouette. Do not reinterpret one food type as another merely because their colors are similar.
-
-Example: a molded blue pudding must remain a molded blue pudding. It must not become shaved ice, a cake, a jelly mountain, or another dessert form.
-
-When analyzing a reference, extract:
-
-1. exact subject identity and category;
-2. subject shape, proportions, color, toppings, and surface texture;
-3. negative-space ratio;
-4. hero-subject placement and scale;
-5. subject realism and lighting;
-6. doodle line quality;
-7. relationship between doodles and product;
-8. caption position and tone;
-9. palette restrictions.
-
-Do not merely enumerate visible objects. Explain why the composition works.
-
-## Reasoning workflow
-
-### Step 1 — Lock subject identity first
-
-Before generating ideas, determine what the photographed object actually is.
-
-Preserve:
-
-- product category;
-- primary silhouette;
-- main color;
-- surface material;
-- visible topping and garnish;
-- plate/container relationship when visually important.
-
-Ignore unrelated background props unless the user explicitly wants them retained.
-
-Never change the product category for the sake of a stronger visual metaphor.
-
-### Step 2 — Extract product features
-
-Identify 2–4 features that can become physical actions.
-
-Examples:
-
-- watermelon → juicy, hydrating, chilled, seeded;
-- peach → sweet, soft, ripe, fuzzy skin;
-- lemon soda → fizzy, icy, sour-fresh, refreshing;
-- blue pudding → cool, smooth, soft, jiggly, creamy;
-- ice cube → cool, melting, transparent, restful.
-
-Prefer visible, tactile, or emotional features. Avoid generic marketing adjectives that cannot be visualized.
-
-### Step 3 — Convert features into miniature jobs
-
-Create 4–5 different worker actions. Every action must have a direct relationship with the subject.
-
-Good pattern:
+The non-negotiable visual formula is:
 
 ```text
-feature → metaphor → worker action
-hydrating → water supply → worker uses a hose
-seeds → cargo → worker transports seeds in a cart
-sweetness → quality inspection → worker measures sweetness
-cooling → climate control → worker operates a fan
-soft texture → tasting/testing → worker uses a tiny spoon
+large white negative space
++ one preserved photographic hero object
++ primitive black doodle intervention
++ faceless round-headed micro workers
++ product-related actions
++ restrained subject-derived color
 ```
 
-Bad pattern:
+### 3. Build the micro story
 
-```text
-random person waving
-random stars
-random decorative character
-unrelated balloons
-```
+Read `references/micro-worker-guide.md`.
 
-At least 3 actions should clearly communicate a product feature without needing explanatory text.
+Convert 2–4 real product features into 3–5 physical jobs. Every worker must have one clear action verb and one visible relationship with the product.
 
-### Step 4 — Build composition
+Do not add workers merely to fill space.
 
-Default composition:
+### 4. Choose generation mode
 
-- pure white background;
-- 70%–80% negative space;
-- one hero subject only;
-- subject positioned center-lower;
-- subject occupies approximately 30%–45% of the canvas height depending on shape;
-- handwritten caption on the upper-left or left side;
-- one loose arrow linking caption to subject;
-- doodles cluster around and interact with the subject instead of filling empty space evenly.
+Use **Quick Mode** by default for exploration.
 
-The blank area is structural, not unused space. Do not “fix” it by adding decoration.
+Use **Fidelity Mode** when:
 
-### Step 5 — Control photography
+- the user emphasizes exact subject preservation;
+- the user cares strongly about the handwritten Chinese title;
+- a previous all-in-one generation changed the object;
+- a previous title looked like a normal font;
+- the user asks to revise only the title without disturbing the poster.
 
-The hero subject must look like premium commercial photography:
+#### Quick Mode
 
-- realistic materials and surface texture;
-- clean studio soft light;
-- soft contact shadow;
-- bright high-key exposure;
-- natural translucency, moisture, bubbles, fruit flesh, cream, pudding gloss, glass, or ice detail when relevant;
-- no complex environmental background.
+Read `prompts/quick-prompt.md` and generate subject + workers + text in one pass.
 
-If a source photo is provided, preserve its object identity and recognizable form while simplifying the surrounding scene into the poster system.
+#### Fidelity Mode
 
-The subject must not become an illustration, sticker, clay render, toy, or 3D cartoon.
+1. Read `prompts/poster-base.md` and create the poster without any title.
+2. Read `references/lettering-guide.md`.
+3. Read `prompts/lettering-layer.md` and create only the title layer.
+4. Composite the accepted title onto the unchanged poster base when tooling allows.
 
-### Step 6 — Control doodle characters
+Never regenerate the whole poster as the primary fix for a lettering-only problem.
 
-The miniature people are a fixed character system, not individually designed characters.
+### 5. Lettering rules
 
-Character rules:
+If the poster contains Chinese text, read `references/lettering-guide.md`.
 
-- black single-line drawing only;
-- round blank head;
-- no eyes, mouth, nose, eyebrows, or facial expression;
+The target lettering is thin black, naive, loose, slightly awkward, irregular, and readable. It is not standard typography, calligraphy, rounded cute handwriting, or polished commercial lettering.
+
+### 6. Evaluate before finalizing
+
+Read `references/evaluation.md` and check the result.
+
+A successful poster must preserve:
+
+- exact subject category and recognizable form;
+- photographic material realism;
+- strong white negative space;
+- primitive black-line workers;
+- blank round heads with no facial features;
+- no clothing, hair, hats, labels, or character branding;
+- product-related action storytelling;
+- restrained colors;
+- loose handwritten text when text is used.
+
+## Fixed figure contract
+
+Every micro worker follows the same fixed system:
+
+- blank round or slightly lumpy head;
+- no eyes, mouth, nose, eyebrows, or expression;
 - no hairstyle;
 - no hats;
-- no clothing details;
-- no uniforms;
-- no logos, labels, text, badges, or decorative symbols on the body;
-- simple neutral body silhouette;
-- intentionally naive anatomy;
-- slightly uneven hand-drawn contour;
-- no filled color areas;
-- no polished vector aesthetic;
-- no manga rendering;
-- no detailed character design.
+- no clothes or uniforms;
+- no logo, label, badge, text, or decorative body symbol;
+- simple neutral body outline;
+- black line only;
+- uneven hand-drawn contour;
+- action communicated by pose + tool + contact with the product.
 
-The pose and job tool should communicate the action. Emotion must come from body posture and the situation, not from facial expressions or costumes.
+This contract has higher priority than decorative creativity.
 
-Useful doodle vocabulary:
+## Subject lock contract
 
-- ladders;
-- arrows;
-- carts;
-- hoses;
-- umbrellas;
-- fans;
-- spoons;
-- measuring tools;
-- clouds;
-- small wave lines;
-- motion marks.
+Creative metaphors may change what workers do, but may not change what the photographed object is.
 
-Only use tools that make sense for the subject's story.
-
-### Step 7 — Write the caption and handwriting
-
-Caption content rules:
-
-- preferably 2–6 Chinese characters;
-- conversational rather than slogan-like;
-- slightly playful, calm, observational, or product-inspired;
-- may use light wordplay or gentle homophones when natural;
-- tied to the subject's strongest feature;
-- keep wording short to reduce text-generation errors;
-- text participates in the composition and does not have to behave like a formal title.
-
-Handwriting rules:
-
-- thin black handwritten strokes;
-- naive, loose, slightly awkward structure;
-- not a standard printed font;
-- not calligraphy;
-- not rounded cute typography;
-- not neat typesetting;
-- characters may tilt slightly;
-- character sizes may vary;
-- horizontal strokes may extend unusually long;
-- spacing and internal structure may feel loose and irregular;
-- preserve legibility while allowing obvious human imperfection.
-
-Typical placement is upper-left or left-side negative space, often with a loose hand-drawn arrow pointing toward the subject.
-
-Examples of tone:
-
-- 补水中
-- 今天有点甜
-- 请勿打扰
-- 正在降温
-- 清甜下午茶
-
-Avoid long copy, feature lists, pricing text, logo systems, and dense typography.
-
-### Step 8 — Restrict color
-
-Default rule: use only colors already present in the photographed subject plus white background and black doodle lines.
-
-Do not introduce unrelated accent colors unless the user explicitly requests them.
-
-### Step 9 — Output the prompt in exactly three sections
-
-Preserve the user's preferred three-step structure.
-
-#### 1. Base visual and composition
-
-Describe:
-
-- minimalist healing poster;
-- premium product-photography feeling;
-- pure white background;
-- negative-space ratio;
-- one realistic hero subject;
-- source-image fidelity if a reference is supplied;
-- studio soft light;
-- black hand-drawn miniature world;
-- purposeful worker interactions.
-
-#### 2. Style controls and exclusions
-
-Describe the overall restraint, handwriting style, fixed doodle-character system, color logic, and important exclusions.
-
-Prefer positive instructions first. Keep exclusions concise and functional.
-
-#### 3. Subject-specific scene
-
-Describe:
-
-- the exact subject identity and photographic details;
-- 4–5 worker actions;
-- handwritten caption;
-- arrow placement;
-- final palette.
-
-## Output quality checklist
-
-Before answering, verify:
-
-- [ ] If a reference exists, is the product category preserved exactly?
-- [ ] Are the source object's shape, main color, toppings, and material recognizable?
-- [ ] Is there only one hero subject?
-- [ ] Does the image retain 70%–80% breathing room?
-- [ ] Is the subject explicitly realistic photography?
-- [ ] Are doodles black, simple, and hand-drawn rather than polished illustration?
-- [ ] Are all miniature people round-headed, blank-faced, and free of clothing/labels?
-- [ ] Does every miniature worker have a product-related job?
-- [ ] Are the worker actions different from one another?
-- [ ] Is the caption short and linked to a core feature?
-- [ ] Does the lettering look loose, thin, irregular, and handwritten rather than typeset?
-- [ ] Is the palette restricted to the product colors + white + black?
-- [ ] Are logos, borders, dense layout, 3D cartoons, anime, and colored illustration excluded?
-- [ ] Is the final prompt organized into exactly three sections?
-
-## Failure modes and corrections
-
-### Wrong product identity
-
-Example: pudding becomes shaved ice.
-
-Correction: explicitly lock the source category, silhouette, material, topping, and plate/container before describing style. Remove metaphors that alter the physical object.
-
-### Too much decoration
-
-Correction: remove half the doodles and restore white space.
-
-### Looks like a children's illustration
-
-Correction: strengthen realistic studio photography and reduce character detail.
-
-### Character design is too specific
-
-Example: workers gain hats, uniforms, faces, labels, or cute expressions.
-
-Correction: return to a blank round head, expressionless face, simple unclothed line body, and communicate actions only through pose and tools.
-
-### Miniature people feel random
-
-Correction: rewrite each action from a specific product feature.
-
-### Handwriting looks like a font
-
-Correction: specify thin black hand strokes, uneven character size, loose structure, mild tilt, irregular spacing, and occasional elongated horizontal strokes. Remove requests for “cute font”, calligraphy, or clean typography.
-
-### Subject looks synthetic or plastic
-
-Correction: add material-specific photographic detail such as condensation, pulp fibers, bubbles, transparency, pudding gloss, cream texture, soft fuzz, or natural surface imperfections.
-
-### Poster feels like a normal ad layout
-
-Correction: remove secondary copy, grids, badges, pricing, logo, frames, and decorative typography.
-
-### Too many colors
-
-Correction: return to subject-derived colors only.
-
-## Default response format
-
-When the user asks for a prompt, output only what is needed to generate the image unless they explicitly ask for analysis.
-
-Use:
+Bad:
 
 ```text
-1、[Base visual and composition prompt]
-
-2、[Style controls and exclusions]
-
-3、[Subject-specific scene prompt]
+blue pudding → “cool” → shaved ice
 ```
 
-Keep the language concrete, visual, and directly usable by an image-generation model.
+Good:
+
+```text
+blue pudding → “cool / smooth / jiggly” → workers inspect, taste, climb, cool, or maintain the pudding while the pudding remains unchanged
+```
+
+## Output behavior
+
+When the user asks for a prompt, provide the generation-ready prompt only unless analysis is requested.
+
+When the user asks to generate an image and image generation is available, use the workflow above rather than merely describing it.
+
+When a test reveals a repeatable failure, add it to `evals/evals.json` in a future repository revision.
+
+## Scope boundary
+
+This skill intentionally stays narrow. It does not include flavor monsters, mascots, desktop pets, character packs, animation runtimes, or general brand systems. Its specialty is one thing done well: **real photographic object + minimal faceless doodle workers + restrained handwritten storytelling**.

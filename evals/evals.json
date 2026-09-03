@@ -1,0 +1,89 @@
+{
+  "skill_name": "minimal-doodle-product-poster-skill",
+  "version": "0.3",
+  "evals": [
+    {
+      "id": "subject-lock-blue-pudding",
+      "prompt": "上传一张浅蓝色模具布丁照片，顶部有白色奶油和红色樱桃，做成这个极简小人海报。",
+      "expected_output": "The result preserves a molded blue pudding and does not reinterpret it as shaved ice, cake, jelly mountain, or another dessert.",
+      "expectations": [
+        "Subject category remains pudding.",
+        "Molded fluted silhouette remains recognizable.",
+        "Blue smooth/glossy pudding material is preserved.",
+        "White cream and red cherry are preserved when visible in the source.",
+        "Background clutter is simplified without changing the hero object."
+      ]
+    },
+    {
+      "id": "fixed-worker-system",
+      "prompt": "小人要极简一点，不要设计成角色。",
+      "expected_output": "All micro workers follow one fixed primitive faceless figure system.",
+      "expectations": [
+        "Workers have blank round or slightly lumpy heads.",
+        "No eyes, mouth, facial expression, hair, or hats appear.",
+        "No clothing details, uniforms, labels, logos, badges, or body symbols appear.",
+        "Black uneven single-line drawing is used.",
+        "Action is communicated through pose, tool, and contact rather than expression."
+      ]
+    },
+    {
+      "id": "lettering-thin-naive",
+      "prompt": "标题写‘清甜下午茶’，字体要像参考里那种稚拙、松散、细黑线手写。",
+      "expected_output": "The title uses thin black naive handwriting with irregular glyph skeletons rather than a standard font.",
+      "expectations": [
+        "The exact requested phrase is used without extra copy.",
+        "Stroke appearance is thin black hand-line rather than heavy brush calligraphy.",
+        "Character sizes, tilt, spacing, and baselines are irregular.",
+        "Some horizontal strokes may be elongated.",
+        "The result avoids standard fonts, rounded cute handwriting, neat calligraphy, and polished commercial typography."
+      ]
+    },
+    {
+      "id": "lettering-repair-without-poster-regeneration",
+      "prompt": "字体还是太像电脑字了，产品和构图已经满意，不要动其他地方。",
+      "expected_output": "The workflow switches to Fidelity Mode and repairs only the lettering layer while preserving the accepted poster base.",
+      "expectations": [
+        "The poster base remains unchanged.",
+        "The failure is treated as a glyph-skeleton problem, not merely a texture problem.",
+        "Only the lettering layer is regenerated.",
+        "Glyph size, tilt, x/y position, spacing, radical proportions, and horizontal stroke length are varied.",
+        "The workflow does not recommend rerunning the whole poster as the primary fix."
+      ]
+    },
+    {
+      "id": "worker-action-watermelon",
+      "prompt": "主体是冰镇西瓜，做 4 到 5 个小人在上面工作。",
+      "expected_output": "Every worker action maps to a watermelon feature and no worker exists merely as decoration.",
+      "expectations": [
+        "Hydration may map to hose/watering behavior.",
+        "Seeds may map to carrying/transport behavior.",
+        "Sweetness or ripeness may map to inspection behavior.",
+        "Eating may map to spoon/scooping behavior.",
+        "Cooling/rest may map to shade or cooling behavior when compositionally useful.",
+        "Random waving, balloons, or unrelated decorative activity is rejected."
+      ]
+    },
+    {
+      "id": "busy-photo-cleanup",
+      "prompt": "这张照片背景里还有书、餐具和其他甜品，只要把前面的主甜品做成海报。",
+      "expected_output": "The chosen photographic hero is isolated and preserved while unrelated environmental clutter is removed or simplified.",
+      "expectations": [
+        "Only the identified hero object is treated as the main subject.",
+        "Unrelated books, dishes, background desserts, and room details are removed or heavily simplified.",
+        "The product's defining plate/container may be kept if it aids recognition.",
+        "The final poster restores strong white negative space."
+      ]
+    },
+    {
+      "id": "palette-restraint",
+      "prompt": "按照主体本身颜色做，不要乱加颜色。",
+      "expected_output": "The final palette uses source-derived product colors plus white background and black doodles only.",
+      "expectations": [
+        "No unrelated decorative accent colors are introduced.",
+        "Doodles remain black.",
+        "Background remains white or very lightly warm white.",
+        "Source product colors remain faithful."
+      ]
+    }
+  ]
+}

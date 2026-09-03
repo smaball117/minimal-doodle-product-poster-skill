@@ -1,65 +1,71 @@
 # Minimal Doodle Product Poster Skill
 
-极简留白 × 真实产品摄影 × 黑色手绘微缩小人叙事的可复用 AI 生图 Skill。
+极简留白 × 真实产品摄影 × 无脸微缩小人 × 稚拙细线中文的可复用 AI 生图 Skill。
 
-> 这套视觉在日常交流里可以被称为“喜茶风”，但本项目使用中性、可复用的视觉语言描述它：**Minimal Product Photography + Doodle Micro-Storytelling**。目标不是复刻某个品牌，而是提炼一种可迁移的视觉方法。
+> 这套视觉常被口语化称为“喜茶风”，但本项目使用中性的可迁移语言描述它：**Minimal Product Photography + Doodle Micro-Storytelling**。目标不是复刻某个品牌，而是提炼一种可复用的视觉方法。
 
-## 这套 Skill 能做什么
+## v0.3 核心升级
 
-给定一个水果、饮品、甜品或清凉物件，自动完成：
+从“一个很长的 Prompt”升级为“工作流 + 专项规则 + 评估测试”。
 
-1. 提炼主体最值得被视觉化的产品特征；
-2. 为主体设计 4–5 个“围绕产品认真工作”的手绘微缩小人动作；
-3. 生成一句 2–6 字的情绪化手写短句；
-4. 控制留白、构图、摄影质感、线稿密度与色彩范围；
-5. 输出可直接用于图片生成模型的三段式完整提示词。
+```text
+上传照片
+→ 锁定真实主体
+→ 提炼产品特征
+→ 生成微缩工作动作
+→ 选择 Quick / Fidelity 模式
+→ 生成海报
+→ 按 Evaluation 规则验收
+```
 
 ## 风格公式
 
 ```text
-大面积白色留白
+70%–80% 白色留白
 + 单一真实摄影主体
 + 居中偏下构图
-+ 黑色随手线稿
-+ 微缩小人功能性动作
-+ 极短手写情绪文案
-= 极简、治愈、安静、有故事感的产品海报
++ 黑色稚拙线稿
++ 4–5 个无脸圆头微缩小人
++ 产品相关动作叙事
++ 稚拙、松散、细黑线中文
+= 安静、清爽、治愈、有故事感的产品海报
 ```
 
-## 最重要的规则
+## 两种生成模式
 
-- 主体必须保持真实摄影质感，不做插画化。
-- 画面约 70%–80% 为纯白留白。
-- 一个画面只保留一个核心主体。
-- 小人不是随机装饰，每一个动作都必须解释或放大产品特性。
-- 线稿只使用黑色单线，松弛、稚拙、像马克笔随手画，不做精致漫画。
-- 颜色只来自产品本身，尽量不额外引入新颜色。
-- 文案短、轻、像便签，不做复杂广告排版。
+### Quick Mode
 
-## 快速使用
+适合快速测试。主体、小人和文字一次生成。
 
-最少只需要告诉 Skill 一个主体：
+### Fidelity Mode
 
-```text
-帮我做一张西瓜主题海报。
-```
+当用户强调主体还原或字体像参考时使用：
 
-更稳定的输入方式：
+1. 先生成无文字 Poster Base；
+2. 单独生成 Lettering Layer；
+3. 最后合成。
+
+这样修改字体时，不会重新洗掉主体、小人和构图。
+
+## 最重要的 5 条规则
+
+1. **Subject Lock**：先确认“它是什么”，再做创意。布丁不能因为“蓝色 + 清凉”被改成刨冰。
+2. **Photography First**：真实产品摄影永远是第一视觉锚点，不做全图卡通化。
+3. **Worker ≠ Decoration**：每个小人必须有产品相关工作，不能为了热闹随机加人。
+4. **Fixed Figure System**：圆头、无五官、无表情、无发型、无服饰、无标签，只靠动作表达。
+5. **Lettering Is a System**：目标不是“手写字体贴图”，而是稚拙字形骨架 + 细黑线笔画 + 松散构图。
+
+## 推荐输入
+
+只给一张照片也可以。更稳定时可补充：
 
 ```yaml
-subject: 冰镇西瓜
-feature: 多汁、清凉、夏日补水
-caption: 补水中
-worker_count: 5
-color_palette: 红、绿、白
-```
-
-Skill 会输出三段式提示词：
-
-```text
-1. 基础视觉与构图规则
-2. 风格控制与负面约束
-3. 当前主体、微缩动作、文案与颜色
+subject: 蓝色布丁
+feature: 清凉、Q弹、奶油、樱桃
+caption: 清甜下午茶
+worker_count: 4
+color_palette: 浅蓝、奶油白、樱桃红、黑、白
+mode: quick | fidelity
 ```
 
 ## 文件结构
@@ -68,23 +74,37 @@ Skill 会输出三段式提示词：
 minimal-doodle-product-poster-skill/
 ├── README.md
 ├── SKILL.md
-├── docs/
-│   └── style-analysis.md
+├── ASSET-NOTICE.md
+├── references/
+│   ├── style-guide.md
+│   ├── subject-fidelity.md
+│   ├── micro-worker-guide.md
+│   ├── lettering-guide.md
+│   └── evaluation.md
 ├── prompts/
-│   └── prompt-template.md
+│   ├── quick-prompt.md
+│   ├── poster-base.md
+│   └── lettering-layer.md
+├── evals/
+│   └── evals.json
 └── examples/
-    └── watermelon.md
+    ├── watermelon.md
+    └── blue-pudding.md
 ```
 
-## 文档入口
+## 当前测试结论
 
-- `SKILL.md`：Skill 的执行规则，给 Agent / Codex 使用。
-- `docs/style-analysis.md`：风格视觉 DNA、构图、线稿、叙事机制与常见跑偏分析。
-- `prompts/prompt-template.md`：三段式提示词母版与变量说明。
-- `examples/watermelon.md`：西瓜案例，从输入到最终 Prompt 的完整演示。
+- 西瓜案例验证了“产品特征 → 微缩工作”的叙事逻辑。
+- 蓝色布丁案例暴露并修复了“主体漂移”：布丁曾被错误转成刨冰。
+- 蓝色布丁第二轮验证了固定小人系统：圆头、无脸、无服饰。
+- “清甜下午茶”测试暴露了字体需要独立控制字形骨架，而不能只堆“手写感”形容词。
+
+## 发布边界
+
+仓库不默认包含官方品牌 Logo、吉祥物、包装标识或第三方参考图。第三方素材仅用于视觉研究，具体见 `ASSET-NOTICE.md`。
 
 ## 当前版本
 
-**v0.1 — Foundation**
+**v0.3 — Modular Workflow**
 
-第一阶段先把“风格识别 + 叙事逻辑 + Prompt 输出”做稳定。后续再逐步增加参考图分析、自动生成多个创意方向、模型适配和案例库。
+下一阶段目标：继续用不同品类实拍图做回归测试，并把失败案例沉淀进 `evals/evals.json`。

@@ -1,6 +1,6 @@
 {
   "skill_name": "minimal-doodle-product-poster-skill",
-  "version": "0.4",
+  "version": "0.5",
   "evals": [
     {
       "id": "subject-lock-blue-pudding",
@@ -24,6 +24,46 @@
         "No clothing details, uniforms, labels, logos, badges, or body symbols appear.",
         "Black uneven single-line drawing is used.",
         "Action is communicated through pose, tool, and contact rather than expression."
+      ]
+    },
+    {
+      "id": "worker-silhouette-lock",
+      "prompt": "小人不要火柴人，要像参考图里那种圆头、矮胖、短手短脚的极简小人。",
+      "expected_output": "Workers use the locked squat silhouette instead of long-limbed stick-figure anatomy.",
+      "expectations": [
+        "Workers have oversized round blank heads.",
+        "Total figure height stays around 2.2–2.8 head diameters.",
+        "Head occupies roughly 35%–45% of total figure height.",
+        "Torso is short, compact, and rounded.",
+        "Arms and legs are short and stubby.",
+        "Workers do not look like tall, thin, adult-proportioned doodle humans.",
+        "White empty interior and uneven thin black outline are preserved."
+      ]
+    },
+    {
+      "id": "no-default-ladder",
+      "prompt": "给产品周围安排四个小人在工作，不需要梯子。",
+      "expected_output": "The workflow avoids ladders and other structural access props by default while keeping all worker actions readable.",
+      "expectations": [
+        "No ladder appears unless the user explicitly requests one or vertical access is absolutely necessary.",
+        "Direct-contact actions are preferred before structural props.",
+        "Props are selected only after the action is chosen.",
+        "No scaffold, rope, or floating platform appears as decorative filler.",
+        "Worker actions remain understandable without a ladder."
+      ]
+    },
+    {
+      "id": "structural-prop-grounding",
+      "prompt": "如果真的需要一个结构道具，必须让它和地面、主体的空间关系成立。",
+      "expected_output": "Any required structural prop has believable physical support, perspective, and contact instead of floating in space.",
+      "expectations": [
+        "The prop has a visible base or support.",
+        "The prop rests on the same ground plane as the product.",
+        "Perspective is consistent with the scene.",
+        "The prop does not terminate in empty space.",
+        "If leaning, the prop visibly contacts a real surface.",
+        "Worker hands or feet visibly connect to the prop.",
+        "If grounding cannot be made clear, the prop is removed."
       ]
     },
     {
@@ -56,12 +96,13 @@
       "prompt": "主体是冰镇西瓜，做 4 到 5 个小人在上面工作。",
       "expected_output": "Every worker action maps to a watermelon feature and no worker exists merely as decoration.",
       "expectations": [
-        "Hydration may map to hose/watering behavior.",
-        "Seeds may map to carrying/transport behavior.",
+        "Hydration may map to watering or surface-tending behavior.",
+        "Seeds may map to carrying or collecting behavior.",
         "Sweetness or ripeness may map to inspection behavior.",
-        "Eating may map to spoon/scooping behavior.",
+        "Eating may map to spoon or scooping behavior.",
         "Cooling/rest may map to shade or cooling behavior when compositionally useful.",
-        "Random waving, balloons, or unrelated decorative activity is rejected."
+        "Random waving, balloons, or unrelated decorative activity is rejected.",
+        "A ladder is not used as the default solution for inspection."
       ]
     },
     {

@@ -1,6 +1,6 @@
 {
   "skill_name": "minimal-doodle-product-poster-skill",
-  "version": "0.3",
+  "version": "0.4",
   "evals": [
     {
       "id": "subject-lock-blue-pudding",
@@ -41,9 +41,10 @@
     {
       "id": "lettering-repair-without-poster-regeneration",
       "prompt": "字体还是太像电脑字了，产品和构图已经满意，不要动其他地方。",
-      "expected_output": "The workflow switches to Fidelity Mode and repairs only the lettering layer while preserving the accepted poster base.",
+      "expected_output": "The workflow selects Fidelity Mode with fidelity_focus=lettering and repairs only the lettering layer while preserving the accepted poster base.",
       "expectations": [
         "The poster base remains unchanged.",
+        "fidelity_focus is lettering.",
         "The failure is treated as a glyph-skeleton problem, not merely a texture problem.",
         "Only the lettering layer is regenerated.",
         "Glyph size, tilt, x/y position, spacing, radical proportions, and horizontal stroke length are varied.",
@@ -83,6 +84,54 @@
         "Doodles remain black.",
         "Background remains white or very lightly warm white.",
         "Source product colors remain faithful."
+      ]
+    },
+    {
+      "id": "fidelity-dominant-element-tomato",
+      "prompt": "用 Fidelity Mode 做这张蔬菜农场照片，强调画面中最大的元素。",
+      "expected_output": "The workflow selects fidelity_focus=dominant_element and makes the giant red tomato the first photographic signal while retaining only minimal scene cues.",
+      "expectations": [
+        "fidelity_focus is dominant_element.",
+        "The giant red tomato is explicitly identified as the focus element.",
+        "The tomato becomes the first visual signal at thumbnail size.",
+        "The tomato remains photographic with realistic red surface and green stem.",
+        "At most two secondary photographic scene cues remain prominent.",
+        "Workers interact with the tomato before secondary elements.",
+        "White space remains generous rather than recreating the whole installation."
+      ]
+    },
+    {
+      "id": "fidelity-largest-meaningful-element",
+      "prompt": "Fidelity Mode 强调最大的元素，但照片里墙面和桌子占的面积也很大。",
+      "expected_output": "The workflow chooses the largest meaningful subject element rather than literal background architecture or surface area.",
+      "expectations": [
+        "The skill does not select a wall, ceiling, table, floor, curtain, or other irrelevant background as the focus merely because it occupies more pixels.",
+        "The focus is chosen from semantically meaningful subject elements.",
+        "The focus reason is stated as size, shape, color, or semantic importance.",
+        "Secondary background architecture is simplified or removed."
+      ]
+    },
+    {
+      "id": "fidelity-scene-lock-with-focus",
+      "prompt": "这张复杂展陈照片里我还是希望保留一点原场景感觉，但 Fidelity 要突出最大的红番茄。",
+      "expected_output": "The workflow uses Subject Lock + Scene Lock + Focus Lock without giving equal visual priority to every source object.",
+      "expectations": [
+        "Subject Lock preserves the chosen real object identity.",
+        "Scene Lock keeps only one to three recognition cues from the original scene.",
+        "Focus Lock makes the giant tomato visually dominant.",
+        "Scene cues remain clearly secondary in scale and contrast.",
+        "The final poster does not become a white-background copy of every source object."
+      ]
+    },
+    {
+      "id": "separate-cases-not-collage",
+      "prompt": "我给你三张照片，分别用 Fidelity Mode 做三张独立海报。",
+      "expected_output": "The workflow treats the three inputs as three independent generation cases and does not intentionally combine them into one collage or comparison image.",
+      "expectations": [
+        "Each source image is processed as its own case.",
+        "The result target is three separate posters.",
+        "A combined comparison board is produced only if the user explicitly requests one.",
+        "Cross-image objects do not leak into another case's poster concept."
       ]
     }
   ]

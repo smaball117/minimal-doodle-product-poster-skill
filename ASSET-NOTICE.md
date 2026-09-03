@@ -12,7 +12,7 @@ A software/documentation license has not yet been selected for the repository. D
 
 Brand campaign images, social-media photographs, lettering references, packaging, logos, campaign fragments, and other third-party source material used during style research remain subject to the rights of their respective owners.
 
-Unless the rights are clearly owned or licensed for redistribution, third-party reference images should **not** be committed into the public repository as reusable project assets.
+Unless the rights are clearly owned or licensed for redistribution, third-party reference images should **not** be treated as reusable project assets.
 
 The Skill may learn reusable visual principles from references, such as:
 
@@ -26,9 +26,13 @@ The Skill may learn reusable visual principles from references, such as:
 
 It should not claim ownership of source artwork, trademarks, official logos, or brand assets.
 
-## User-provided images
+## User-provided test images
 
 Users are responsible for confirming that they have the right to upload, edit, publish, or redistribute their source photographs and generated results.
+
+The apple-tea comparison under `assets/examples/apple-tea/` contains a reduced-size source preview supplied during testing so that the repository can show **source → Quick Mode → Fidelity Mode** side by side. That source preview is included only as test/reference material, is not claimed as repository-authored artwork, and is not included in any future project-asset license unless separately stated.
+
+Generated comparison previews are included to document Skill behavior and should not be interpreted as transferring rights in the underlying source image.
 
 ## Brand marks
 

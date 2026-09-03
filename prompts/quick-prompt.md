@@ -1,6 +1,6 @@
 # Quick Prompt
 
-Prompt revision: **v0.7-worker-scale-calibration**
+Prompt revision: **v0.8-lettering-spatial-rhythm**
 
 Use for fast exploration when one-pass generation is acceptable.
 
@@ -69,7 +69,37 @@ No floating ladder. No rope, scaffold, suspended line, or floating platform unle
 Workers must have visible contact or causal relation with the subject and must not form an evenly spaced decorative ring.
 
 LETTERING
-If a caption is provided, write exactly: “[caption]”. Caption rendering is mandatory. Use thin black naive Chinese handwriting: loose, slightly awkward, uneven character sizes, mild independent tilt, irregular spacing, off-grid placement, occasional elongated horizontal strokes, readable but clearly not typeset. No calligraphy, rounded cute handwriting, standard fonts, extra copy, pinyin, English, numbers, labels, or logo. Place the phrase in upper-left or left negative space and connect it to the subject with one loose curved arrow when useful.
+If a caption is provided, render the exact Chinese text: “[caption]”. Caption rendering is mandatory.
+
+Do NOT typeset it as one phrase. Treat every Chinese character as an individually placed handwritten object.
+
+Handwriting style:
+- thin black naive hand-line
+- readable but clearly not typeset
+- uneven character size
+- mild independent tilt
+- irregular glyph skeleton
+- occasional elongated horizontal strokes
+- no calligraphy, rounded cute handwriting, standard font, polished commercial typography, extra copy, pinyin, English, numbers, labels, or logo
+
+SPATIAL RHYTHM
+- each character gets an independent x/y position
+- no shared perfect baseline
+- no equal tracking
+- adjacent gaps must visibly differ
+- at least one gap should be about 1.5–2.5× another nearby gap
+- at least one character sits clearly higher or lower than another
+- preserve natural reading order
+- keep the title loose inside the upper-left or left negative space
+
+CAPTION LENGTH ROUTING
+- 2 chars: loose horizontal is allowed, but use unequal spacing and baseline mismatch
+- 3 chars: prefer diagonal / triangular / stair-step placement, not one straight row
+- 4 chars: use loose staggered two-level placement; never a perfect 2×2 grid
+- 5–6 chars: split into 2–3 loose character clusters; NEVER render the entire caption as one continuous line
+- 7+ chars: split into semantic groups of about 2–3 characters and place groups on staggered levels
+
+One loose curved hand-drawn arrow may connect the title to the subject when useful.
 
 COLOR
 Use only colors already present in the subject plus white and black doodles.
@@ -80,6 +110,8 @@ Quiet, clean, healing, lightly humorous. Premium real product photography + a ti
 FINAL SELF-CHECK
 - one hero subject only
 - exact caption present when provided
+- caption is not a neat continuous typeset line when 5+ characters
+- lettering uses broken baseline, unequal gaps, and independent character positions
 - workers faceless and unstyled
 - workers are 2.8–3.5 heads tall, not fat/chibi and not long-limbed
 - each worker is normally 12%–18% of hero height, max 20%

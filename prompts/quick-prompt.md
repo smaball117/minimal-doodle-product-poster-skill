@@ -1,6 +1,6 @@
 # Quick Prompt
 
-Prompt revision: **v0.8-lettering-spatial-rhythm**
+Prompt revision: **v0.9-semantic-cluster-lettering**
 
 Use for fast exploration when one-pass generation is acceptable.
 
@@ -37,11 +37,9 @@ Use this geometry:
 - arms and legs slim and short-to-medium
 - almost no visible neck
 
-The workers should feel light, naive, compact, and slightly clumsy.
-Do not make them fat/chibi, giant-headed, thick-stubby, long-limbed stick figures, adult doodle humans, mascots, or polished cartoon characters.
+Do not make workers fat/chibi, giant-headed, thick-stubby, long-limbed stick figures, adult doodle humans, mascots, or polished cartoon characters.
 
 RELATIVE SCALE LOCK
-Workers must remain visually tiny next to the hero:
 - normal worker height = about 12%–18% of hero subject height
 - preferred average = about 14%–16%
 - no worker over 20% of hero height unless explicitly requested
@@ -71,9 +69,17 @@ Workers must have visible contact or causal relation with the subject and must n
 LETTERING
 If a caption is provided, render the exact Chinese text: “[caption]”. Caption rendering is mandatory.
 
-Do NOT typeset it as one phrase. Treat every Chinese character as an individually placed handwritten object.
+SEMANTIC CLUSTER FIRST
+Before placing the title, split it into natural semantic groups.
+Examples:
+- 心态放苹 → 心态 / 放苹
+- 焦糖脑袋冲啊 → 焦糖 / 脑袋 / 冲啊
+- 清甜下午茶 → 清甜 / 下午茶
 
-Handwriting style:
+Do not typeset the whole caption as one clean line.
+Do not scatter every character as an isolated sticker.
+
+HANDWRITING STYLE
 - thin black naive hand-line
 - readable but clearly not typeset
 - uneven character size
@@ -82,24 +88,26 @@ Handwriting style:
 - occasional elongated horizontal strokes
 - no calligraphy, rounded cute handwriting, standard font, polished commercial typography, extra copy, pinyin, English, numbers, labels, or logo
 
-SPATIAL RHYTHM
-- each character gets an independent x/y position
-- no shared perfect baseline
-- no equal tracking
-- adjacent gaps must visibly differ
-- at least one gap should be about 1.5–2.5× another nearby gap
-- at least one character sits clearly higher or lower than another
+CLUSTER RHYTHM
+- characters inside one semantic cluster stay relatively close
+- within-cluster spacing may vary slightly
+- gaps between clusters should usually be about 1.4–2.2× the typical within-cluster gap
+- clusters may shift slightly up/down and left/right
+- no perfect shared baseline
 - preserve natural reading order
-- keep the title loose inside the upper-left or left negative space
+- keep the whole title compact in upper-left / left negative space
+
+For 4–6 characters, keep the title block roughly within 20%–35% of canvas width and 15%–28% of canvas height when practical.
+Avoid one-character-per-row placement and long diagonal staircases.
 
 CAPTION LENGTH ROUTING
-- 2 chars: loose horizontal is allowed, but use unequal spacing and baseline mismatch
-- 3 chars: prefer diagonal / triangular / stair-step placement, not one straight row
-- 4 chars: use loose staggered two-level placement; never a perfect 2×2 grid
-- 5–6 chars: split into 2–3 loose character clusters; NEVER render the entire caption as one continuous line
-- 7+ chars: split into semantic groups of about 2–3 characters and place groups on staggered levels
+- 2 chars: one loose cluster
+- 3 chars: one cluster or natural 2+1 grouping
+- 4 chars: default to 2 semantic clusters when natural; never perfect 2×2
+- 5–6 chars: use 2–3 semantic clusters; group members close, cluster gaps larger; no continuous line and no all-character isolation
+- 7+ chars: split into natural groups of about 2–3 characters and keep the overall title compact
 
-One loose curved hand-drawn arrow may connect the title to the subject when useful.
+One loose curved hand-drawn arrow may connect the title block to the subject when useful.
 
 COLOR
 Use only colors already present in the subject plus white and black doodles.
@@ -110,8 +118,11 @@ Quiet, clean, healing, lightly humorous. Premium real product photography + a ti
 FINAL SELF-CHECK
 - one hero subject only
 - exact caption present when provided
-- caption is not a neat continuous typeset line when 5+ characters
-- lettering uses broken baseline, unequal gaps, and independent character positions
+- caption uses natural semantic clusters
+- cluster members are visibly closer than cluster-to-cluster gaps
+- title is not one neat continuous line
+- title is not a chain of isolated characters
+- title remains compact instead of forming a long diagonal staircase
 - workers faceless and unstyled
 - workers are 2.8–3.5 heads tall, not fat/chibi and not long-limbed
 - each worker is normally 12%–18% of hero height, max 20%

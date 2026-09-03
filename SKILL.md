@@ -24,6 +24,8 @@ If a reference photo exists, resolve the subject before any creative work.
 
 Read `references/subject-fidelity.md`.
 
+For complex scenes, also identify 1–3 **Scene Lock** cues that make the source recognizable. Do not preserve every background object.
+
 ### 2. Read the visual system
 
 Read `references/style-guide.md` before writing or generating the poster.
@@ -51,36 +53,83 @@ Do not add workers merely to fill space.
 
 Use **Quick Mode** by default for exploration.
 
-Use **Fidelity Mode** when:
-
-- the user emphasizes exact subject preservation;
-- the user cares strongly about the handwritten Chinese title;
-- a previous all-in-one generation changed the object;
-- a previous title looked like a normal font;
-- the user asks to revise only the title without disturbing the poster.
+Use **Fidelity Mode** when the user wants one accepted visual property to be protected or emphasized.
 
 #### Quick Mode
 
 Read `prompts/quick-prompt.md` and generate subject + workers + text in one pass.
 
+Quick Mode is best for:
+
+- first exploration;
+- fast concept testing;
+- simpler source photos;
+- testing whether the visual language works at all.
+
 #### Fidelity Mode
 
-1. Read `prompts/poster-base.md` and create the poster without any title.
-2. Read `references/lettering-guide.md`.
-3. Read `prompts/lettering-layer.md` and create only the title layer.
-4. Composite the accepted title onto the unchanged poster base when tooling allows.
+Read `references/fidelity-focus.md` first.
 
-Never regenerate the whole poster as the primary fix for a lettering-only problem.
+Choose exactly one primary focus:
 
-### 5. Lettering rules
+```yaml
+mode: fidelity
+fidelity_focus: subject_identity | dominant_element | lettering
+```
+
+Routing:
+
+- exact subject preservation → `subject_identity`
+- emphasize the largest / strongest / named element → `dominant_element`
+- repair only Chinese handwriting → `lettering`
+
+For `subject_identity` or `dominant_element`:
+
+1. read `prompts/poster-base.md`;
+2. create a no-title poster base using the chosen fidelity focus;
+3. if text is required, read `references/lettering-guide.md` and `prompts/lettering-layer.md`;
+4. composite the accepted title onto the accepted poster base when tooling allows.
+
+For `lettering`:
+
+1. freeze the accepted poster base;
+2. do not regenerate the product, workers, lighting, or composition;
+3. read `references/lettering-guide.md`;
+4. regenerate only the title layer;
+5. composite it back onto the unchanged base.
+
+One Fidelity pass should solve one main fidelity problem. If several problems remain, solve them sequentially rather than redesigning everything at once.
+
+### 5. Dominant-element behavior
+
+When `fidelity_focus: dominant_element`:
+
+- identify the largest **meaningful** source element, not irrelevant background architecture;
+- make that focus the first photographic signal;
+- normally scale it to roughly 45%–60% of canvas height depending on shape;
+- allow roughly 60%–70% negative space if needed for stronger emphasis;
+- keep only 0–2 photographic supporting cues;
+- make workers interact with the focus element first;
+- keep all secondary elements clearly weaker in size, contrast, saturation, and placement.
+
+Examples already validated in tests:
+
+```text
+vegetable farm → giant red tomato
+seafood soup → central yellow character-shaped ingredient
+caramel ice cream → large caramel biscuit
+apple tea → red apple / apple slices when “苹” is the semantic hook
+```
+
+### 6. Lettering rules
 
 If the poster contains Chinese text, read `references/lettering-guide.md`.
 
 The target lettering is thin black, naive, loose, slightly awkward, irregular, and readable. It is not standard typography, calligraphy, rounded cute handwriting, or polished commercial lettering.
 
-### 6. Evaluate before finalizing
+### 7. Evaluate before finalizing
 
-Read `references/evaluation.md` and check the result.
+Read `references/evaluation.md` and check the result against both the global criteria and the selected fidelity focus.
 
 A successful poster must preserve:
 
@@ -111,7 +160,15 @@ Every micro worker follows the same fixed system:
 
 This contract has higher priority than decorative creativity.
 
-## Subject lock contract
+## Lock hierarchy
+
+Use three separate locks:
+
+```text
+Subject Lock = what is it?
+Scene Lock = what source cues make the scene recognizable?
+Focus Lock = what must become the first visual signal in this pass?
+```
 
 Creative metaphors may change what workers do, but may not change what the photographed object is.
 
@@ -132,6 +189,8 @@ blue pudding → “cool / smooth / jiggly” → workers inspect, taste, climb,
 When the user asks for a prompt, provide the generation-ready prompt only unless analysis is requested.
 
 When the user asks to generate an image and image generation is available, use the workflow above rather than merely describing it.
+
+When multiple source images are provided for separate posters, process them as independent cases. Do not intentionally combine them into one collage unless the user asks for a comparison board.
 
 When a test reveals a repeatable failure, add it to `evals/evals.json` in a future repository revision.
 

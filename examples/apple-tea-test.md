@@ -4,8 +4,8 @@
 
 | 原图 | Version 1 · Quick Mode | Version 2 · Fidelity Mode |
 |---|---|---|
-| ![原图：苹果冰茶实拍](../assets/examples/apple-tea/source.jpg) | ![Quick Mode：心态放苹](../assets/examples/apple-tea/quick-mode.jpg) | ![Fidelity Mode：心态放苹，强化苹果识别](../assets/examples/apple-tea/fidelity-mode.jpg) |
-| 保留原始苹果冰茶、苹果片、冰块与渐变饮品信息，作为主体识别基准。 | 一次生成完整海报，重点验证白色留白、无表情圆头小人、手写标题与微缩工作场景。 | 高保真方向，进一步强化红苹果、苹果切片和饮品之间的关联，让“苹”的产品信息更直接。 |
+| ![原图：苹果冰茶实拍](../assets/examples/apple-tea/source.svg) | ![Quick Mode：心态放苹](../assets/examples/apple-tea/quick-mode-mini.svg) | ![Fidelity Mode：心态放苹，强化苹果识别](../assets/examples/apple-tea/fidelity-mode-mini.svg) |
+| **实拍基准**：两杯苹果冰茶、红苹果、苹果切片、冰块、黄橙红渐变饮品。 | **快速生成**：一次完成主体、微缩小人与标题，风格建立速度快。 | **高保真生成**：进一步强化红苹果与苹果切片，让标题中的“苹”和产品建立更强语义关系。 |
 
 ## 测试输入
 
@@ -20,4 +20,4 @@
 2. Quick Mode 已经能稳定建立“真实主体 + 微缩小人 + 手写文案”的基本风格。
 3. Fidelity Mode 需要主动强化标题中的核心产品线索。本例中，“苹”必须通过红苹果和苹果切片被明确感知，而不是只留下泛化的橙黄色冰饮。
 4. 小人保持无表情，叙事只通过姿态、工具和与主体的接触关系完成。
-5. 后续回归测试应继续检查：主体类别是否准确、标题与主体是否产生语义关系、小人是否只是随机装饰。
+5. 后续回归测试继续检查：主体类别是否准确、标题与主体是否产生语义关系、小人是否只是随机装饰。

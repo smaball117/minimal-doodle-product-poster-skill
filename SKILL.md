@@ -1,45 +1,40 @@
 ---
 name: minimal-doodle-product-poster-skill
-description: Turn a clear uploaded product or food photo into a minimalist white-space poster with one preserved photographic hero subject, mandatory caption rendering when provided, primitive faceless doodle workers, product-related micro-storytelling, and loose thin-line Chinese handwriting.
+description: Turn a clear uploaded product or food photo into a minimalist white-space poster with one preserved photographic hero subject, mandatory caption rendering when provided, small faceless doodle workers, product-related micro-storytelling, and loose thin-line Chinese handwriting.
 ---
 
-# SKILL.md
+# Minimal Doodle Product Poster Skill
+
+Skill revision: **v0.7-worker-scale-calibration**
 
 ## Purpose
 
-This skill turns a real photo of a product, food, drink, or everyday object into a **minimal white-background poster** with:
+Turn one real product, food, drink, dessert, fruit, or everyday object into a calm minimalist poster built from:
 
-- **one locked photoreal hero subject**
-- **large breathing whitespace**
-- **3–5 tiny black line micro-workers**
-- **short handwritten Chinese caption**
-- **light doodle elements such as arrow / cloud / wave line**
+- one photoreal hero subject;
+- large white negative space;
+- 3–5 tiny faceless black-line workers;
+- short loose handwritten Chinese caption when provided;
+- sparse action-serving doodles.
 
-The visual goal is calm, clean, healing, minimal, and story-driven.
+The target is **real product photography + a tiny primitive doodle micro-world**. The workers must remain secondary marks, never co-equal characters.
 
-This skill must prioritize **execution stability** over expressive freedom.
+## Execution priority
 
----
+1. Subject identity
+2. One clear hero subject
+3. Caption when provided
+4. Worker visual system
+5. Worker scale relative to hero
+6. Product-related worker actions
+7. White-space composition
+8. Sparse decorative doodles
 
-## Execution Priority
+Higher priority wins when rules conflict.
 
-Always follow this priority order:
+## Required references
 
-1. **Subject identity**
-2. **Single hero subject composition**
-3. **Caption rendering**
-4. **Micro-worker figure system**
-5. **Product-related worker actions**
-6. **Whitespace layout**
-7. **Sparse doodle decoration**
-
-If anything conflicts, **higher priority wins**.
-
----
-
-## Required Reference Loading
-
-Before generating, the assistant must actively apply the rules from these files:
+Apply:
 
 - `references/style-guide.md`
 - `references/subject-fidelity.md`
@@ -48,214 +43,106 @@ Before generating, the assistant must actively apply the rules from these files:
 - `references/fidelity-focus.md`
 - `references/evaluation.md`
 
-However, the final generation prompt must **not rely on these files being read indirectly**. The most important rules must be **inlined into the final prompt**.
+Critical rules must also be inlined into the final image-generation prompt.
 
----
-
-## Core Execution Workflow
+## Core workflow
 
 ```text
-Input photo
+input photo
 → identify hero subject
-→ build Subject Lock
-→ if scene is complex, build Scene Lock
+→ Subject Lock
+→ optional Scene Lock
 → extract 2–4 real product features
 → convert features into 3–5 worker actions
-→ choose Quick Mode or Fidelity Mode
-→ if Fidelity, choose exactly one fidelity_focus
-→ assemble final prompt with hard constraints inlined
+→ choose Quick or Fidelity
+→ assemble prompt with hard worker/scale rules inlined
 → generate
 → self-check
-→ if failed, repair once according to repair priority
+→ one targeted repair if needed
 ```
 
----
+## Subject Lock
 
-## 1. Subject Lock
+Preserve the real object category, silhouette, material, main color, defining parts, and necessary support/container relation.
 
-Before any generation, identify the real product or object the poster is about.
+Default composition:
 
-### Rules
+- one hero subject only;
+- 0–2 secondary photographic supporting objects;
+- secondary objects must be smaller and weaker;
+- do not turn a single product into a multi-product collage.
 
-- There must be **one clear hero subject**.
-- Supporting props may exist, but must remain **visually secondary**.
-- Do **not** change the product category.
-- Do **not** replace the original object with a conceptually similar but different object.
-- Do **not** expand one product into a multi-product collage unless the user explicitly asks for it.
-- If the input image is complex, simplify it while preserving the most important product identity clues.
+## Caption contract
 
-### Subject Lock Output
+If the user provides a caption, it is mandatory.
 
-Summarize internally like this before prompt assembly:
+- use the exact requested wording;
+- place in upper-left or left negative space;
+- thin black naive Chinese handwriting;
+- loose spacing, slightly uneven size and tilt;
+- simple curved hand-drawn arrow may connect caption to subject;
+- no extra copy, pinyin, English, labels, badges, or formal typography.
 
-```yaml
-subject_identity:
-  category: [what it is]
-  silhouette: [main shape]
-  material: [surface / realism cues]
-  key_parts:
-    - [...]
-    - [...]
+Missing or replaced caption is a failure.
+
+## Micro-worker identity lock
+
+Every worker belongs to one fixed primitive character system:
+
+- blank round or slightly irregular head;
+- no eyes, nose, mouth, eyebrows, or expression;
+- no hair, hat, clothing details, labels, logos, or body symbols;
+- white empty interior;
+- thin uneven black single-line outline;
+- simple rounded torso;
+- simplified hands and feet;
+- no polished mascot finish.
+
+## Worker proportion lock
+
+**Do not use the previous squat/chubby calibration.**
+
+Target geometry:
+
+- total figure height: approximately **2.8–3.5 head diameters**;
+- head: approximately **28%–35% of total figure height**;
+- head is visibly larger than torso width, but not giant;
+- torso is short and lightly rounded, **not wide or barrel-shaped**;
+- torso width is about **55%–75% of head diameter**;
+- arms and legs are **slim, simple, and short-to-medium**, not thick/stubby and not long stick limbs;
+- almost no visible neck;
+- overall silhouette feels light, naive, compact, and slightly clumsy rather than cute/chibi.
+
+Reject:
+
+- oversized chibi heads;
+- fat or barrel-shaped bodies;
+- thick stubby limbs;
+- tall adult stick figures;
+- long thin fashion-illustration limbs;
+- realistic anatomy.
+
+## Worker scale lock relative to hero
+
+This is a hard composition rule.
+
+- normal worker visual height: approximately **12%–18% of hero subject height**;
+- preferred average: around **14%–16%**;
+- no worker should exceed **20% of hero subject height** unless the user explicitly requests a close-up worker;
+- workers on or behind the product may be partially occluded and can appear smaller;
+- the product must visually dominate before any worker is noticed.
+
+If a worker feels almost as important as the product, it is too large.
+
+## Worker action contract
+
+Use 3–5 workers. Each worker must reveal a real product feature.
+
+```text
+product feature → physical metaphor → worker action
 ```
 
-### Failure Examples
-
-- blue pudding becomes shaved ice
-- apple tea becomes generic orange drink
-- one hero drink becomes lip gloss + dessert multi-hero display
-
----
-
-## 2. Hero Subject Count
-
-Default rule:
-
-- **1 hero subject only**
-
-Supporting items:
-
-- maximum **2** supporting objects
-- they must be **smaller**, **weaker**, and **compositionally secondary**
-- they must not compete with the hero subject
-
-If the image starts to feel like a commercial product collage, simplify it.
-
----
-
-## 3. Scene Lock
-
-Use Scene Lock only when the original photo contains meaningful context that helps recognition.
-
-### Rules
-
-- Preserve only **1–3** scene clues.
-- Keep them reduced and secondary.
-- Scene clues must not overwhelm the white-background poster structure.
-
-### Examples
-
-- apple tea: one or two real apples may remain as scene support
-- vegetable farm installation: a small amount of broccoli or signage may remain as support
-- soup bowl: bowl shape and one key side ingredient may remain as support
-
----
-
-## 4. Caption Contract (Mandatory)
-
-If the user provides a caption, **caption rendering is mandatory**.
-
-### Rules
-
-- Render the **exact caption text**.
-- Place it in the **upper-left** or **left-side whitespace area**.
-- Use **thin black handwritten Chinese**.
-- Pair it with a **simple hand-drawn arrow** pointing to the hero subject.
-- Keep the caption short.
-- The caption must feel like part of the image, not formal typesetting.
-
-### Caption Style
-
-- naive
-- loose
-- thin black line
-- uneven sizing
-- slightly crooked
-- relaxed spacing
-- not a standard digital font
-
-### Failure Conditions
-
-The result is a failure if any of these happen:
-
-- caption missing
-- caption replaced with different text
-- caption rendered as standard computer font
-- caption becomes formal typography
-- caption placed far away from the left whitespace structure
-
-### Important Rule
-
-If the user supplies a Chinese caption, **never omit the title**.
-
----
-
-## 5. Locked Micro-Worker Figure System
-
-Micro-workers are strictly locked.
-
-### Required figure design
-
-- oversized round blank head
-- no eyes
-- no nose
-- no mouth
-- no eyebrows
-- no facial expression
-- no hair
-- no hat
-- no clothing details
-- no accessories
-- no labels
-- white empty interior
-- thin black uneven single-line outline only
-- short compact rounded torso
-- short stubby arms
-- short stubby legs
-- almost no visible neck
-- tiny rounded hand and foot ends
-
-### Worker Silhouette Lock
-
-The body shape is non-negotiable.
-
-Required proportions:
-
-- total figure height: approximately **2.2–2.8 head diameters**
-- head occupies about **35%–45% of total figure height**
-- body feels squat, soft, primitive, and slightly clumsy
-- arms and legs stay short and compact
-
-Do **not** generate:
-
-- stick figures
-- long thin arms
-- long thin legs
-- realistic adult anatomy
-- fashion-illustration proportions
-- 4–6 head-tall characters
-- polished cartoon mascots
-
-### Prohibited figure drift
-
-Do **not** let workers become:
-
-- mascots
-- cute characters
-- polished cartoon figures
-- decorative illustration people
-- dressed-up figures
-- expressive emoji-like characters
-
-The workers must remain **quiet, squat, minimal, faceless, and secondary**.
-
----
-
-## 6. Worker Action Contract
-
-Workers are not random decoration.
-
-### Rules
-
-- use **3 to 5** workers
-- each worker must perform a **different** action
-- each action must explain one real product feature
-- workers must physically or narratively interact with the subject
-- choose the **action first**, then add the smallest necessary prop
-- if an action does not help explain the product, remove it
-
-### Preferred action pool
-
-Prefer direct-contact actions:
+Prefer:
 
 - hold
 - carry
@@ -280,324 +167,160 @@ Use selectively:
 - measure
 - repair
 
-Disabled by default:
+Do not add a worker only to fill space.
 
-- climb
-- ladder
-- rope
-- scaffold
-- platform
+## Structural prop rule
 
-### Action Logic
+Structural props are **not banned**, but they are low-frequency.
 
-Use this conversion:
+Default structural-prop budget: **0**.
+Maximum per poster: **1**.
 
-```text
-product feature
-→ action metaphor
-→ worker task
-```
+A ladder/stool/platform may appear only when vertical access genuinely improves the product story.
 
-### Examples
+If used:
 
-**Apple tea**
-- apple slices → carry or place apple slice
-- garnish → inspect or adjust garnish by direct touch
-- chilled drink → move ice / cool drink
-- fresh serving feel → clean spill / tidy serving area
+- base must visibly rest on the ground plane;
+- perspective must match the product;
+- top must visibly contact a stable surface or product edge when appropriate;
+- worker feet/hands must physically connect;
+- it cannot float or terminate in empty space.
 
-**Pudding**
-- smooth surface → polish surface
-- whipped cream → adjust topping
-- cherry → inspect or steady the topping from the product edge; do not default to a ladder
+Never use a ladder merely because the product is tall. Prefer direct-contact actions first.
 
-**Watermelon**
-- watery / juicy → water or tend the fruit
-- seeds → collect or move seeds
-- cool summer feel → sit in shade / scoop watermelon
+Ropes, scaffolds, suspended lines, and floating platforms remain disallowed unless explicitly requested.
 
-### Structural Prop Rule
+## Composition contract
 
-Ladders, stairs, scaffolds, ropes, platforms, and similar structural props are **forbidden by default**.
+- pure white or very lightly warm-white background;
+- normally 70%–80% negative space;
+- one photographic hero subject center-lower or slightly off-center;
+- caption lives in left whitespace;
+- doodles remain sparse;
+- workers do not evenly surround the object like a decorative border.
 
-Do not use a ladder unless:
+## Photography-first rule
 
-1. the user explicitly asks for one; or
-2. the concept cannot be communicated clearly without vertical access.
+The hero remains realistic photography:
 
-Every physical prop must obey real spatial grounding:
+- preserve real texture/material;
+- soft high-key studio light;
+- realistic highlights and contact shadow;
+- no cartoon conversion of the product.
 
-- it must have visible support
-- its base must rest on the same ground plane as the product
-- it must obey scene perspective
-- it cannot float
-- it cannot terminate in empty space
-- if leaning, it must visibly contact a real surface
-- the worker's hands or feet must visibly connect to it
+## Quick Mode
 
-If spatial grounding is unclear, **remove the prop**.
+One-pass complete poster.
 
----
+Must still obey:
 
-## 7. Composition Contract
+- Subject Lock;
+- mandatory caption when provided;
+- worker identity lock;
+- worker proportion lock;
+- worker scale lock;
+- structural-prop budget;
+- white-space layout;
+- photography-first rule.
 
-The layout must follow this formula:
-
-- pure white or near-white background
-- **70%–80% whitespace**
-- one hero subject
-- hero subject centered or slightly lower-centered
-- caption in left whitespace
-- sparse doodles only
-
-### Do not
-
-- fill the whole page
-- build a complex scene background
-- create many equal focal points
-- turn it into a crowded product collage
-- use dense graphic layout
-
----
-
-## 8. Photography-First Rule
-
-The hero subject must remain photorealistic.
-
-### Rules
-
-- preserve realistic texture and material
-- preserve object identity
-- use soft studio-clean lighting
-- keep the subject as photography, not illustration
-- doodles must sit around the product, not replace it
-
-If the main object becomes too cartoon-like, simplify and restore realism.
-
----
-
-## 9. Quick Mode
-
-Use Quick Mode when the user wants a fast complete result.
-
-### Quick Mode must still include
-
-- Subject Lock
-- mandatory caption if provided
-- locked micro-worker system
-- product-related worker actions
-- clean white-background layout
-- photography-first rule
-
-### Quick Mode definition
-
-- one-pass complete poster
-- best for first exploration
-- acceptable if not perfect, but must still pass all hard rules
-
----
-
-## 10. Fidelity Mode
-
-Use Fidelity Mode when the user wants one aspect to become more accurate.
+## Fidelity Mode
 
 ```yaml
 mode: fidelity
 fidelity_focus: subject_identity | dominant_element | lettering
 ```
 
-### Hard rule
+Only one focus per pass.
 
-**Only one fidelity focus per pass.**
+- `subject_identity`: restore category, silhouette, material, defining details.
+- `dominant_element`: make the largest meaningful subject feature the first photographic signal.
+- `lettering`: freeze accepted poster base and repair only the title layer.
 
-### `subject_identity`
-Use when:
-- the product changed category
-- the object no longer looks like the original
-- the key parts or material are wrong
+For `subject_identity` and `dominant_element`, use `prompts/poster-base.md`, then lettering if needed.
 
-Goal:
-- restore object identity and realism
+## Final prompt assembly requirement
 
-### `dominant_element`
-Use when:
-- the user says “强调最大的元素”
-- the first visual focus is unclear
-- the biggest meaningful feature needs stronger hierarchy
+The final generation prompt must explicitly include:
 
-Goal:
-- make the most meaningful large element become the first visual signal
+1. hero subject description;
+2. exact caption if provided;
+3. worker identity lock;
+4. worker geometry: 2.8–3.5 heads tall, narrower torso, slim short-to-medium limbs;
+5. worker scale: 12%–18% of hero height, max 20%;
+6. 3–5 product-related actions;
+7. structural-prop budget 0 by default, max 1 grounded ladder/stool if truly useful;
+8. large white-space composition;
+9. photography-first rule.
 
-### `lettering`
-Use when:
-- the title is missing
-- the title is wrong
-- the title looks too digital or too neat
+Do not rely on vague phrases such as “tiny cute workers”.
 
-Goal:
-- freeze poster base and repair only the caption system
+## Post-generation self-check
 
-### Lettering Safety Rule
+Reject or repair if:
 
-If a caption is important and the first pass misses or weakens it, the next repair should prefer **`fidelity_focus: lettering`**.
+- subject identity drifted;
+- multiple photographic objects compete as heroes;
+- provided caption is missing/wrong;
+- workers have faces, clothes, or mascot styling;
+- workers are chubby/chibi with giant heads;
+- workers are long-limbed stick figures;
+- any worker exceeds 20% of hero height without explicit reason;
+- workers visually compete with the hero;
+- more than one structural access prop appears;
+- a ladder/stool/platform floats or lacks grounding;
+- worker actions do not explain product features;
+- white space no longer dominates.
 
----
+## Repair priority
 
-## 11. Final Prompt Assembly Requirement
+1. caption
+2. subject identity
+3. worker scale relative to hero
+4. worker silhouette/proportion
+5. structural-prop grounding/frequency
+6. clutter and hierarchy
 
-Before generation, the final prompt must explicitly inline all critical rules.
+Use one targeted repair pass.
 
-The final prompt must include:
-
-1. exact hero subject description
-2. subject lock summary
-3. caption text and mandatory placement if caption exists
-4. locked micro-worker figure description
-5. locked worker silhouette proportions: squat 2.2–2.8-head-tall body, oversized blank head, short stubby limbs
-6. 3–5 product-related worker actions
-7. no-default-ladder / grounded-prop rule
-8. white-space composition rule
-9. photography-first rule
-10. selected mode and fidelity focus if applicable
-
-### Important
-
-Do **not** assume that “the model already knows” the caption or worker system.
-Always restate them in the final generation prompt.
-
----
-
-## 12. Post-Generation Self-Check
-
-After generation, inspect the result against this checklist:
-
-- Is the hero subject clear and correct?
-- Is there only one main subject?
-- Is the caption present if the user provided one?
-- Is the caption rendered in thin, loose handwritten Chinese?
-- Is the caption placed in left whitespace?
-- Are the workers faceless and expressionless?
-- Are the workers thin black line doodles only?
-- Are the workers squat rather than long-limbed stick figures?
-- Are worker bodies approximately 2.2–2.8 head diameters tall?
-- Are all structural props grounded, and is there no unnecessary ladder?
-- Are the worker actions product-related?
-- Is the background still mostly white?
-- Is the poster still calm and minimal?
-- Is the product still photorealistic?
-
-If any critical answer is **no**, the result must be treated as failed.
-
----
-
-## 13. Repair Priority
-
-If one repair pass is needed, repair in this order:
-
-1. missing or incorrect caption
-2. wrong subject identity
-3. too many hero subjects / cluttered composition
-4. wrong micro-worker silhouette / long-limbed stick-figure drift
-5. unnecessary or floating structural props
-6. weak visual hierarchy
-
-Do not attempt unlimited retries. Use **one targeted repair pass**.
-
----
-
-## 14. When to Use Two-Pass Generation
-
-Default Quick Mode can be one-pass.
-
-However, if any of the following is true, prefer a two-pass strategy:
-
-- user gives a specific Chinese title
-- user explicitly cares about handwriting style
-- title is central to the joke or message
-- the first pass tends to omit text
-
-### Two-pass strategy
-
-**Pass 1**
-- build subject + workers + whitespace poster base
-- keep composition stable
-
-**Pass 2**
-- repair / add caption and arrow
-- preserve the poster base
-- focus only on lettering quality and placement
-
-This is strongly recommended for Codex execution stability.
-
----
-
-## 15. Codex Execution Notes
-
-This skill is designed to work in Codex-like environments where implicit conversational memory is weak.
-
-Therefore:
-
-- never rely on earlier chat preference memory
-- never rely on “style intent” alone
-- always inline hard constraints into the final generation prompt
-- always perform self-check after generation
-- always treat missing title and wrong worker style as hard failures
-
----
-
-## 16. Minimal Prompt Skeleton
-
-Use this as the minimum structure when assembling the final generation prompt:
+## Minimal generation skeleton
 
 ```text
-Generate a minimalist white-background poster.
+Generate a minimalist white-background product poster.
 
-Hero subject:
-[exact real product description]
+Hero:
+[exact photoreal subject]
 
 Caption:
-Render the exact handwritten Chinese text: "[caption]".
-This caption is mandatory.
-Place it in the upper-left or left-side whitespace area.
-Use thin black loose naive handwriting.
-Add a simple hand-drawn arrow pointing toward the subject.
+Render exactly “[caption]” in thin, loose, naive black Chinese handwriting in the left negative space. Caption is mandatory when provided.
 
-Micro-workers:
-Add 3 to 5 tiny workers around the product.
-They must have oversized blank round heads, no facial features, no expression, no hair, no clothing, a short compact rounded torso, short stubby arms and legs, white empty interiors, and thin uneven black single-line outlines only.
-Each figure should be approximately 2.2–2.8 head diameters tall.
-Do not generate long-limbed stick figures.
-Each worker performs a different product-related action. Choose the action first, then add only the smallest necessary prop. Ladders, scaffolds, ropes, and floating structural props are forbidden by default.
+Workers:
+Add 3–5 very small primitive faceless black-line workers.
+Blank round heads, no face, no hair, no clothing, white interiors, thin uneven black outlines.
+Each figure is about 2.8–3.5 heads tall with a lightly rounded narrow torso and slim short-to-medium limbs.
+Do not make them chubby/chibi or long-limbed stick figures.
+Each worker should normally be only 12%–18% of the hero subject height and never over 20% unless explicitly requested.
+
+Actions:
+Each worker performs a distinct action tied to a real product feature.
+
+Props:
+Default structural-prop count is zero. At most one grounded ladder/stool may appear only if vertical access genuinely improves the story. No floating ladder, rope, scaffold, suspended line, or platform.
 
 Composition:
-Pure white background.
-Large whitespace.
-One hero subject only.
-Supporting props must stay secondary.
-Hero subject centered or slightly lower-centered.
+Pure white field, large negative space, one hero subject, workers visually secondary.
 
 Style:
-Photoreal product, soft studio lighting, calm, healing, restrained.
-Do not cartoonize the product.
-Do not omit the caption.
-Do not turn the workers into mascots.
-Do not use ladders or floating structural props unless explicitly required and physically grounded.
+Photoreal product + primitive hand-drawn micro-world. Calm, restrained, clean, lightly humorous.
 ```
 
----
+## Success definition
 
-## 17. Success Definition
+A correct result has:
 
-A successful result must simultaneously satisfy all of these:
-
-- the subject is still the right subject
-- there is one clear hero subject
-- the title exists when provided
-- the title looks handwritten, not typed
-- the workers match the locked figure system
-- the workers have squat 2.2–2.8-head proportions rather than stick-figure anatomy
-- no unnecessary or floating ladder / structural prop appears
-- the workers explain the product rather than decorate it randomly
-- the poster keeps strong whitespace and a calm visual tone
-
-If any of these fail, the result is not considered a correct execution of this skill.
+- one unmistakable photographic hero;
+- mandatory caption when supplied;
+- small faceless workers that feel light and primitive, not fat/chibi and not stick-like;
+- workers clearly smaller than the hero;
+- meaningful actions;
+- grounded, rare structural props;
+- generous white space.

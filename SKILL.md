@@ -1,11 +1,11 @@
 ---
 name: minimal-doodle-product-poster-skill
-description: Turn a clear uploaded product or food photo into a minimalist white-space poster with one preserved photographic hero subject, mandatory caption rendering when provided, small faceless doodle workers, product-related micro-storytelling, and loose thin-line Chinese handwriting.
+description: Turn a clear uploaded product or food photo into a minimalist white-space poster with one preserved photographic hero subject, small faceless doodle workers, product-related micro-storytelling, and loose individually placed thin-line Chinese handwriting.
 ---
 
 # Minimal Doodle Product Poster Skill
 
-Skill revision: **v0.7-worker-scale-calibration**
+Skill revision: **v0.8-lettering-spatial-rhythm**
 
 ## Purpose
 
@@ -17,18 +17,19 @@ Turn one real product, food, drink, dessert, fruit, or everyday object into a ca
 - short loose handwritten Chinese caption when provided;
 - sparse action-serving doodles.
 
-The target is **real product photography + a tiny primitive doodle micro-world**. The workers must remain secondary marks, never co-equal characters.
+The target is **real product photography + a tiny primitive doodle micro-world**. Workers remain secondary marks. Lettering must feel written into the space, not typeset.
 
 ## Execution priority
 
 1. Subject identity
 2. One clear hero subject
-3. Caption when provided
-4. Worker visual system
-5. Worker scale relative to hero
-6. Product-related worker actions
-7. White-space composition
-8. Sparse decorative doodles
+3. Exact caption when provided
+4. Caption spatial rhythm
+5. Worker visual system
+6. Worker scale relative to hero
+7. Product-related worker actions
+8. White-space composition
+9. Sparse decorative doodles
 
 Higher priority wins when rules conflict.
 
@@ -55,7 +56,8 @@ input photo
 → extract 2–4 real product features
 → convert features into 3–5 worker actions
 → choose Quick or Fidelity
-→ assemble prompt with hard worker/scale rules inlined
+→ if caption exists, plan character-by-character spatial rhythm
+→ assemble final prompt with hard worker/scale/lettering rules inlined
 → generate
 → self-check
 → one targeted repair if needed
@@ -79,11 +81,37 @@ If the user provides a caption, it is mandatory.
 - use the exact requested wording;
 - place in upper-left or left negative space;
 - thin black naive Chinese handwriting;
-- loose spacing, slightly uneven size and tilt;
-- simple curved hand-drawn arrow may connect caption to subject;
-- no extra copy, pinyin, English, labels, badges, or formal typography.
+- no extra copy, pinyin, English, labels, badges, or formal typography;
+- one loose curved hand-drawn arrow may connect caption to subject.
 
-Missing or replaced caption is a failure.
+Missing, replaced, or mistranslated caption is a failure.
+
+## Lettering Spatial Rhythm Lock
+
+**Do not typeset the caption as one phrase. Place every Chinese character individually.**
+
+Before rendering, assign every character its own x/y position and local scale.
+
+Hard rules:
+
+- no single clean shared baseline;
+- no equal character tracking;
+- adjacent gaps must be visibly different;
+- at least one gap should be about **1.5–2.5×** another nearby gap;
+- at least one character must sit clearly higher or lower than another;
+- character sizes and tilt may vary independently;
+- preserve readable natural order;
+- avoid rectangular title blocks, aligned columns, repeated character boxes, and perfect grids.
+
+Caption-length routing:
+
+- **2 chars**: loose horizontal allowed, but unequal spacing + baseline mismatch;
+- **3 chars**: diagonal / triangular / stair-step preferred, not one straight row;
+- **4 chars**: loose staggered two-level structure; never a perfect 2×2 grid;
+- **5–6 chars**: split into **2–3 loose character clusters**; never render the entire caption as one continuous line;
+- **7+ chars**: split into semantic groups of roughly 2–3 characters and place groups on staggered levels.
+
+The title should feel like someone wrote characters one by one into the white space.
 
 ## Micro-worker identity lock
 
@@ -100,37 +128,25 @@ Every worker belongs to one fixed primitive character system:
 
 ## Worker proportion lock
 
-**Do not use the previous squat/chubby calibration.**
-
 Target geometry:
 
 - total figure height: approximately **2.8–3.5 head diameters**;
 - head: approximately **28%–35% of total figure height**;
-- head is visibly larger than torso width, but not giant;
-- torso is short and lightly rounded, **not wide or barrel-shaped**;
-- torso width is about **55%–75% of head diameter**;
-- arms and legs are **slim, simple, and short-to-medium**, not thick/stubby and not long stick limbs;
+- head larger than torso width, but not giant;
+- torso short and lightly rounded, not wide or barrel-shaped;
+- torso width about **55%–75% of head diameter**;
+- arms and legs slim, simple, and short-to-medium;
 - almost no visible neck;
-- overall silhouette feels light, naive, compact, and slightly clumsy rather than cute/chibi.
+- overall silhouette light, naive, compact, slightly clumsy rather than cute/chibi.
 
-Reject:
-
-- oversized chibi heads;
-- fat or barrel-shaped bodies;
-- thick stubby limbs;
-- tall adult stick figures;
-- long thin fashion-illustration limbs;
-- realistic anatomy.
+Reject giant chibi heads, fat/barrel bodies, thick stubby limbs, tall adult stick figures, long fashion limbs, and realistic anatomy.
 
 ## Worker scale lock relative to hero
 
-This is a hard composition rule.
-
 - normal worker visual height: approximately **12%–18% of hero subject height**;
-- preferred average: around **14%–16%**;
-- no worker should exceed **20% of hero subject height** unless the user explicitly requests a close-up worker;
-- workers on or behind the product may be partially occluded and can appear smaller;
-- the product must visually dominate before any worker is noticed.
+- preferred average: about **14%–16%**;
+- no worker over **20%** of hero height unless explicitly requested;
+- product must be noticed before any worker.
 
 If a worker feels almost as important as the product, it is too large.
 
@@ -142,51 +158,24 @@ Use 3–5 workers. Each worker must reveal a real product feature.
 product feature → physical metaphor → worker action
 ```
 
-Prefer:
+Prefer hold, carry, push, pull, wipe, scoop, arrange, collect, inspect, taste, clean, cool, fan, rest, shade.
 
-- hold
-- carry
-- push
-- pull
-- wipe
-- scoop
-- arrange
-- collect
-- inspect
-- taste
-- clean
-- cool
-- fan
-- rest
-- shade
-
-Use selectively:
-
-- pour
-- water
-- measure
-- repair
+Use pour, water, measure, repair selectively.
 
 Do not add a worker only to fill space.
 
 ## Structural prop rule
 
-Structural props are **not banned**, but they are low-frequency.
+Structural props are low-frequency.
 
-Default structural-prop budget: **0**.
-Maximum per poster: **1**.
-
-A ladder/stool/platform may appear only when vertical access genuinely improves the product story.
-
-If used:
-
-- base must visibly rest on the ground plane;
-- perspective must match the product;
-- top must visibly contact a stable surface or product edge when appropriate;
-- worker feet/hands must physically connect;
-- it cannot float or terminate in empty space.
-
-Never use a ladder merely because the product is tall. Prefer direct-contact actions first.
+- default structural-prop budget: **0**;
+- maximum per poster: **1**;
+- ladder/stool/step only when vertical access genuinely improves the story;
+- base must rest on the ground plane;
+- perspective must match;
+- top/contact must be physically believable;
+- worker feet/hands must connect;
+- never use a ladder merely because the product is tall.
 
 Ropes, scaffolds, suspended lines, and floating platforms remain disallowed unless explicitly requested.
 
@@ -201,12 +190,7 @@ Ropes, scaffolds, suspended lines, and floating platforms remain disallowed unle
 
 ## Photography-first rule
 
-The hero remains realistic photography:
-
-- preserve real texture/material;
-- soft high-key studio light;
-- realistic highlights and contact shadow;
-- no cartoon conversion of the product.
+The hero remains realistic photography with real texture/material, soft high-key studio light, realistic highlights, and contact shadow. Do not cartoonize the product.
 
 ## Quick Mode
 
@@ -215,10 +199,9 @@ One-pass complete poster.
 Must still obey:
 
 - Subject Lock;
-- mandatory caption when provided;
-- worker identity lock;
-- worker proportion lock;
-- worker scale lock;
+- mandatory caption;
+- Lettering Spatial Rhythm Lock;
+- worker identity/proportion/scale locks;
 - structural-prop budget;
 - white-space layout;
 - photography-first rule.
@@ -236,7 +219,9 @@ Only one focus per pass.
 - `dominant_element`: make the largest meaningful subject feature the first photographic signal.
 - `lettering`: freeze accepted poster base and repair only the title layer.
 
-For `subject_identity` and `dominant_element`, use `prompts/poster-base.md`, then lettering if needed.
+For `subject_identity` and `dominant_element`, use `prompts/poster-base.md`, then `prompts/lettering-layer.md` if lettering is required.
+
+If glyphs are correct but spacing still feels typeset, use `fidelity_focus: lettering` and repair spatial rhythm only.
 
 ## Final prompt assembly requirement
 
@@ -244,15 +229,17 @@ The final generation prompt must explicitly include:
 
 1. hero subject description;
 2. exact caption if provided;
-3. worker identity lock;
-4. worker geometry: 2.8–3.5 heads tall, narrower torso, slim short-to-medium limbs;
-5. worker scale: 12%–18% of hero height, max 20%;
-6. 3–5 product-related actions;
-7. structural-prop budget 0 by default, max 1 grounded ladder/stool if truly useful;
-8. large white-space composition;
-9. photography-first rule.
+3. character-by-character lettering placement rule;
+4. caption-length routing rule;
+5. worker identity lock;
+6. worker geometry: 2.8–3.5 heads tall, narrower torso, slim short-to-medium limbs;
+7. worker scale: 12%–18% of hero height, max 20%;
+8. 3–5 product-related actions;
+9. structural-prop budget 0 by default, max 1 grounded ladder/stool if truly useful;
+10. large white-space composition;
+11. photography-first rule.
 
-Do not rely on vague phrases such as “tiny cute workers”.
+Do not rely on vague phrases such as “handwritten text” or “tiny cute workers”.
 
 ## Post-generation self-check
 
@@ -261,24 +248,27 @@ Reject or repair if:
 - subject identity drifted;
 - multiple photographic objects compete as heroes;
 - provided caption is missing/wrong;
+- 5+ character caption is rendered as one neat continuous line;
+- characters share an overly clean baseline or equal spacing;
+- 4-character caption forms a perfect 2×2 grid;
 - workers have faces, clothes, or mascot styling;
-- workers are chubby/chibi with giant heads;
-- workers are long-limbed stick figures;
+- workers are chubby/chibi or long-limbed stick figures;
 - any worker exceeds 20% of hero height without explicit reason;
-- workers visually compete with the hero;
+- workers visually compete with hero;
 - more than one structural access prop appears;
-- a ladder/stool/platform floats or lacks grounding;
+- ladder/stool/platform floats or lacks grounding;
 - worker actions do not explain product features;
 - white space no longer dominates.
 
 ## Repair priority
 
-1. caption
-2. subject identity
-3. worker scale relative to hero
-4. worker silhouette/proportion
-5. structural-prop grounding/frequency
-6. clutter and hierarchy
+1. caption correctness
+2. caption spatial rhythm
+3. subject identity
+4. worker scale relative to hero
+5. worker silhouette/proportion
+6. structural-prop grounding/frequency
+7. clutter and hierarchy
 
 Use one targeted repair pass.
 
@@ -291,20 +281,20 @@ Hero:
 [exact photoreal subject]
 
 Caption:
-Render exactly “[caption]” in thin, loose, naive black Chinese handwriting in the left negative space. Caption is mandatory when provided.
+Render exactly “[caption]”. Caption is mandatory when provided.
+Do not typeset it as one phrase. Place each Chinese character independently with its own x/y position. Use thin naive black handwriting, broken baseline, unequal gaps, different local scale/tilt, and readable order. For 5–6 characters, split into 2–3 loose clusters and never use one continuous line. For 4 characters, never use a perfect 2×2 grid.
 
 Workers:
 Add 3–5 very small primitive faceless black-line workers.
 Blank round heads, no face, no hair, no clothing, white interiors, thin uneven black outlines.
 Each figure is about 2.8–3.5 heads tall with a lightly rounded narrow torso and slim short-to-medium limbs.
-Do not make them chubby/chibi or long-limbed stick figures.
-Each worker should normally be only 12%–18% of the hero subject height and never over 20% unless explicitly requested.
+Each worker should normally be only 12%–18% of hero height and never over 20% unless explicitly requested.
 
 Actions:
 Each worker performs a distinct action tied to a real product feature.
 
 Props:
-Default structural-prop count is zero. At most one grounded ladder/stool may appear only if vertical access genuinely improves the story. No floating ladder, rope, scaffold, suspended line, or platform.
+Default structural-prop count is zero. At most one grounded ladder/stool may appear only if vertical access genuinely improves the story.
 
 Composition:
 Pure white field, large negative space, one hero subject, workers visually secondary.
@@ -319,8 +309,9 @@ A correct result has:
 
 - one unmistakable photographic hero;
 - mandatory caption when supplied;
-- small faceless workers that feel light and primitive, not fat/chibi and not stick-like;
-- workers clearly smaller than the hero;
+- handwritten glyphs with loose character-by-character spatial rhythm rather than typeset phrase spacing;
+- small faceless workers that feel light and primitive;
+- workers clearly smaller than hero;
 - meaningful actions;
-- grounded, rare structural props;
+- rare grounded structural props;
 - generous white space.

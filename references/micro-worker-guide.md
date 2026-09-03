@@ -1,55 +1,76 @@
 # Micro Worker Guide
 
+Revision: **v0.7-worker-scale-calibration**
+
 ## Role
 
-Micro workers are not mascots and not decoration. They are functional marks that turn a product feature into a tiny physical story.
+Micro workers are functional doodle marks, not mascots and not decoration. They turn a product feature into a tiny physical story.
 
-## Fixed figure anatomy
+The product must be noticed first. Workers should be discovered second.
 
-Every worker must follow this contract:
+## Fixed identity
 
-- oversized blank round or slightly lumpy head;
+Every worker uses one primitive figure system:
+
+- blank round or slightly irregular head;
 - no eyes, mouth, nose, eyebrows, or expression;
 - no hair;
 - no hat;
 - no clothing details or uniform;
 - no logo, badge, label, text, or symbol on the body;
-- short compact rounded torso;
-- short stubby arms;
-- short stubby legs;
-- almost no visible neck;
-- tiny rounded hand and foot ends;
 - white empty interior;
-- black uneven single-line outline only;
-- intentionally naive, clumsy, slightly uneven construction;
-- not a polished vector figure;
-- not a stick figure.
+- thin uneven black single-line outline;
+- simple rounded body construction;
+- no polished vector or mascot finish.
 
-Required body proportion:
+## Correct silhouette
 
-- total figure height should be about **2.2–2.8 head diameters**;
-- head should occupy about **35%–45% of total figure height**.
+The target is **small, light, rounded, and simple**.
 
-The body posture and tool carry all meaning.
+Required geometry:
+
+- total figure height: about **2.8–3.5 head diameters**;
+- head: about **28%–35% of total figure height**;
+- torso width: about **55%–75% of head diameter**;
+- torso is short and lightly rounded, not wide/barrel-shaped;
+- arms and legs are slim and short-to-medium;
+- hands/feet are tiny simplified rounded ends;
+- almost no visible neck.
+
+The correct feel is primitive and slightly clumsy, but **not chubby/chibi**.
 
 ## Silhouette failures
 
 Fail if workers become:
 
+- giant-headed chibi characters;
+- fat, squat, barrel-shaped figures;
+- thick stubby-limbed figures;
 - long-limbed stick figures;
 - thin adult doodle humans;
 - realistic human anatomy;
-- 4–6 head-tall figures;
 - fashion-illustration proportions;
 - polished mascot silhouettes.
 
-The intended silhouette is squat, soft, primitive, and slightly clumsy.
+## Relative scale lock
+
+Workers must remain visually miniature relative to the photographic hero.
+
+- normal worker height: **12%–18% of hero subject height**;
+- preferred average: **14%–16%**;
+- hard maximum: **20% of hero subject height** unless the user explicitly requests a close-up worker;
+- workers perched on or partly behind the product may be smaller and partially occluded;
+- no worker should become a co-equal focal point.
+
+Rule:
+
+> If the worker is noticed before the product, it is too large or too contrast-heavy.
 
 ## Action grammar
 
-Always decide the action verb before describing the worker.
+Decide the action before selecting a prop.
 
-### Priority A — preferred actions
+Preferred actions:
 
 - hold
 - carry
@@ -67,20 +88,12 @@ Always decide the action verb before describing the worker.
 - rest
 - shade
 
-### Priority B — use selectively
+Use selectively:
 
 - pour
 - water
 - measure
 - repair
-
-### Disabled by default
-
-- climb
-- ladder
-- rope
-- scaffold
-- platform
 
 Use this conversion:
 
@@ -91,12 +104,11 @@ product feature → physical metaphor → action verb → worker scene
 Examples:
 
 ```text
-watermelon / hydration → water supply → water → worker sprays or tends surface
+watermelon / hydration → surface care → water → worker tends the surface
 watermelon / seeds → cargo → collect → worker gathers seeds
-peach / sweetness → quality control → inspect → worker checks sweetness
+peach / sweetness → quality control → inspect → worker checks fruit
 lemon soda / bubbles → fizz control → inspect → worker watches bubbles
-blue pudding / soft & jiggly → texture test → inspect → worker presses edge
-blue pudding / cream → topping maintenance → arrange → worker adjusts cream
+blue pudding / texture → softness test → inspect → worker presses edge
 apple tea / apple slices → fruit delivery → carry → worker carries slice
 apple tea / chilled drink → serving care → clean → worker wipes spill
 ```
@@ -109,15 +121,11 @@ Allow 3–5 depending on subject complexity.
 
 A fifth worker is allowed only when it adds a new product feature or completes the visual rhythm.
 
-Rule:
-
-> If deleting a worker does not remove any layer of product meaning, delete that worker.
-
-Do not add more workers to compensate for a weak concept. Choose a stronger action instead.
+> If deleting a worker does not remove product meaning, delete it.
 
 ## Contact rule
 
-At least 3 workers should have a readable physical or causal relationship with the hero object through one of:
+At least 3 workers should have a readable physical or causal relationship with the hero through:
 
 - direct touch;
 - tool contact;
@@ -125,55 +133,44 @@ At least 3 workers should have a readable physical or causal relationship with t
 - visible action path;
 - surface interaction.
 
-Workers should not float randomly in the white space.
+Workers should not float randomly in the white field.
 
 ## Tool rule
 
 Props exist only to clarify an action.
 
-Choose the action first. Then add the smallest possible prop only if the action cannot be understood without it.
+Choose the action first, then add the smallest useful prop.
 
-Good:
+Good portable props:
 
-- spoon for tasting or scooping;
-- cart for seeds or toppings;
-- fan for cooling;
-- hose for hydration;
-- cloth for wiping;
-- umbrella for shade;
-- tiny tray or crate for transport.
+- spoon;
+- small cart;
+- fan;
+- hose;
+- cloth;
+- umbrella;
+- tray;
+- tiny crate;
+- simple measuring tool.
 
-Forbidden by default:
+## Structural prop budget
 
-- ladder;
-- scaffold;
-- rope;
-- floating platform;
-- random stars;
-- balloons;
-- decorative signs;
-- unrelated toys.
+Structural props are low-frequency, not permanently banned.
 
-If a prop creates unclear spatial logic, remove it.
+- default: **0 structural props**;
+- maximum: **1 structural prop per poster**;
+- a ladder, stool, or small step may appear only when vertical access materially improves the story;
+- never add one just because the product is tall.
 
-## Structural prop grounding
+If a ladder/stool is used:
 
-If a structural prop is explicitly required, every physical relationship must be believable:
+- base is visibly on the ground plane;
+- perspective matches the product;
+- top visibly contacts a stable surface or product edge when appropriate;
+- worker hands/feet visibly connect to it;
+- it cannot float or end in empty space.
 
-- the prop has visible physical support;
-- its base rests on the same ground plane as the product;
-- it obeys perspective;
-- it does not float;
-- it does not terminate in empty space;
-- if leaning, it visibly touches a real surface;
-- the worker's hands or feet visibly contact the prop;
-- scale stays consistent with the worker.
-
-If grounding is unclear, remove the prop instead of trying to decorate around the error.
-
-## Scale
-
-Workers should remain clearly miniature relative to the photographic product. They should feel like operators on a giant object, not co-equal characters.
+Ropes, scaffolds, suspended lines, and floating platforms remain disallowed unless explicitly requested.
 
 ## Character drift failures
 
@@ -187,11 +184,12 @@ Fail if workers gain:
 - badges;
 - brand marks;
 - anime anatomy;
-- chibi mascot polish;
-- stick-figure long limbs.
+- polished chibi treatment;
+- giant heads or thick bodies;
+- adult stick-figure anatomy.
 
 ## Repair instruction
 
 ```text
-Keep all micro workers as one fixed primitive character system: oversized blank round heads, no facial features, no expression, no hair, no hats, no clothing details, no labels or body symbols, short compact torso, short stubby arms and legs, white empty interior, and black uneven single-line drawing only. Keep each worker about 2.2–2.8 head diameters tall. Never use ladders or floating structural props unless explicitly required. Preserve action through pose, small tools, and direct contact with the product.
+Keep all micro workers as one fixed primitive character system: blank round heads, no facial features, no hair, no clothing, white empty interiors, thin uneven black outlines. Calibrate each figure to about 2.8–3.5 heads tall with a narrow lightly rounded torso and slim short-to-medium limbs. Keep workers visually tiny at about 12%–18% of hero height, max 20%. Do not make them fat/chibi or long-limbed stick figures. Structural props default to zero; allow at most one physically grounded ladder/stool only when vertical access genuinely improves the story.
 ```

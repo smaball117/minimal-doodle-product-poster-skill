@@ -1,0 +1,1 @@
+Image previews will be stored here for README comparisons.

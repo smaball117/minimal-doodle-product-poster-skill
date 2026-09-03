@@ -1,6 +1,6 @@
 {
   "skill_name": "minimal-doodle-product-poster-skill",
-  "version": "0.7",
+  "version": "0.8",
   "evals": [
     {
       "id": "subject-lock-blue-pudding",
@@ -79,18 +79,49 @@
       "expected_output": "Title uses thin black naive handwriting instead of standard typography.",
       "expectations": [
         "Exact requested phrase is used.",
-        "Character size, tilt, spacing, and baseline are irregular.",
+        "Character size, tilt, glyph skeleton, and baseline are irregular.",
         "No standard font, rounded cute font, or polished commercial typography."
       ]
     },
     {
+      "id": "lettering-spatial-rhythm-6-char",
+      "prompt": "标题写‘焦糖脑袋冲啊’，字形已经对了，但不要像一行排版字，要像人随手写在画面里。",
+      "expected_output": "The six-character caption is placed as individually handwritten characters with loose spatial rhythm rather than one typeset horizontal line.",
+      "expectations": [
+        "Exact text 焦糖脑袋冲啊 is preserved.",
+        "The six characters are split into 2–3 loose spatial clusters.",
+        "The full caption is not rendered as one continuous line.",
+        "Characters do not share one clean baseline.",
+        "Adjacent gaps are visibly unequal.",
+        "At least one gap is roughly 1.5–2.5 times another nearby gap.",
+        "At least one character is clearly higher or lower than another.",
+        "Reading order remains understandable."
+      ]
+    },
+    {
+      "id": "lettering-spatial-rhythm-4-char",
+      "prompt": "标题写‘心态放苹’，参考手写散落感，不要整齐四宫格排版。",
+      "expected_output": "The four characters form a loose staggered two-level composition rather than a perfect 2×2 grid.",
+      "expectations": [
+        "Exact text 心态放苹 is preserved.",
+        "Characters use independent x/y positions.",
+        "The result is not a perfect 2×2 grid.",
+        "Row and column edges do not align neatly.",
+        "Spacing and local character scale vary.",
+        "Reading order remains clear."
+      ]
+    },
+    {
       "id": "lettering-repair-only",
-      "prompt": "字体还是太像电脑字了，产品和构图已经满意，不要动其他地方。",
-      "expected_output": "Use fidelity_focus=lettering and keep the accepted poster base unchanged.",
+      "prompt": "字形已经像手写了，但间距还是像电脑排版，产品和构图不要动。",
+      "expected_output": "Use fidelity_focus=lettering and repair only character placement rhythm while preserving the accepted poster base and glyph style.",
       "expectations": [
         "Poster base stays unchanged.",
-        "Only lettering layer is regenerated.",
-        "Glyph skeleton, size, tilt, spacing, and baseline are varied."
+        "Only lettering layer is regenerated or repositioned.",
+        "Characters are re-placed independently rather than rewritten as one phrase.",
+        "Shared baseline is broken.",
+        "Adjacent gaps become visibly unequal.",
+        "Exact wording and reading order remain intact."
       ]
     },
     {

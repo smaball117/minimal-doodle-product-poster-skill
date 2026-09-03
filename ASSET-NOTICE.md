@@ -32,7 +32,9 @@ Users are responsible for confirming that they have the right to upload, edit, p
 
 The apple-tea comparison under `assets/examples/apple-tea/` contains a reduced-size source preview supplied during testing so that the repository can show **source → Quick Mode → Fidelity Mode** side by side. That source preview is included only as test/reference material, is not claimed as repository-authored artwork, and is not included in any future project-asset license unless separately stated.
 
-Generated comparison previews are included to document Skill behavior and should not be interpreted as transferring rights in the underlying source image.
+The three-photo regression comparison in `assets/examples/three-case-comparison.svg` uses source photographs taken by the project owner and explicitly authorized for inclusion in this public test display. The board exists to document **Original → Quick Mode → Fidelity Mode** behavior.
+
+Generated comparison previews are included to document Skill behavior and should not be interpreted as transferring rights in unrelated third-party marks that may appear incidentally inside photographed real-world objects.
 
 ## Brand marks
 

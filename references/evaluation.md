@@ -1,6 +1,6 @@
 # Evaluation Guide
 
-Revision: **v0.8-lettering-spatial-rhythm**
+Revision: **v0.9-semantic-cluster-lettering**
 
 Use after every generated poster and after every major Skill revision.
 
@@ -78,27 +78,32 @@ When text is used:
 - [ ] Glyph skeletons do not look like a standard font.
 - [ ] No brush calligraphy, rounded cute handwriting, or polished commercial lettering.
 
-## I. Lettering spatial rhythm
+## I. Semantic cluster lettering
 
 This is a separate check from glyph style.
 
-- [ ] Characters are treated as individually placed handwritten objects, not one typeset phrase.
-- [ ] No single clean shared baseline dominates the title.
-- [ ] Adjacent gaps are visibly unequal.
-- [ ] At least one gap is roughly 1.5–2.5× another nearby gap.
-- [ ] At least one character sits noticeably higher or lower than another.
-- [ ] Character x/y positions drift naturally while reading order remains clear.
-- [ ] The title does not form a neat rectangle, aligned columns, or a repeated grid.
+- [ ] Caption is split into natural semantic clusters before placement.
+- [ ] Characters in the same cluster remain visually close enough to read as one phrase unit.
+- [ ] Gaps between clusters are clearly larger than within-cluster gaps.
+- [ ] Between-cluster gaps are usually about 1.4–2.2× the typical within-cluster gap.
+- [ ] Clusters may shift in x/y position and baseline without losing reading order.
+- [ ] The whole title remains one compact handwritten block.
+- [ ] The title does not become one clean typeset line.
+- [ ] The title does not become a chain of isolated one-character stickers.
+- [ ] The title does not form a long regular diagonal staircase.
+- [ ] Arrow, when used, relates to the title block as a whole.
 
 Length-specific checks:
 
-- [ ] 2 chars: unequal spacing + baseline mismatch.
-- [ ] 3 chars: not one straight row; diagonal / triangular / stair-step is acceptable.
-- [ ] 4 chars: not a perfect 2×2 grid.
-- [ ] 5–6 chars: split into 2–3 loose clusters; **not one continuous line**.
-- [ ] 7+ chars: semantic groups are staggered instead of forming a clean paragraph block.
+- [ ] 2 chars: one loose cluster.
+- [ ] 3 chars: one cluster or natural 2+1 grouping.
+- [ ] 4 chars: usually 2 semantic clusters when natural; not a perfect 2×2 grid; not four isolated points.
+- [ ] 5–6 chars: 2–3 semantic clusters; cluster members close; no all-character isolation; no continuous typeset line.
+- [ ] 7+ chars: natural semantic groups remain compact rather than forming a paragraph or diagonal path.
 
-When glyphs are correct but spacing still feels typeset, use `fidelity_focus: lettering` and repair only spatial rhythm.
+For 4–6 characters, title-block guidance is roughly 20%–35% of canvas width and 15%–28% of canvas height when practical.
+
+When glyphs are correct but the title is too fragmented or too typeset, use `fidelity_focus: lettering` and repair only semantic clustering + spacing.
 
 ## J. Palette
 
@@ -126,7 +131,7 @@ When glyphs are correct but spacing still feels typeset, use `fidelity_focus: le
 - [ ] Accepted poster base remains unchanged.
 - [ ] Only lettering layer changes.
 - [ ] Exact wording remains intact.
-- [ ] Glyph skeleton or spatial rhythm defects are repaired without regenerating product/workers.
+- [ ] Glyph skeleton, semantic grouping, or spacing defects are repaired without regenerating product/workers.
 
 ## Known failure modes
 
@@ -184,27 +189,39 @@ Repair: regenerate lettering only; vary glyph boxes, tilt, internal spacing, rad
 
 ### 10. Typeset spacing drift
 
-Example: `焦糖脑袋冲啊` has acceptable handwritten glyphs but appears as one evenly spaced horizontal sentence.
+Example: `焦糖脑袋冲啊` is one neat horizontal sentence.
 
-Cause: the model treated the title as a phrase-level text object instead of individually placed characters.
+Repair: preserve semantic groups such as `焦糖` / `脑袋` / `冲啊`, then loosen cluster position and spacing.
 
-Repair: keep glyph style and poster base. Re-place every character independently. Break shared baseline, vary x/y position, make gaps unequal, and split 5–6 characters into 2–3 loose clusters.
+### 11. Character fragmentation drift
 
-### 11. Perfect-grid handwriting
+Example: every character in `焦糖脑袋冲啊` is placed far apart down a diagonal staircase.
+
+Cause: “place every character individually” was over-applied and semantic phrase grouping was lost.
+
+Repair: regroup exact text into natural semantic clusters, move cluster members closer, enlarge only cluster-to-cluster gaps, compress title into one compact handwritten block, preserve slight baseline and size variation.
+
+### 12. Perfect-grid handwriting
 
 Example: four characters are placed in a neat 2×2 square.
 
-Repair: offset character positions, change local scale, break row/column alignment, and create a loose staggered two-level rhythm.
+Repair: group semantically first, then offset cluster positions and local scale; keep phrase pairs intact.
 
-### 12. Too much decoration
+### 13. Oversized title footprint
+
+Example: a short caption stretches across a large diagonal path and competes with the hero product.
+
+Repair: compress 4–6 character titles into a compact zone, roughly 20%–35% canvas width and 15%–28% height when practical.
+
+### 14. Too much decoration
 
 Remove half of supporting doodles and restore blank space.
 
-### 13. Dominant-focus dilution
+### 15. Dominant-focus dilution
 
 Demote secondary scene cues in scale, contrast, saturation, and placement.
 
-### 14. Multi-case blending
+### 16. Multi-case blending
 
 Process each source as an independent generation unless a comparison board is explicitly requested.
 
@@ -219,9 +236,11 @@ Process each source as an independent generation unless a comparison board is ex
 7. Is structural-prop count at most one?
 8. Is white space doing compositional work?
 9. Are the handwritten glyphs correct?
-10. Does the title feel placed character-by-character rather than typeset as a phrase?
-11. For 5–6 characters, is the caption broken into loose clusters rather than one line?
-12. What single defect should be repaired next?
+10. What are the natural semantic clusters in the caption?
+11. Are members of each cluster visibly closer than cluster-to-cluster gaps?
+12. Does the title read like one handwritten note block rather than one line or isolated stickers?
+13. Is the title compact enough not to compete with the product?
+14. What single defect should be repaired next?
 
 ## Regression policy
 

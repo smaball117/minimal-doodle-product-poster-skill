@@ -1,23 +1,38 @@
 # Apple Tea Test — 心态放苹
 
-同一张实拍照片使用 Skill 的两种生成路径做对比。
+使用同一张苹果冰茶实拍素材，验证 Skill 的标准海报结构与两种生成路径。
 
-| 原图 | Version 1 · Quick Mode | Version 2 · Fidelity Mode |
+## Visual Comparison
+
+| Original | Quick Mode | Fidelity Mode |
 |---|---|---|
-| ![原图：苹果冰茶实拍](../assets/examples/apple-tea/source.svg) | ![Quick Mode：心态放苹](../assets/examples/apple-tea/quick-mode-mini.svg) | ![Fidelity Mode：心态放苹，强化苹果识别](../assets/examples/apple-tea/fidelity-mode-mini.svg) |
-| **实拍基准**：两杯苹果冰茶、红苹果、苹果切片、冰块、黄橙红渐变饮品。 | **快速生成**：一次完成主体、微缩小人与标题，风格建立速度快。 | **高保真生成**：进一步强化红苹果与苹果切片，让标题中的“苹”和产品建立更强语义关系。 |
+| ![Original apple tea photo](../assets/examples/apple-tea/source.jpg) | ![Apple tea Quick Mode](../assets/examples/apple-tea/quick-mode.jpg) | ![Apple tea Fidelity Mode](../assets/examples/apple-tea/fidelity-mode.jpg) |
+| **输入基准**：苹果冰茶、苹果切片、冰块与黄橙红渐变饮品。 | **快速路径**：主体、微缩小人与标题一次生成，用于快速建立完整视觉。 | **高保真路径**：在保留主体和版式的基础上，针对指定 Focus 做单项强化。 |
 
-## 测试输入
+## Test Input
 
-- Subject：苹果冰茶
-- Caption：`心态放苹`
-- Reference：用户提供的实拍照片
-- Character system：圆头、无五官、无表情、无服饰、黑色单线微缩小人
+```yaml
+subject: 苹果冰茶
+caption: 心态放苹
+worker_system: blank round head, faceless, expressionless, no clothing
+mode: quick | fidelity
+```
 
-## 这轮测试验证了什么
+## What This Case Tests
 
-1. 实拍照片可以被压缩为一个干净的白底产品海报，而不需要保留原咖啡店环境。
-2. Quick Mode 已经能稳定建立“真实主体 + 微缩小人 + 手写文案”的基本风格。
-3. Fidelity Mode 需要主动强化标题中的核心产品线索。本例中，“苹”必须通过红苹果和苹果切片被明确感知，而不是只留下泛化的橙黄色冰饮。
-4. 小人保持无表情，叙事只通过姿态、工具和与主体的接触关系完成。
-5. 后续回归测试继续检查：主体类别是否准确、标题与主体是否产生语义关系、小人是否只是随机装饰。
+1. **Subject Lock**：从真实场景中提取苹果冰茶作为摄影主角，去除咖啡店环境干扰，同时保留杯体、冰块、苹果切片和饮品渐变等识别信息。
+2. **Quick Mode**：验证“真实摄影主体 + 黑色微缩小人 + 稚拙手写标题”能否一次建立完整海报。
+3. **Fidelity Mode**：验证已经成立的海报能否在不推翻整体结构的情况下，对单一目标继续强化。
+4. **Worker Contract**：小人保持圆头、无五官、无表情、无服饰，叙事只通过姿态、工具与主体接触关系完成。
+5. **Lettering**：标题 `心态放苹` 必须保持短、松散、细黑线手写，并让“苹”与苹果视觉线索形成语义联系。
+
+## Evaluation
+
+- [ ] 主体仍然明确是苹果冰茶，而不是泛化的橙色饮料。
+- [ ] 摄影主体保持真实材质，不被整体卡通化。
+- [ ] 白色留白占主导，海报没有被装饰元素填满。
+- [ ] 每个小人都与产品特征发生实际关系。
+- [ ] 小人没有五官、表情、服装、帽子或角色标签。
+- [ ] 标题没有变成标准电脑字体或工整书法。
+
+> **Asset QA note**：当前重新提供的两张生成结果文件内容一致，因此本案例不把这两张文件本身作为 Quick / Fidelity 差异的视觉证据。后续只需替换 `fidelity-mode` 资产即可继续保留同一测试结构。

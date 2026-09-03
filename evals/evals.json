@@ -1,6 +1,6 @@
 {
   "skill_name": "minimal-doodle-product-poster-skill",
-  "version": "0.8",
+  "version": "0.9",
   "evals": [
     {
       "id": "subject-lock-blue-pudding",
@@ -84,44 +84,61 @@
       ]
     },
     {
-      "id": "lettering-spatial-rhythm-6-char",
-      "prompt": "标题写‘焦糖脑袋冲啊’，字形已经对了，但不要像一行排版字，要像人随手写在画面里。",
-      "expected_output": "The six-character caption is placed as individually handwritten characters with loose spatial rhythm rather than one typeset horizontal line.",
+      "id": "lettering-semantic-cluster-6-char",
+      "prompt": "标题写‘焦糖脑袋冲啊’，不要一行排版，也不要每个字都拆得很远，要像随手写的一小块标题。",
+      "expected_output": "The six-character caption is grouped into natural semantic clusters and remains one compact handwritten title block.",
       "expectations": [
         "Exact text 焦糖脑袋冲啊 is preserved.",
-        "The six characters are split into 2–3 loose spatial clusters.",
-        "The full caption is not rendered as one continuous line.",
-        "Characters do not share one clean baseline.",
-        "Adjacent gaps are visibly unequal.",
-        "At least one gap is roughly 1.5–2.5 times another nearby gap.",
-        "At least one character is clearly higher or lower than another.",
-        "Reading order remains understandable."
-      ]
-    },
-    {
-      "id": "lettering-spatial-rhythm-4-char",
-      "prompt": "标题写‘心态放苹’，参考手写散落感，不要整齐四宫格排版。",
-      "expected_output": "The four characters form a loose staggered two-level composition rather than a perfect 2×2 grid.",
-      "expectations": [
-        "Exact text 心态放苹 is preserved.",
-        "Characters use independent x/y positions.",
-        "The result is not a perfect 2×2 grid.",
-        "Row and column edges do not align neatly.",
-        "Spacing and local character scale vary.",
+        "Natural grouping is 焦糖 / 脑袋 / 冲啊 or an equivalently natural semantic grouping.",
+        "Characters inside each cluster remain visibly closer to each other than to the next cluster.",
+        "Cluster-to-cluster gaps are larger than within-cluster gaps.",
+        "The full title is not one clean horizontal sentence.",
+        "The six characters are not all isolated as separate points.",
+        "The title does not form a long regular diagonal staircase.",
+        "The whole title remains compact in the upper-left or left-side negative space.",
         "Reading order remains clear."
       ]
     },
     {
-      "id": "lettering-repair-only",
-      "prompt": "字形已经像手写了，但间距还是像电脑排版，产品和构图不要动。",
-      "expected_output": "Use fidelity_focus=lettering and repair only character placement rhythm while preserving the accepted poster base and glyph style.",
+      "id": "lettering-semantic-cluster-4-char",
+      "prompt": "标题写‘心态放苹’，要有手写松散感，但不要四个字各自飘开。",
+      "expected_output": "The four-character caption uses semantic pairs such as 心态 / 放苹 in a loose compact two-level structure.",
+      "expectations": [
+        "Exact text 心态放苹 is preserved.",
+        "心态 remains visually grouped as one phrase unit.",
+        "放苹 remains visually grouped as one phrase unit.",
+        "The two groups use slight x/y and baseline offsets.",
+        "The result is not a perfect 2×2 grid.",
+        "The four characters are not isolated into four distant points.",
+        "The title reads as one handwritten note block."
+      ]
+    },
+    {
+      "id": "lettering-fragmentation-repair",
+      "prompt": "字形已经对了，但现在每个字都被拆得很远，像沿对角线一个个贴上去，产品和构图不要动。",
+      "expected_output": "Use fidelity_focus=lettering and repair only semantic clustering and title compactness while preserving glyph style and poster base.",
+      "expectations": [
+        "Poster base remains unchanged.",
+        "Existing acceptable glyph style is preserved.",
+        "Exact text is regrouped into natural semantic clusters.",
+        "Members of each cluster move closer together.",
+        "Only cluster-to-cluster gaps remain relatively large.",
+        "One-character-per-row isolation is removed.",
+        "Long diagonal staircase layout is removed.",
+        "The title is compressed into one compact handwritten block."
+      ]
+    },
+    {
+      "id": "lettering-typeset-repair",
+      "prompt": "标题字形已经像手写，但还是一整行很像电脑排版，产品和构图不要动。",
+      "expected_output": "Use fidelity_focus=lettering, preserve semantic groups, and loosen cluster position and baseline without fragmenting characters.",
       "expectations": [
         "Poster base stays unchanged.",
-        "Only lettering layer is regenerated or repositioned.",
-        "Characters are re-placed independently rather than rewritten as one phrase.",
-        "Shared baseline is broken.",
-        "Adjacent gaps become visibly unequal.",
-        "Exact wording and reading order remain intact."
+        "Semantic phrase groups remain intact.",
+        "Shared perfect baseline is broken.",
+        "Cluster x/y position varies slightly.",
+        "Within-cluster spacing stays closer than between-cluster spacing.",
+        "The repair does not scatter every character independently."
       ]
     },
     {

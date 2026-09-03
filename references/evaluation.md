@@ -24,18 +24,34 @@ Default negative-space target is around 70%–80%. In `dominant_element` Fidelit
 
 ### C. Micro workers
 
-- [ ] Workers use blank round heads.
+- [ ] Workers use oversized blank round or slightly lumpy heads.
 - [ ] No eyes, mouths, facial expressions, hair, hats, or clothing details appear.
 - [ ] No labels, logos, badges, or body symbols appear.
 - [ ] Lines are black, simple, uneven, and hand-drawn.
+- [ ] Workers have squat proportions rather than stick-figure proportions.
+- [ ] Total body height stays around 2.2–2.8 head diameters.
+- [ ] Head occupies roughly 35%–45% of total figure height.
+- [ ] Arms and legs are short and stubby rather than long and thin.
 - [ ] Every worker has a clear action verb.
 - [ ] Every action relates to a real product feature.
 - [ ] At least three workers have readable contact or cause-and-effect with the product.
 - [ ] Removing any worker would remove a layer of product meaning.
 
-Any visible face or designed costume is a fail, even when the overall poster looks good.
+Any visible face, designed costume, long-limbed stick-figure anatomy, or polished mascot treatment is a fail, even when the overall poster looks good.
 
-### D. Lettering
+### D. Prop grounding
+
+- [ ] Ladders, scaffolds, ropes, platforms, and similar structural props are absent by default.
+- [ ] A ladder appears only when explicitly requested or truly necessary to communicate vertical access.
+- [ ] Every physical prop has visible support.
+- [ ] Structural props rest on the same ground plane as the product.
+- [ ] Props obey scene perspective.
+- [ ] No prop floats, terminates in empty space, or leans without visible contact.
+- [ ] Worker hands or feet visibly connect to the prop when used.
+
+If structural grounding is unclear, the prop should be removed rather than repaired decoratively.
+
+### E. Lettering
 
 When text is used:
 
@@ -48,7 +64,7 @@ When text is used:
 
 When typography is the only failure, use `fidelity_focus: lettering` and keep the poster base unchanged.
 
-### E. Palette
+### F. Palette
 
 - [ ] Colors come from the source subject plus white and black.
 - [ ] No unrelated accent color was added without user request.
@@ -149,6 +165,30 @@ Cause: separate cases were not isolated.
 
 Repair: process one source image per generation unless a comparison board is explicitly requested.
 
+### 11. Stick-figure drift
+
+Example: workers are faceless but become thin, tall, long-limbed doodle humans.
+
+Cause: the figure contract locked identity details but did not lock silhouette proportions.
+
+Repair: explicitly lock squat worker proportions: oversized round head, short compact torso, short stubby limbs, 2.2–2.8 heads tall, white empty interior, uneven black outline.
+
+### 12. Default ladder repetition
+
+Example: ladders appear repeatedly even when not needed, sometimes floating or unsupported.
+
+Cause: ladder examples were over-represented in prompt grammar and tool suggestions.
+
+Repair: forbid ladders and structural props by default; choose action first, then add the smallest necessary prop only if required; remove any prop with weak grounding.
+
+### 13. Floating structural prop
+
+Example: a ladder or platform ends in empty space, hangs beside the product, or does not share the scene ground plane.
+
+Cause: action prop was generated as decoration rather than a physically grounded object.
+
+Repair: require visible base support, contact surface, consistent perspective, and worker-to-prop contact. If any are unclear, remove the prop.
+
 ## Review questions
 
 After each test, ask:
@@ -158,10 +198,12 @@ After each test, ask:
 3. If Fidelity Mode is active, what is the single selected focus?
 4. Is that focus visible before secondary details at thumbnail size?
 5. Are the workers one fixed faceless system rather than characters?
-6. Can each worker action be traced back to a product feature?
-7. Is the empty space doing compositional work?
-8. If text exists, does it feel written rather than typeset?
-9. What is the single biggest defect to repair next?
+6. Are the workers squat 2.2–2.8-head figures rather than long-limbed stick figures?
+7. Can each worker action be traced back to a product feature?
+8. Is every physical prop necessary and visibly grounded?
+9. Is the empty space doing compositional work?
+10. If text exists, does it feel written rather than typeset?
+11. What is the single biggest defect to repair next?
 
 ## Regression policy
 

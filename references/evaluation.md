@@ -1,101 +1,117 @@
 # Evaluation Guide
 
-Use this after every generated poster and after every major Skill revision.
+Revision: **v0.7-worker-scale-calibration**
 
-## Pass criteria
+Use after every generated poster and after every major Skill revision.
 
-### A. Subject fidelity
+## A. Subject fidelity
 
-- [ ] The exact source category is preserved.
-- [ ] The original silhouette and proportions are recognizable.
+- [ ] Exact source category is preserved.
+- [ ] Original silhouette and proportions remain recognizable.
 - [ ] Main color and material remain faithful.
-- [ ] Important toppings, garnish, plate, cup, bottle, or support relation are preserved when defining.
-- [ ] The product remains photographic, not illustrated or 3D-cartoonized.
+- [ ] Defining toppings/container/support relation remain when necessary.
+- [ ] Product remains photographic, not illustrated or cartoonized.
 
-### B. Composition
+## B. Composition
 
 - [ ] One hero object dominates the photographic layer.
 - [ ] White / warm-white negative space remains generous.
-- [ ] The object sits center-lower or another intentionally quiet lower position.
-- [ ] Doodles do not evenly fill the blank field.
-- [ ] No dense ad-layout clutter appears.
+- [ ] Product is noticed before workers.
+- [ ] Workers do not form an evenly spaced decorative ring.
+- [ ] No dense commercial-ad clutter appears.
 
-Default negative-space target is around 70%–80%. In `dominant_element` Fidelity passes, 60%–70% is acceptable when the larger focus needs more presence.
+Default negative-space target: about 70%–80%. In `dominant_element` Fidelity passes, 60%–70% is acceptable.
 
-### C. Micro workers
+## C. Micro-worker identity
 
-- [ ] Workers use oversized blank round or slightly lumpy heads.
-- [ ] No eyes, mouths, facial expressions, hair, hats, or clothing details appear.
-- [ ] No labels, logos, badges, or body symbols appear.
-- [ ] Lines are black, simple, uneven, and hand-drawn.
-- [ ] Workers have squat proportions rather than stick-figure proportions.
-- [ ] Total body height stays around 2.2–2.8 head diameters.
-- [ ] Head occupies roughly 35%–45% of total figure height.
-- [ ] Arms and legs are short and stubby rather than long and thin.
+- [ ] Blank round or slightly irregular heads.
+- [ ] No eyes, mouth, facial expression, hair, hats, or clothing details.
+- [ ] No labels, logos, badges, or body symbols.
+- [ ] White empty interiors.
+- [ ] Black thin uneven hand-drawn outlines.
+- [ ] No polished mascot treatment.
+
+## D. Worker silhouette calibration
+
+- [ ] Total figure height is about **2.8–3.5 head diameters**.
+- [ ] Head occupies about **28%–35%** of total figure height.
+- [ ] Torso width is about **55%–75% of head diameter**.
+- [ ] Torso is lightly rounded but not broad/barrel-shaped.
+- [ ] Arms and legs are slim and short-to-medium.
+- [ ] Workers do not look fat/chibi.
+- [ ] Workers do not look like tall adult stick figures.
+
+Fail when workers have giant heads, barrel-shaped bodies, thick stubby limbs, long fashion-like limbs, or adult stick-figure anatomy.
+
+## E. Worker relative scale
+
+- [ ] Normal worker visual height is about **12%–18% of hero height**.
+- [ ] Preferred average is about **14%–16%**.
+- [ ] No worker exceeds **20% of hero height** without explicit user request.
+- [ ] Product visually dominates before any worker is noticed.
+- [ ] Workers on/behind the product may be smaller or partially occluded.
+
+If workers feel like co-equal characters, they are too large.
+
+## F. Worker action
+
 - [ ] Every worker has a clear action verb.
 - [ ] Every action relates to a real product feature.
 - [ ] At least three workers have readable contact or cause-and-effect with the product.
 - [ ] Removing any worker would remove a layer of product meaning.
 
-Any visible face, designed costume, long-limbed stick-figure anatomy, or polished mascot treatment is a fail, even when the overall poster looks good.
+## G. Structural props
 
-### D. Prop grounding
+- [ ] Default structural-prop count is 0.
+- [ ] Maximum structural-prop count is 1.
+- [ ] A ladder/stool/step appears only when vertical access materially improves the story.
+- [ ] Structural prop base visibly rests on the ground plane.
+- [ ] Perspective matches the scene.
+- [ ] Worker hands/feet connect to the prop.
+- [ ] No structural prop floats or terminates in empty space.
+- [ ] No rope, scaffold, suspended line, or floating platform appears unless explicitly requested.
 
-- [ ] Ladders, scaffolds, ropes, platforms, and similar structural props are absent by default.
-- [ ] A ladder appears only when explicitly requested or truly necessary to communicate vertical access.
-- [ ] Every physical prop has visible support.
-- [ ] Structural props rest on the same ground plane as the product.
-- [ ] Props obey scene perspective.
-- [ ] No prop floats, terminates in empty space, or leans without visible contact.
-- [ ] Worker hands or feet visibly connect to the prop when used.
+A grounded single ladder is acceptable; repeated or unnecessary ladders are not.
 
-If structural grounding is unclear, the prop should be removed rather than repaired decoratively.
-
-### E. Lettering
+## H. Lettering
 
 When text is used:
 
 - [ ] Exact requested wording is attempted without extra copy.
-- [ ] The lettering uses thin black lines.
+- [ ] Thin black line handwriting.
 - [ ] Character sizes, tilt, spacing, and baselines are irregular.
-- [ ] The result does not look like standard computer typography.
-- [ ] It is not brush calligraphy, rounded cute handwriting, or polished commercial lettering.
+- [ ] Does not look like standard computer typography.
+- [ ] Not brush calligraphy, rounded cute handwriting, or polished commercial lettering.
 - [ ] Text participates in composition rather than forming a formal ad block.
 
 When typography is the only failure, use `fidelity_focus: lettering` and keep the poster base unchanged.
 
-### F. Palette
+## I. Palette
 
-- [ ] Colors come from the source subject plus white and black.
-- [ ] No unrelated accent color was added without user request.
+- [ ] Colors come from source subject plus white and black.
+- [ ] No unrelated accent color is added without user request.
 
 ## Fidelity Focus checks
 
-Read `references/fidelity-focus.md` and evaluate the selected focus separately.
-
 ### subject_identity
 
-- [ ] The result is unmistakably the same photographed object without relying on text.
+- [ ] Result is unmistakably the same photographed object without text.
 - [ ] Category, silhouette, material, color, and defining details survive.
 - [ ] Creative exaggeration does not alter product identity.
-- [ ] Background cleanup does not remove essential support/container cues.
 
 ### dominant_element
 
-- [ ] The focus element was explicitly identified before generation.
-- [ ] The selected element is the first photographic signal at thumbnail size.
-- [ ] It is the largest **meaningful subject element**, not irrelevant background architecture.
-- [ ] Secondary photographic cues are limited to 0–2 when possible.
-- [ ] Secondary elements do not compete through size, saturation, contrast, or central placement.
-- [ ] Workers interact with the focus element before secondary elements.
-- [ ] The focus remains realistic photography rather than becoming a cartoon prop.
+- [ ] Focus element was explicitly identified before generation.
+- [ ] Selected focus is the first photographic signal at thumbnail size.
+- [ ] It is the largest meaningful subject element, not background architecture.
+- [ ] Secondary cues remain clearly weaker.
+- [ ] Workers interact with the focus before secondary elements.
 
 ### lettering
 
-- [ ] The accepted poster base remains unchanged.
-- [ ] Product, workers, lighting, and composition were not regenerated.
-- [ ] Only the title layer changed.
-- [ ] The new lettering fixes glyph skeleton, spacing, tilt, scale, or baseline issues.
+- [ ] Accepted poster base remains unchanged.
+- [ ] Only lettering layer changes.
+- [ ] Glyph skeleton, spacing, tilt, scale, or baseline issues are repaired.
 
 ## Known failure modes
 
@@ -103,110 +119,81 @@ Read `references/fidelity-focus.md` and evaluate the selected focus separately.
 
 Example: blue pudding becomes shaved ice.
 
-Cause: sensory concept overrode product identity.
+Repair: lock category, silhouette, material, color, topping, and support relation.
 
-Repair: lock category, silhouette, material, color, topping, and support relation before creative prompting.
+### 2. Character drift
 
-### 2. Cute-character drift
+Workers gain faces, clothes, hats, badges, or mascot styling.
 
-Example: workers gain chef hats, faces, clothes, or expressions.
+Repair: reassert fixed faceless worker identity.
 
-Cause: model interpreted “tiny workers” as designed characters.
+### 3. Chibi overcorrection
 
-Repair: reassert fixed figure contract and move storytelling into pose + tool only.
+Example: workers become giant-headed, fat, barrel-bodied, or thick-limbed after trying to avoid stick figures.
 
-### 3. Weak worker story
+Cause: silhouette lock overemphasized “squat / oversized head / stubby limbs”.
 
-Example: one worker waves while others do meaningful jobs.
+Repair: recalibrate to 2.8–3.5 heads tall, head 28%–35%, torso width 55%–75% of head diameter, slim short-to-medium limbs.
 
-Cause: worker count was treated as a quota.
+### 4. Worker scale inflation
 
-Repair: delete the weak worker or replace it with a product-feature action.
+Example: workers are stylistically correct but too large compared with the product.
 
-### 4. Font-like handwriting
+Cause: anatomy was constrained but relative product-to-worker scale was not.
 
-Cause: standard glyph skeleton remained underneath the “handwritten” texture.
+Repair: enforce 12%–18% hero-height target, preferred 14%–16%, max 20%.
 
-Repair: keep poster base; regenerate only lettering layer; vary glyph boxes, tilt, spacing, radical proportions, and horizontal stroke lengths.
+### 5. Stick-figure drift
 
-### 5. Too much decoration
+Workers become tall, thin, long-limbed doodle humans.
 
-Repair: remove half of supporting doodles, restore blank space, keep only action-serving marks.
+Repair: use compact 2.8–3.5-head geometry with narrow rounded torso and slim short-to-medium limbs.
 
-### 6. Full illustration conversion
+### 6. Default ladder repetition
 
-Repair: explicitly preserve real photographed material and studio-photography behavior.
+Ladders repeatedly appear even when unnecessary.
 
-### 7. Generic commercial poster
+Repair: structural-prop budget defaults to 0 and is capped at 1. Use ladder only for meaningful vertical access.
 
-Repair: remove logos, frames, badges, price labels, grids, secondary copy, and unrelated props.
+### 7. Floating ladder / prop
 
-### 8. Dominant-focus dilution
+Repair: require visible base support, matching perspective, stable top contact, and worker contact. Otherwise remove it.
 
-Example: the requested giant tomato is present, but a plush figure, sign, and broccoli cluster remain equally large and colorful.
+### 8. Weak worker story
 
-Cause: source preservation was confused with equal visual priority.
+A worker merely waves or decorates.
 
-Repair: keep only 0–2 supporting scene cues and demote them in scale, contrast, saturation, and placement.
+Repair: delete or replace with a product-feature action.
 
-### 9. Wrong “largest element” selection
+### 9. Font-like handwriting
 
-Example: a wall or table becomes the Fidelity focus because it occupies more pixels than the product.
+Repair lettering layer only; vary glyph boxes, tilt, spacing, radical proportions, and horizontal stroke lengths.
 
-Cause: literal image area was used instead of semantic relevance.
+### 10. Too much decoration
 
-Repair: choose the largest meaningful subject element.
+Remove half of supporting doodles and restore blank space.
 
-### 10. Multi-case blending
+### 11. Dominant-focus dilution
 
-Example: three source photos intended for three posters are combined into one generated collage.
+Demote secondary scene cues in scale, contrast, saturation, and placement.
 
-Cause: separate cases were not isolated.
+### 12. Multi-case blending
 
-Repair: process one source image per generation unless a comparison board is explicitly requested.
-
-### 11. Stick-figure drift
-
-Example: workers are faceless but become thin, tall, long-limbed doodle humans.
-
-Cause: the figure contract locked identity details but did not lock silhouette proportions.
-
-Repair: explicitly lock squat worker proportions: oversized round head, short compact torso, short stubby limbs, 2.2–2.8 heads tall, white empty interior, uneven black outline.
-
-### 12. Default ladder repetition
-
-Example: ladders appear repeatedly even when not needed, sometimes floating or unsupported.
-
-Cause: ladder examples were over-represented in prompt grammar and tool suggestions.
-
-Repair: forbid ladders and structural props by default; choose action first, then add the smallest necessary prop only if required; remove any prop with weak grounding.
-
-### 13. Floating structural prop
-
-Example: a ladder or platform ends in empty space, hangs beside the product, or does not share the scene ground plane.
-
-Cause: action prop was generated as decoration rather than a physically grounded object.
-
-Repair: require visible base support, contact surface, consistent perspective, and worker-to-prop contact. If any are unclear, remove the prop.
+Process each source as an independent generation unless a comparison board is explicitly requested.
 
 ## Review questions
 
-After each test, ask:
-
-1. Is the photographed product still unmistakably the same object?
-2. Is the product still the visual hero?
-3. If Fidelity Mode is active, what is the single selected focus?
-4. Is that focus visible before secondary details at thumbnail size?
-5. Are the workers one fixed faceless system rather than characters?
-6. Are the workers squat 2.2–2.8-head figures rather than long-limbed stick figures?
-7. Can each worker action be traced back to a product feature?
-8. Is every physical prop necessary and visibly grounded?
-9. Is the empty space doing compositional work?
-10. If text exists, does it feel written rather than typeset?
-11. What is the single biggest defect to repair next?
+1. Is the product unmistakably the same object?
+2. Is the product the first visual signal?
+3. Are workers small enough relative to the hero?
+4. Are workers neither chubby/chibi nor long-limbed stick figures?
+5. Does each worker action map to a real product feature?
+6. Is any ladder/stool genuinely useful and physically grounded?
+7. Is structural-prop count at most one?
+8. Is white space doing compositional work?
+9. If text exists, does it feel written rather than typeset?
+10. What single defect should be repaired next?
 
 ## Regression policy
 
-A failure that is likely to repeat should become an eval case in `evals/evals.json`.
-
-Do not rewrite the Skill only around one pretty example. Maintain a small set of different subjects so improvements to one axis do not silently damage another.
+Any repeatable failure should become an eval case in `evals/evals.json`. Do not optimize only around one pretty example.
